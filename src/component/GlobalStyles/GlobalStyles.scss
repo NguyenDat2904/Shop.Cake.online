@@ -1,4 +1,5 @@
 @import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap');
 
 :root {
 }
@@ -6,4 +7,21 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+body {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 15px;
+}
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+ul {
+    list-style: none;
+}
+a{
+    color: inherit;
+    text-decoration: none;
 }
