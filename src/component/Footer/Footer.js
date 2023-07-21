@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './Footer.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot, faMobile, faEnvelope, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faLocationDot, faMobile, faEnvelope, faPaperPlane, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
@@ -160,6 +160,11 @@ function Footer() {
                     alt=""
                 />
                 <p>Cung cấp bởi P.A Việt Nam</p>
+            </div>
+            <div className={cx('fix')}>
+                <NavLink to={'#smooth'}>
+                    <FontAwesomeIcon icon={faArrowUp} className={cx('icon')} />
+                </NavLink>
             </div>
         </div>
     );

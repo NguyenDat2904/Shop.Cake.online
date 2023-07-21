@@ -36,7 +36,7 @@ function Header() {
 
     return (
         <header>
-            <section className={cx('header', 'top')}>
+            <section className={cx('header', 'top')} id="smooth">
                 <div className={cx('container')}>
                     <div className={cx('col', 'col-left')}>
                         <span className={cx('desc')}>HỖ TRỢ GIAO HÀNG MIỄN PHÍ TRONG VÒNG 2H</span>
