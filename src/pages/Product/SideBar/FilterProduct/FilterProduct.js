@@ -6,6 +6,7 @@ const cx = classnames.bind(styles);
 function FilterProduct({ data = [], check }) {
     const { checkedItems, setCheckedItems } = useContext(AppContext);
     const handleClick = (item) => {
+        console.log(item);
         if (checkedItems.includes(item)) {
             setCheckedItems(checkedItems.filter((selectedItem) => selectedItem !== item));
         } else {

@@ -15,6 +15,7 @@ import {
     faAnglesLeft,
     faAnglesRight,
     faList,
+    faSpinner,
     faTableCellsLarge,
 } from '@fortawesome/free-solid-svg-icons';
 import ItemCart from '~/component/ItemCart/ItemCart';
@@ -23,7 +24,13 @@ const cx = classnames.bind(styles);
 
 function Product() {
     const targetElementRef = useRef(null);
+
+    // 1. State
     const [active, setActive] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [sortOrder, setSortOrder] = useState(null);
+    const [sortedProductData, setSortedProductData] = useState(null);
+
     const {
         productDataTrends,
         setProductDataTrends,
@@ -34,25 +41,51 @@ function Product() {
         limit,
         setLimit,
     } = useContext(AppContext);
+
+    // 2. useEffects
     // Call API productTrends
     useEffect(() => {
         const fetchAPI = async () => {
+            setLoading(true);
             const result = await products.getProduct();
             const trendProducts = await result.filter((product) => product.hasOwnProperty('trend'));
             const trendProductIds = await trendProducts.map((product) => product);
             setProductDataTrends(trendProductIds);
+            setLoading(false);
         };
         fetchAPI();
     }, []);
     // Call API product Phân trang
     useEffect(() => {
         const fetchAPI = async () => {
+            setLoading(true);
             const resultPerPage = await products.getProductPerPage(perPage, limit);
             setProductData(resultPerPage);
+            setLoading(false);
         };
         fetchAPI();
     }, [perPage, limit]);
+    useEffect(() => {
+        let sortedData = [...productData];
+        if (sortOrder === 'nameAtoZ') {
+            sortedData = sortedData.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (sortOrder === 'nameZtoA') {
+            sortedData = sortedData.sort((a, b) => b.name.localeCompare(a.name));
+        } else if (sortOrder === 'priceSmalltoBig') {
+            sortedData = sortedData.sort((a, b) => a.price - b.price);
+        } else if (sortOrder === 'priceBigtoSmall') {
+            sortedData = sortedData.sort((a, b) => b.price - a.price);
+        } else if (sortOrder === 'promotion') {
+            sortedData = sortedData.sort((a, b) => (a.cost ? -1 : 1));
+        } else if (sortOrder === 'noPromotion') {
+            sortedData = sortedData.sort((a, b) => (a.cost ? 1 : -1));
+        } else if (sortOrder === 'default') {
+            sortedData = [...productData];
+        }
+        setSortedProductData(sortedData);
+    }, [productData, sortOrder]);
 
+    // 3. Function
     // Chuyển trang
     const handlePerPage = (number) => {
         const targetElement = targetElementRef.current;
@@ -98,10 +131,49 @@ function Product() {
             }
         }
     };
-
-    // Render sản phẩm trend và list sản phẩm
+    const handleSelectChange = (e) => {
+        const value = e.target.value;
+        if (value === '9') {
+            setPerPage(1);
+            setLimit(9);
+        } else if (value === '18') {
+            setPerPage(1);
+            setLimit(18);
+        } else if (value === '27') {
+            setPerPage(1);
+            setLimit(27);
+        } else if (value === '36') {
+            setPerPage(1);
+            setLimit(36);
+        } else if (value === '45') {
+            setPerPage(1);
+            setLimit(45);
+        } else {
+            setPerPage(1);
+            setLimit(15);
+        }
+    };
+    const handleSelectSort = (e) => {
+        const value = e.target.value;
+        if (value === '1') {
+            setSortOrder('nameAtoZ');
+        } else if (value === '2') {
+            setSortOrder('nameZtoA');
+        } else if (value === '3') {
+            setSortOrder('priceSmalltoBig');
+        } else if (value === '4') {
+            setSortOrder('priceBigtoSmall');
+        } else if (value === '5') {
+            setSortOrder('promotion');
+        } else if (value === '6') {
+            setSortOrder('noPromotion');
+        } else {
+            setSortOrder('default');
+        }
+    };
+    // 4. Render sản phẩm trend và list sản phẩm
     const trendProduct = productDataTrends?.map((data) => <ProductItem data={data} key={data.id} />);
-    const productList = productData?.map((data) => <ItemCart data={data} key={data.id} />);
+    const productList = sortedProductData?.map((data) => <ItemCart data={data} key={data.id} />);
     return (
         <>
             <div className={cx('banner')}>
@@ -226,8 +298,8 @@ function Product() {
                         <div className={cx('repeat-header')}>
                             <div className={cx('repeat-limit')}>
                                 <label htmlFor="">Hiển thị</label>
-                                <select name="" id="">
-                                    <option>Mặc định</option>
+                                <select name="select" onChange={handleSelectChange}>
+                                    <option value="">Mặc định</option>
                                     <option value="9">9</option>
                                     <option value="18">18</option>
                                     <option value="27">27</option>
@@ -237,8 +309,8 @@ function Product() {
                             </div>
                             <div className={cx('repeat-sort')}>
                                 <label htmlFor="">Sắp xếp</label>
-                                <select name="" id="">
-                                    <option>Mặc định</option>
+                                <select name="select" id="" onChange={handleSelectSort}>
+                                    <option value="">Mặc định</option>
                                     <option value="1">Sắp xếp theo tên (A-Z)</option>
                                     <option value="2">Sắp xếp theo tên (Z-A)</option>
                                     <option value="3">Sắp xếp theo giá (Nhỏ -{'>'} Lớn)</option>
@@ -256,57 +328,65 @@ function Product() {
                                 </div>
                             </div>
                         </div>
-                        <div className={cx('repeat-box')}>{productList}</div>
-                        <ul className={cx('paggin', 'flex-item')}>
-                            <li
-                                className={cx('paggin-item', active === 1 && 'disable', 'flex-center')}
-                                onClick={() => handlePerPage(1)}
-                            >
-                                <FontAwesomeIcon icon={faAnglesLeft} />
-                            </li>
-                            <li
-                                className={cx('paggin-item', active === 1 && 'disable', 'flex-center')}
-                                onClick={() => handlePerPage(5)}
-                            >
-                                <FontAwesomeIcon icon={faAngleLeft} />
-                            </li>
-                            <li
-                                className={cx('paggin-item', active === 1 && 'active', 'flex-center')}
-                                onClick={() => handlePerPage(1)}
-                            >
-                                1
-                            </li>
-                            <li
-                                className={cx('paggin-item', active === 2 && 'active', 'flex-center')}
-                                onClick={() => handlePerPage(2)}
-                            >
-                                2
-                            </li>
-                            <li
-                                className={cx('paggin-item', active === 3 && 'active', 'flex-center')}
-                                onClick={() => handlePerPage(3)}
-                            >
-                                3
-                            </li>
-                            <li
-                                className={cx('paggin-item', active === 4 && 'active', 'flex-center')}
-                                onClick={() => handlePerPage(4)}
-                            >
-                                4
-                            </li>
-                            <li
-                                className={cx('paggin-item', active === 4 && 'disable', 'flex-center')}
-                                onClick={() => handlePerPage(6)}
-                            >
-                                <FontAwesomeIcon icon={faAngleRight} />
-                            </li>
-                            <li
-                                className={cx('paggin-item', active === 4 && 'disable', 'flex-center')}
-                                onClick={() => handlePerPage(4)}
-                            >
-                                <FontAwesomeIcon icon={faAnglesRight} />
-                            </li>
-                        </ul>
+                        {loading ? (
+                            <div className={cx('loading')}>
+                                <FontAwesomeIcon icon={faSpinner} spin />
+                            </div>
+                        ) : (
+                            <>
+                                <div className={cx('repeat-box')}>{productList}</div>
+                                <ul className={cx('paggin', 'flex-item')}>
+                                    <li
+                                        className={cx('paggin-item', active === 1 && 'disable', 'flex-center')}
+                                        onClick={() => handlePerPage(1)}
+                                    >
+                                        <FontAwesomeIcon icon={faAnglesLeft} />
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 1 && 'disable', 'flex-center')}
+                                        onClick={() => handlePerPage(5)}
+                                    >
+                                        <FontAwesomeIcon icon={faAngleLeft} />
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 1 && 'active', 'flex-center')}
+                                        onClick={() => handlePerPage(1)}
+                                    >
+                                        1
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 2 && 'active', 'flex-center')}
+                                        onClick={() => handlePerPage(2)}
+                                    >
+                                        2
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 3 && 'active', 'flex-center')}
+                                        onClick={() => handlePerPage(3)}
+                                    >
+                                        3
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 4 && 'active', 'flex-center')}
+                                        onClick={() => handlePerPage(4)}
+                                    >
+                                        4
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 4 && 'disable', 'flex-center')}
+                                        onClick={() => handlePerPage(6)}
+                                    >
+                                        <FontAwesomeIcon icon={faAngleRight} />
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 4 && 'disable', 'flex-center')}
+                                        onClick={() => handlePerPage(4)}
+                                    >
+                                        <FontAwesomeIcon icon={faAnglesRight} />
+                                    </li>
+                                </ul>
+                            </>
+                        )}
                     </div>
                 </section>
             </section>
