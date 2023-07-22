@@ -7,20 +7,6 @@
 .top {
     background-color: #243a6e;
 }
-.container {
-    --width-container: 1200px;
-    height: 100%;
-    width: var(--width-container);
-    max-width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-content: stretch;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    position: relative;
-    top: 0;
-    bottom: 0;
-    // z-index: 1;
     .col {
         display: inline-block;
         position: relative;
@@ -104,7 +90,6 @@
             }
         }
     }
-}
 .bottom {
     background-color: #fff;
     padding-top: 0;

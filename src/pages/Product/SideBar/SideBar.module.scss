@@ -1,0 +1,26 @@
+.group {
+    width: 100%;
+    height: auto;
+    top: 0;
+    left: 0px;
+    background-color: var(--c-1668650473184, #f6f6f6);
+    border-radius: 5px;
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+.title {
+    height: auto;
+    width: 100%;
+    color: var(--c-1668480455247, #282828);
+    font-size: 24px;
+    top: 0;
+    left: 0px;
+    font-family: Playfair Display;
+    font-weight: 600;
+    line-height: 40px;
+    text-transform: uppercase;
+    margin: 0px 0px 25px;
+    display: block;
+    position: relative;
+}

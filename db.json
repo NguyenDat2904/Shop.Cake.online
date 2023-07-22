@@ -1,0 +1,506 @@
+{
+    "users": [{ "id": 1, "email": "dathhcc2@gmail.com", "password": "3qcuhanh" }],
+    "comments": [{ "id": 1, "body": "some comment", "userId": 1 }],
+    "products": [
+        {
+            "id": 1,
+            "name": "THE INCREDIBLE",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-increable-removebg-preview.png?t=1668479885",
+            "price": "380000",
+            "cost": "450000",
+            "color": "Đỏ",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 2,
+            "name": "SCHOOL BUS",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-school-bus-removebg-preview.png?t=1668479885",
+            "price": "350000",
+            "cost": "380000",
+            "color": "Đỏ",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 3,
+            "name": "TINY PRINCE",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-hoang-tu-be-removebg-preview.png?t=1668479885",
+            "price": "340000",
+            "cost": "380000",
+            "color": "Xanh Dương",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 4,
+            "name": "TINY PRINCE",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-batman-removebg-preview.png?t=1668479885",
+            "price": "380000",
+            "cost": "",
+            "color": "Vàng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 5,
+            "name": "SPIDER MAN",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-nguoi-nhen-removebg-preview.png?t=1668479885",
+            "price": "380000",
+            "cost": "",
+            "color": "Xanh Dương",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 6,
+            "name": "MARIO FOOTBALL",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-mario-removebg-preview.png?t=1668479885",
+            "price": "380000",
+            "cost": "",
+            "color": "Xanh Lá",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 7,
+            "name": "GATO SOCOLA SỮA",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-mario-removebg-preview.png?t=1668479885",
+            "price": "38000",
+            "cost": "40000",
+            "color": "Nâu",
+            "type": "bánh tráng miệng",
+            "size": "12"
+        },
+        {
+            "id": 8,
+            "name": "MADELEINE",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/madeleine.jpg?t=1668479885",
+            "price": "38000",
+            "cost": "40000",
+            "color": "Vàng",
+            "type": "bánh tráng miệng",
+            "size": "12"
+        },
+        {
+            "id": 9,
+            "name": "BÁNH TRỨNG VÀNG CÁC VỊ",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-trung-vang-cac-vi.jpg?t=1668479885",
+            "price": "25000",
+            "cost": "30000",
+            "color": "Vàng",
+            "type": "bánh tráng miệng",
+            "size": "10"
+        },
+        {
+            "id": 10,
+            "name": "BÁNH CHIFFON VANI",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-trung-vang-cac-vi.jpg?t=1668479885",
+            "price": "30000",
+            "cost": "",
+            "color": "Vàng",
+            "type": "bánh tráng miệng",
+            "size": "15"
+        },
+        {
+            "id": 11,
+            "name": "BÁNH CHIFFON BA VỊ",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-chiffon-ba-vi.jpg?t=1668479885",
+            "price": "20000",
+            "cost": "",
+            "color": "Nâu",
+            "type": "bánh tráng miệng",
+            "size": "12"
+        },
+        {
+            "id": 12,
+            "name": "BÁNH CHIFFON TRÀ XANH",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-chiffon-ba-vi.jpg?t=1668479885",
+            "price": "35000",
+            "cost": "",
+            "color": "Xanh Lá",
+            "type": "bánh tráng miệng",
+            "size": "15"
+        },
+        {
+            "id": 13,
+            "name": "BÁNH CUỘN SOCOLA MIẾNG",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-cuon-socola-mieng.png?t=1668479885",
+            "price": "20000",
+            "cost": "",
+            "color": "Nâu",
+            "type": "bánh tráng miệng",
+            "size": "12"
+        },
+        {
+            "id": 14,
+            "name": "BÁNH CUỘN NHO MIẾNG",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-cuon-nho-mieng.jpg?t=1668479885",
+            "price": "20000",
+            "cost": "",
+            "color": "Hồng",
+            "type": "bánh tráng miệng",
+            "size": "12"
+        },
+        {
+            "id": 15,
+            "name": "BÁNH CUỘN DÂU",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-cuon-dau.jpg?t=1668479885",
+            "price": "20000",
+            "cost": "",
+            "color": "Hồng",
+            "type": "bánh tráng miệng",
+            "size": "12"
+        },
+        {
+            "id": 16,
+            "name": "BÁNH CUỘN KEM TƯƠI VANI",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-cuon-kem-tuoi-vani-size-lon.jpg?t=1668479885",
+            "price": "79000",
+            "cost": "",
+            "color": "Cam",
+            "type": "bánh tráng miệng",
+            "size": "15"
+        },
+        {
+            "id": 17,
+            "name": "BÁNH CUỘN KEM TƯƠI VANI  (SIZE NHỎ)",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-cuon-kem-tuoi-vani-size-nho.png?t=1668479885",
+            "price": "30000",
+            "cost": "",
+            "color": "Cam",
+            "type": "bánh tráng miệng",
+            "size": "12"
+        },
+        {
+            "id": 18,
+            "name": "BÁNH CHEESE CAKE",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-cheese-cake.jpg?t=1668479885",
+            "price": "29000",
+            "cost": "",
+            "color": "",
+            "type": "bánh tráng miệng",
+            "size": "12"
+        },
+        {
+            "id": 19,
+            "name": "BÁNH BUTTER CAKE",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-butter-cake.jpg?t=1668479885",
+            "price": "25000",
+            "cost": "",
+            "color": "Vàng",
+            "type": "bánh tráng miệng",
+            "size": "12"
+        },
+        {
+            "id": 20,
+            "name": "BÁNH CUỘN KEM TƯƠI TRÀ XANH (SIZE NHỎ)",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-cuon-kem-tuoi-tra-xanh.png?t=1668479885",
+            "price": "30000",
+            "cost": "",
+            "color": "Xanh Lá",
+            "type": "bánh tráng miệng",
+            "size": "12"
+        },
+        {
+            "id": 21,
+            "name": "BÁNH KEM CHOCOLATE FRUIT",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-chocolate-fruit.jpg?t=1668479885",
+            "price": "280000",
+            "cost": "30000",
+            "color": "Nâu",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 22,
+            "name": "BÁNH KEM BLACK FOREST",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-black-forest.jpg?t=1668479885",
+            "price": "300000",
+            "cost": "",
+            "color": "Trắng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 23,
+            "name": "BÁNH KEM COFFEE CHARM",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-coffee-charm.jpg?t=1668479885",
+            "price": "280000",
+            "cost": "300000",
+            "color": "Trắng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 24,
+            "name": "BÁNH KEM TEDDY BEAR",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-teddy-bear.jpg?t=1668479884",
+            "price": "300000",
+            "cost": "",
+            "color": "Trắng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 25,
+            "name": "BÁNH KEM BLUE OCEAN",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-blue-ocean.jpg?t=1668479884",
+            "price": "280000",
+            "cost": "",
+            "color": "Xanh Dương",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 26,
+            "name": "BÁNH KEM TASTY LOVE",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-tasty-love.jpg?t=1668479884",
+            "price": "280000",
+            "cost": "",
+            "color": "Hồng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 27,
+            "name": "BÁNH KEM HAPPY FARM",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-happy-farm.jpg?t=1668479884",
+            "price": "300000",
+            "cost": "",
+            "color": "Xanh Lá",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 28,
+            "name": "BÁNH KEM KISS OF LADY",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-kiss-of-lady.jpg?t=1668479884",
+            "price": "300000",
+            "cost": "",
+            "color": "Đỏ",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 29,
+            "name": "BÁNH KEM 3D CAR",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-3d-car.jpg?t=1668479884",
+            "price": "300000",
+            "cost": "",
+            "color": "Nâu",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 30,
+            "name": "BÁNH KEM LILY GARDEN",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-lily-garden.jpg?t=1668479884",
+            "price": "350000",
+            "cost": "",
+            "color": "Vàng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 31,
+            "name": "BÁNH KEM PASSION FRUIT MOUSSE",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-passion-fruit-mousse.jpg?t=1668479885",
+            "price": "320000",
+            "cost": "",
+            "color": "Vàng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 32,
+            "name": "BÁNH KEM SEASONAL FRUIT",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-seasonal-fruit.jpg?t=1668479885",
+            "price": "380000",
+            "cost": "",
+            "color": "Vàng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 33,
+            "name": "BÁNH KEM COCONUT",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-coconut.png?t=1668479885",
+            "price": "350000",
+            "cost": "",
+            "color": "Trắng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 34,
+            "name": "BÁNH KEM ICING LOLLIPOP",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-icing-lollipop.jpg?t=1668479885",
+            "price": "380000",
+            "cost": "",
+            "color": "Hồng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 35,
+            "name": "BÁNH KEM FLOWER FRUIT",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-flower-fruit.png?t=1668479885",
+            "price": "300000",
+            "cost": "",
+            "color": "Trắng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 36,
+            "name": "BÁNH KEM RED VELVET",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-red-velvet.png?t=1668479885",
+            "price": "320000",
+            "cost": "",
+            "color": "Trắng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 37,
+            "name": "BÁNH KEM PINK LADY",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-pink-lady.jpg?t=1668479885",
+            "price": "350000",
+            "cost": "",
+            "color": "Trắng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 38,
+            "name": "BÁNH KEM MACARON DELIGHT",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-macaron-delight.png?t=1668479885",
+            "price": "300000",
+            "cost": "",
+            "color": "Trắng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 39,
+            "name": "BÁNH KEM AUTUMN FLOWER",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-autumn-flower.png?t=1668479885",
+            "price": "300000",
+            "cost": "",
+            "color": "Xanh Dương",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 40,
+            "name": "BÁNH KEM WINTER FLOWER",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-winter-flower.png?t=1668479884",
+            "price": "320000",
+            "cost": "",
+            "color": "Trắng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 41,
+            "name": "BÁNH KEM SUMMER FLOWER",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-summer-flower.png?t=1668479884",
+            "price": "320000",
+            "cost": "",
+            "color": "Hồng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 41,
+            "name": "BÁNH KEM SPRING FLOWER",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-spring-flower.png?t=1668479884",
+            "price": "320000",
+            "cost": "",
+            "color": "Xanh Dương",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 42,
+            "name": "BÁNH KEM SHEEP CAKE",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-sheep-cake.png?t=1668479884",
+            "price": "300000",
+            "cost": "",
+            "color": "Trắng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 43,
+            "name": "BÁNH KEM LION CAKE",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-lion-cake.png?t=1668479884",
+            "price": "320000",
+            "cost": "",
+            "color": "Cam",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 44,
+            "name": "BÁNH KEM CHOCOLATE",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-chocolate.png?t=1668479884",
+            "price": "350000",
+            "cost": "",
+            "color": "Nâu",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 45,
+            "name": "BÁNH KEM SWEET CLOUDY",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-sweet-cloudy.jpg?t=1668479884",
+            "price": "350000",
+            "cost": "",
+            "color": "Hồng",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 46,
+            "name": "BÁNH KEM FLOWER CAKE",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-flower-cake.jpg?t=1668479885",
+            "price": "300000",
+            "cost": "",
+            "color": "Nâu",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 47,
+            "name": "BÁNH KEM FLOWER OF LOVE",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-flower-of-love.png?t=1668479885",
+            "price": "300000",
+            "cost": "",
+            "color": "Nâu",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 48,
+            "name": "BÁNH KEM SWEET AUTUMN",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-sweet-autumn.jpg?t=1668479885",
+            "price": "320000",
+            "cost": "",
+            "color": "Nâu",
+            "type": "bánh kem",
+            "size": "17"
+        },
+        {
+            "id": 49,
+            "name": "BÁNH KEM SWEET CREAM",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-sweet-cream.jpg?t=1668479885",
+            "price": "350000",
+            "cost": "",
+            "color": "Trắng",
+            "type": "bánh kem",
+            "size": "17"
+        }
+    ]
+}

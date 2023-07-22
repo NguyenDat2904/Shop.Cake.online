@@ -1,0 +1,97 @@
+.banner {
+    background-image: url(https://demo037126.web30s.vn/datafiles/web30s/upload/images/7101-7200/30S-03-7126/breadcrumbs-bg.png);
+    background-size: cover;
+    background-position: 50% 50%;
+    padding: 180px 10px;
+    z-index: 7;
+    height: auto;
+    display: block;
+}
+.col {
+    width: 100%;
+    order: 1;
+    display: block;
+    .childrens {
+        width: 100%;
+        height: auto;
+        position: relative;
+        .title {
+            height: auto;
+            width: 100%;
+            color: var(--c-1668480455247, #282828);
+            font-size: 40px;
+            top: 0;
+            left: 0px;
+            font-family: Playfair Display;
+            font-weight: 600;
+            margin: 0px 0px 15px;
+            display: block;
+            position: relative;
+        }
+    }
+    .breadscrumb {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        display: inline-flex;
+        position: relative;
+        .breadscrumb-item {
+            color: var(--c-1668480455247, #282828);
+            margin: auto 3px;
+            font-weight: 500;
+            font-size: 18px;
+        }
+        .breadscrumb-icon {
+            color: var(--c-1668480518886, #fc7c7c);
+            font-size: 18px;
+        }
+        .active {
+            color: var(--c-1668480518886, #fc7c7c);
+        }
+    }
+}
+.unique {
+    height: auto;
+    padding: 100px 10px;
+    display: block;
+}
+.col-left {
+    order: 1;
+    width: 33.33333333%;
+    padding: 0px 30px 0px 0px;
+    display: block;
+}
+.col-right {
+    width: 66.66666667%;
+    order: 2;
+    display: block;
+}
+.sidebar-wrapper {
+    padding: 30px;
+    margin: 0px 0px 30px;
+}
+.check-wrapper {
+    margin-bottom: 14px;
+}
+.box {
+    overflow: hidden;
+    border-radius: 5px;
+}
+.thumnail {
+    background-image: url(https://demo037126.web30s.vn/datafiles/38469/upload/images/home/product-sidaber-banner.png?t=1668671581);
+    background-repeat: no-repeat;
+    background-position: 0% 0%;
+    background-size: cover;
+    width: 100%;
+    height: 450px;
+    top: 0;
+    left: 0px;
+    margin: 0px 0px 0px;
+    transition: all 500ms ease;
+    display: block;
+    position: relative;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
