@@ -44,7 +44,17 @@ a {
     height: 100%;
     position: relative;
 }
-.flex-item{
+.flex-item {
     display: flex;
     align-items: center;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-column{
+    display: flex;
+    flex-direction: column;
 }

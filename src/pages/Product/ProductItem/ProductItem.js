@@ -1,27 +1,28 @@
 import React from 'react';
 import styles from './ProductItem.module.scss';
 import classnames from 'classnames/bind';
+import { formatCurrencyVND } from '~/component/NumberToPrice/currency';
 const cx = classnames.bind(styles);
-function ProductItem() {
+function ProductItem({ data }) {
+    const formattedPrice = formatCurrencyVND(data.price);
+    const formattedCost = formatCurrencyVND(data.cost);
+
     return (
         <div className={cx('repeat-box')}>
             <article className={cx('repeat-item')}>
                 <div className="childrens flex-item">
                     <div className={cx('group')}>
                         <div className="childrens">
-                            <img
-                                src="https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-increable-removebg-preview.png?t=1668479885"
-                                alt=""
-                            />
+                            <img src={data.img} alt="" />
                         </div>
                     </div>
                     <div className={cx('group-text')}>
                         <div className="childrens">
-                            <h3>THE INCREDIBLE</h3>
+                            <h3>{data.name}</h3>
                             <div>
                                 <div className="childrens flex-item">
-                                    <p className={cx('sold-discount')}>380.000 đ</p>
-                                    <p className={cx('sold')}>450.000 đ</p>
+                                    <p className={cx('sold-discount')}>{formattedPrice}</p>
+                                    <p className={cx('sold')}>{formattedCost}</p>
                                 </div>
                             </div>
                         </div>

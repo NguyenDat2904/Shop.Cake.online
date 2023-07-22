@@ -10,6 +10,7 @@
             "cost": "450000",
             "color": "Đỏ",
             "type": "bánh kem",
+            "trend": true,
             "size": "17"
         },
         {
@@ -20,6 +21,7 @@
             "cost": "380000",
             "color": "Đỏ",
             "type": "bánh kem",
+            "trend": true,
             "size": "17"
         },
         {
@@ -30,6 +32,7 @@
             "cost": "380000",
             "color": "Xanh Dương",
             "type": "bánh kem",
+            "trend": true,
             "size": "17"
         },
         {
@@ -40,6 +43,7 @@
             "cost": "",
             "color": "Vàng",
             "type": "bánh kem",
+            "trend": true,
             "size": "17"
         },
         {
@@ -413,7 +417,7 @@
             "size": "17"
         },
         {
-            "id": 41,
+            "id": 42,
             "name": "BÁNH KEM SPRING FLOWER",
             "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-spring-flower.png?t=1668479884",
             "price": "320000",
@@ -423,7 +427,7 @@
             "size": "17"
         },
         {
-            "id": 42,
+            "id": 43,
             "name": "BÁNH KEM SHEEP CAKE",
             "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-sheep-cake.png?t=1668479884",
             "price": "300000",
@@ -433,7 +437,7 @@
             "size": "17"
         },
         {
-            "id": 43,
+            "id": 44,
             "name": "BÁNH KEM LION CAKE",
             "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-lion-cake.png?t=1668479884",
             "price": "320000",
@@ -443,7 +447,7 @@
             "size": "17"
         },
         {
-            "id": 44,
+            "id": 45,
             "name": "BÁNH KEM CHOCOLATE",
             "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-chocolate.png?t=1668479884",
             "price": "350000",
@@ -453,7 +457,7 @@
             "size": "17"
         },
         {
-            "id": 45,
+            "id": 46,
             "name": "BÁNH KEM SWEET CLOUDY",
             "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-sweet-cloudy.jpg?t=1668479884",
             "price": "350000",
@@ -463,7 +467,7 @@
             "size": "17"
         },
         {
-            "id": 46,
+            "id": 47,
             "name": "BÁNH KEM FLOWER CAKE",
             "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-flower-cake.jpg?t=1668479885",
             "price": "300000",
@@ -473,7 +477,7 @@
             "size": "17"
         },
         {
-            "id": 47,
+            "id": 48,
             "name": "BÁNH KEM FLOWER OF LOVE",
             "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-flower-of-love.png?t=1668479885",
             "price": "300000",
@@ -483,7 +487,7 @@
             "size": "17"
         },
         {
-            "id": 48,
+            "id": 49,
             "name": "BÁNH KEM SWEET AUTUMN",
             "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-sweet-autumn.jpg?t=1668479885",
             "price": "320000",
@@ -493,7 +497,7 @@
             "size": "17"
         },
         {
-            "id": 49,
+            "id": 50,
             "name": "BÁNH KEM SWEET CREAM",
             "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-sweet-cream.jpg?t=1668479885",
             "price": "350000",

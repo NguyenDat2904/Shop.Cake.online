@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from './Product.module.scss';
 import classnames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
@@ -6,9 +6,102 @@ import SideBar from './SideBar/SideBar';
 import Select from '~/component/Select/Select';
 import FilterProduct from './SideBar/FilterProduct/FilterProduct';
 import ProductItem from './ProductItem/ProductItem';
+import * as products from '~/services/productService';
+import { AppContext } from '~/hook/context';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faAngleLeft,
+    faAngleRight,
+    faAnglesLeft,
+    faAnglesRight,
+    faList,
+    faTableCellsLarge,
+} from '@fortawesome/free-solid-svg-icons';
+import ItemCart from '~/component/ItemCart/ItemCart';
+
 const cx = classnames.bind(styles);
 
 function Product() {
+    const targetElementRef = useRef(null);
+    const [active, setActive] = useState(1);
+    const {
+        productDataTrends,
+        setProductDataTrends,
+        productData,
+        setProductData,
+        perPage,
+        setPerPage,
+        limit,
+        setLimit,
+    } = useContext(AppContext);
+    // Call API productTrends
+    useEffect(() => {
+        const fetchAPI = async () => {
+            const result = await products.getProduct();
+            const trendProducts = await result.filter((product) => product.hasOwnProperty('trend'));
+            const trendProductIds = await trendProducts.map((product) => product);
+            setProductDataTrends(trendProductIds);
+        };
+        fetchAPI();
+    }, []);
+    // Call API product Phân trang
+    useEffect(() => {
+        const fetchAPI = async () => {
+            const resultPerPage = await products.getProductPerPage(perPage, limit);
+            setProductData(resultPerPage);
+        };
+        fetchAPI();
+    }, [perPage, limit]);
+
+    // Chuyển trang
+    const handlePerPage = (number) => {
+        const targetElement = targetElementRef.current;
+        if (number === 1) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+            setPerPage(1);
+            setActive(1);
+            setLimit(15);
+        } else if (number === 2) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+            setPerPage(2);
+            setActive(2);
+            setLimit(15);
+        } else if (number === 3) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+            setPerPage(3);
+            setActive(3);
+            setLimit(15);
+        } else if (number === 4) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+            setPerPage(4);
+            setActive(4);
+            setLimit(15);
+        } else if (number === 5) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+            setLimit(15);
+            if (5 > active > 0) {
+                setPerPage(perPage - 1);
+                setActive(active - 1);
+            } else {
+                setPerPage(1);
+                setActive(1);
+            }
+        } else if (number === 6) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+            setLimit(15);
+            if (0 < active < 5) {
+                setPerPage(perPage + 1);
+                setActive(active + 1);
+            } else {
+                setPerPage(4);
+                setActive(4);
+            }
+        }
+    };
+
+    // Render sản phẩm trend và list sản phẩm
+    const trendProduct = productDataTrends?.map((data) => <ProductItem data={data} key={data.id} />);
+    const productList = productData?.map((data) => <ItemCart data={data} key={data.id} />);
     return (
         <>
             <div className={cx('banner')}>
@@ -31,7 +124,7 @@ function Product() {
                     </div>
                 </section>
             </div>
-            <section className={cx('unique')}>
+            <section ref={targetElementRef} className={cx('unique')}>
                 <section className="container">
                     <div className={cx('col-left')}>
                         <div className="childrens">
@@ -122,17 +215,99 @@ function Product() {
                                 </SideBar>
                             </SideBar>
                             <SideBar title={'SẢN PHẨM HOT'} className={cx('sidebar-wrapper')}>
-                                <ProductItem />
-                                <ProductItem />
-                                <ProductItem />
-                                <ProductItem />
+                                {trendProduct}
                             </SideBar>
                             <div className={cx('box')}>
                                 <NavLink to="product" className={cx('thumnail')}></NavLink>
                             </div>
                         </div>
                     </div>
-                    <div className={cx('col-right')}>2</div>
+                    <div className={cx('col-right')}>
+                        <div className={cx('repeat-header')}>
+                            <div className={cx('repeat-limit')}>
+                                <label htmlFor="">Hiển thị</label>
+                                <select name="" id="">
+                                    <option>Mặc định</option>
+                                    <option value="9">9</option>
+                                    <option value="18">18</option>
+                                    <option value="27">27</option>
+                                    <option value="36">36</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </div>
+                            <div className={cx('repeat-sort')}>
+                                <label htmlFor="">Sắp xếp</label>
+                                <select name="" id="">
+                                    <option>Mặc định</option>
+                                    <option value="1">Sắp xếp theo tên (A-Z)</option>
+                                    <option value="2">Sắp xếp theo tên (Z-A)</option>
+                                    <option value="3">Sắp xếp theo giá (Nhỏ -{'>'} Lớn)</option>
+                                    <option value="4">Sắp xếp theo giá (Lớn -{'>'} Nhỏ)</option>
+                                    <option value="5">Sắp xếp theo khuyến mãi (Có -{'>'} không)</option>
+                                    <option value="6">Sắp xếp theo khuyến mãi (Không -{'>'} Có)</option>
+                                </select>
+                            </div>
+                            <div className={cx('repeat-view')}>
+                                <div className={cx('item-icon')}>
+                                    <FontAwesomeIcon icon={faTableCellsLarge} />
+                                </div>
+                                <div className={cx('item-icon')}>
+                                    <FontAwesomeIcon icon={faList} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className={cx('repeat-box')}>{productList}</div>
+                        <ul className={cx('paggin', 'flex-item')}>
+                            <li
+                                className={cx('paggin-item', active === 1 && 'disable', 'flex-center')}
+                                onClick={() => handlePerPage(1)}
+                            >
+                                <FontAwesomeIcon icon={faAnglesLeft} />
+                            </li>
+                            <li
+                                className={cx('paggin-item', active === 1 && 'disable', 'flex-center')}
+                                onClick={() => handlePerPage(5)}
+                            >
+                                <FontAwesomeIcon icon={faAngleLeft} />
+                            </li>
+                            <li
+                                className={cx('paggin-item', active === 1 && 'active', 'flex-center')}
+                                onClick={() => handlePerPage(1)}
+                            >
+                                1
+                            </li>
+                            <li
+                                className={cx('paggin-item', active === 2 && 'active', 'flex-center')}
+                                onClick={() => handlePerPage(2)}
+                            >
+                                2
+                            </li>
+                            <li
+                                className={cx('paggin-item', active === 3 && 'active', 'flex-center')}
+                                onClick={() => handlePerPage(3)}
+                            >
+                                3
+                            </li>
+                            <li
+                                className={cx('paggin-item', active === 4 && 'active', 'flex-center')}
+                                onClick={() => handlePerPage(4)}
+                            >
+                                4
+                            </li>
+                            <li
+                                className={cx('paggin-item', active === 4 && 'disable', 'flex-center')}
+                                onClick={() => handlePerPage(6)}
+                            >
+                                <FontAwesomeIcon icon={faAngleRight} />
+                            </li>
+                            <li
+                                className={cx('paggin-item', active === 4 && 'disable', 'flex-center')}
+                                onClick={() => handlePerPage(4)}
+                            >
+                                <FontAwesomeIcon icon={faAnglesRight} />
+                            </li>
+                        </ul>
+                    </div>
                 </section>
             </section>
         </>
