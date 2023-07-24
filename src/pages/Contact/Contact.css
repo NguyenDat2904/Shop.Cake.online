@@ -16,12 +16,16 @@
 }
 .contact-right {
     flex-basis: 40%;
-    padding: 40px;
 }
-.contact-right input {
-    width: 100%;
+.contact-right form {   
     margin: 20px 0px 20px 0px;
     font-size: 16px;
+    display:flex;
+    flex-direction: column;
+}
+.contact-right input{
+    width: 100%;
+    padding:20px
 }
 .contact-right textarea {
     width: 100%;
@@ -30,7 +34,14 @@
     font-size: 16px;
 }
 .button {
-    border-radius: 200px;
+    border-radius: 25px;
+    background-color: var(--c-1668480339968, #fc7c7c);
+    font-size:18px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.icon{
+    color: #fc7c7c;
 }
 .contact-left p {
     font-size: 16px;
