@@ -5,6 +5,11 @@ const AppProvider = (props) => {
     const [checkedItems, setCheckedItems] = useState([]);
     const [productDataTrends, setProductDataTrends] = useState([]);
     const [productData, setProductData] = useState([]);
+    const [productDataDetail, setProductDataDetail] = useState([]);
+    const [addressData, setAddressData] = useState([]);
+    const [toggleCart, setToggleCart] = useState(false);
+    const [productDataCart, setProductDataCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+
     const [perPage, setPerPage] = useState(1);
     const [limit, setLimit] = useState(15);
 
@@ -21,6 +26,14 @@ const AppProvider = (props) => {
         setPerPage,
         limit,
         setLimit,
+        productDataDetail,
+        setProductDataDetail,
+        toggleCart,
+        setToggleCart,
+        productDataCart,
+        setProductDataCart,
+        addressData,
+        setAddressData,
     };
     return (
         <AppContext.Provider value={value} {...props}>

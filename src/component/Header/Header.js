@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Tippy from '@tippyjs/react/headless';
 
 import { NavLink } from 'react-router-dom';
@@ -9,12 +9,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp, faBagShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal/Modal';
 import Menu from '../Menu/Menu';
+import { AppContext } from '~/hook/context';
 const cx = classnames.bind(styles);
 
 function Header() {
+    // 1. State
     const [activeMenu, setActiveMenu] = useState(1);
     const [hoveredMenu, setHoveredMenu] = useState(null);
+    const { setToggleCart, productDataCart } = useContext(AppContext);
 
+    // 3. Functions
     const handleMenuClick = (index) => {
         setActiveMenu(index);
     };
@@ -33,7 +37,7 @@ function Header() {
             return false;
         }
     };
-
+    // 4. Render
     return (
         <header>
             <section className={cx('header', 'top')} id="smooth">
@@ -247,9 +251,9 @@ function Header() {
                             <div className={cx('search')}>
                                 <FontAwesomeIcon className={cx('icon')} icon={faMagnifyingGlass} />
                             </div>
-                            <div className={cx('search')}>
+                            <div className={cx('search')} onClick={() => setToggleCart(true)}>
                                 <FontAwesomeIcon className={cx('icon')} icon={faBagShopping} />
-                                <div className={cx('count')}>0</div>
+                                <div className={cx('count')}>{productDataCart.length}</div>
                             </div>
                         </div>
                     </div>

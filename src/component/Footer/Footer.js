@@ -66,14 +66,14 @@ function Footer() {
                             <FontAwesomeIcon icon={faMobile} className={cx('icon')} />
                         </span>
 
-                        <p> 1900 9477</p>
+                        <p className={cx('content')}> 1900 9477</p>
                     </div>
                     <div className={cx('contact')}>
                         <span>
                             <FontAwesomeIcon icon={faEnvelope} className={cx('icon')} />
                         </span>
 
-                        <p>admin@demo037126.web30s.vn</p>
+                        <p className={cx('content')}>admin@shopcake.vn</p>
                     </div>
                 </div>
                 <div className={cx('informationProducts')}>
@@ -118,32 +118,37 @@ function Footer() {
                             </div>
                         </div>
                         <div className={cx('registerOnMultipleApps')}>
-                            <div className={cx('img')} style={{ padding: 5 }}>
+                            <div className={cx('img')}>
                                 <img
+                                    className={cx('img-full')}
                                     src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/kisspng-credit-card-visa-logo-mastercard-visa-logo-svg-vector-amp-png-transparent-vecto-5b6e4791bac489_845100331533953937765.jpg"
                                     alt=""
                                 />
                             </div>
                             <div className={cx('img')}>
                                 <img
+                                    className={cx('img-full')}
                                     src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/zalopay-1.png"
                                     alt=""
                                 />
                             </div>
                             <div className={cx('img')}>
                                 <img
+                                    className={cx('img-full')}
                                     src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/Vnpay-1.png"
                                     alt=""
                                 />
                             </div>
                             <div className={cx('img')}>
                                 <img
+                                    className={cx('img-full')}
                                     src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/paypal-1.png"
                                     alt=""
                                 />
                             </div>
                             <div className={cx('img')}>
                                 <img
+                                    className={cx('img-full')}
                                     src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/onepay-1.png"
                                     alt=""
                                 />
