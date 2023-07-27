@@ -20,7 +20,7 @@ const OneCake = (prop) => {
                         </button>
                     </div>
                 </div>
-                <div>
+                <div className={cx('img')}>
                     <img
                         src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/hero-banner-shape.png"
                         alt=""
