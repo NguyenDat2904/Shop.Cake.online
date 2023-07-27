@@ -10,11 +10,17 @@ import Header from './component/Header/Header';
 import Footer from './component/Footer/Footer';
 import Contact from './pages/Contact/Contact';
 import './App.css';
+import ProductDetail from './pages/ProductDetail/ProductDetail';
+import Cart from './pages/Cart/Cart';
+import CartRight from './component/CartRight/CartRight';
+import PayMent from './pages/PayMent/PayMent';
+
 function App() {
     return (
         <AppProvider>
             <Router>
                 <Header />
+                <CartRight />
                 <div className="App">
                     <Routes>
                         <Route path="/" element={<Home />} />
@@ -24,6 +30,9 @@ function App() {
                         <Route path="/product" element={<Product />} />
                         <Route path="/support" element={<Support />} />
                         <Route path="/contact" element={<Contact />} />
+                        <Route path="/product/:id" element={<ProductDetail />} />
+                        <Route path="/cart" element={<Cart />} />
+                        <Route path="/pay" element={<PayMent />} />
                     </Routes>
                 </div>
                 <Footer />

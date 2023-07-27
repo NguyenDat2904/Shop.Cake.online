@@ -69,7 +69,7 @@
         {
             "id": 7,
             "name": "GATO SOCOLA SỮA",
-            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-mario-removebg-preview.png?t=1668479885",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/gato-socola-sua.jpg?t=1668479885",
             "price": "38000",
             "cost": "40000",
             "color": "Nâu",
@@ -99,7 +99,7 @@
         {
             "id": 10,
             "name": "BÁNH CHIFFON VANI",
-            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-trung-vang-cac-vi.jpg?t=1668479885",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-chiffon-vani.jpg?t=1668479885",
             "price": "30000",
             "cost": "",
             "color": "Vàng",
@@ -119,7 +119,7 @@
         {
             "id": 12,
             "name": "BÁNH CHIFFON TRÀ XANH",
-            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-chiffon-ba-vi.jpg?t=1668479885",
+            "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-chiffon-tra-xanh.jpg?t=1668479885",
             "price": "35000",
             "cost": "",
             "color": "Xanh Lá",

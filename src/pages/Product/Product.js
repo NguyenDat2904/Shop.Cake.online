@@ -19,6 +19,7 @@ import {
     faTableCellsLarge,
 } from '@fortawesome/free-solid-svg-icons';
 import ItemCart from '~/component/ItemCart/ItemCart';
+import Banner from '~/component/Banner/Banner';
 
 const cx = classnames.bind(styles);
 
@@ -176,26 +177,7 @@ function Product() {
     const productList = sortedProductData?.map((data) => <ItemCart data={data} key={data.id} />);
     return (
         <>
-            <div className={cx('banner')}>
-                <section className="container">
-                    <div className={cx('col')}>
-                        <div className={cx('childrens')}>
-                            <h1 className={cx('title')}>
-                                <span className={cx('content')}>Sản phẩm</span>
-                            </h1>
-                        </div>
-                        <div className={cx('breadscrumb')}>
-                            <NavLink to="/" className={cx('breadscrumb-item')}>
-                                Trang chủ
-                            </NavLink>
-                            <div className={cx('breadscrumb-icon')}>/</div>
-                            <NavLink to="/product" className={cx('breadscrumb-item', 'active')}>
-                                Sản phẩm
-                            </NavLink>
-                        </div>
-                    </div>
-                </section>
-            </div>
+            <Banner page="Sản phẩm" title="Sản phẩm" />
             <section ref={targetElementRef} className={cx('unique')}>
                 <section className="container">
                     <div className={cx('col-left')}>
