@@ -1,17 +1,12 @@
-import Cart from '~/component/cart/cart';
-
+import ItemCart from '~/component/ItemCart/ItemCart';
+import { Link } from 'react-router-dom';
 export const ProductsList = (prop) => {
     const { list } = prop;
     return list?.map((products, index) => {
         return (
-            <Cart
-                img={products.img}
-                price={products.price}
-                oldPrice={products.cost}
-                name={products.name}
-                key={products.id}
-                index={index}
-            />
+            <Link to={`/product/${products.id}`}>
+                <ItemCart data={products} index={index} />
+            </Link>
         );
     });
 };

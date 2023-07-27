@@ -1,8 +1,8 @@
 import Slider from 'react-slick';
-import Cart from '~/component/cart/cart';
+import ItemCart from '~/component/ItemCart/ItemCart';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
+import { Link } from 'react-router-dom';
 export const Slick = (prop) => {
     const { slider } = prop;
     let settings = {
@@ -48,14 +48,9 @@ export const Slick = (prop) => {
         <Slider {...settings}>
             {slider?.map((item, index) => {
                 return (
-                    <Cart
-                        img={item.img}
-                        price={item.price}
-                        oldPrice={item.cost}
-                        name={item.name}
-                        key={item.id}
-                        index={index}
-                    />
+                    <Link to={`/product/${item.id}`}>
+                        <ItemCart data={item} index={index} />
+                    </Link>
                 );
             })}
         </Slider>

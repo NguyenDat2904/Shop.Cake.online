@@ -3,6 +3,7 @@ import classnames from 'classnames/bind';
 import styles from './Home.module.scss';
 import OneCake from './oneCake';
 import NewCake from './newCake';
+import { Link } from 'react-router-dom';
 import { Slick } from './slick';
 import { ProductsList } from './productsList';
 import * as products from '~/services/productService';
@@ -76,50 +77,62 @@ function Home() {
                 )}
             </div>
             <div className={cx('select')}>
-                <div className={cx('cart')}>
-                    <img
-                        src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/banh-tu-chon.png"
-                        alt=""
-                        className={cx('img')}
-                    />
-                    <h3>BÁNH THEO CHỦ ĐỀ</h3>
-                    <p>
-                        Với mục tiêu trở thành lựa chọn tin cậy , duy nhất và tốt nhất về dòng bánh kem cao cấp, chún...
-                    </p>
-                </div>
-                <div className={cx('cart')}>
-                    <img
-                        src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/banh-sinh-nhat.png"
-                        alt=""
-                        className={cx('img')}
-                    />
-                    <h3>BÁNH SINH NHẬT TẠO HÌNH</h3>
-                    <p>
-                        Với mục tiêu trở thành điểm lựa chọn tin cậy, duy nhất và tốt nhất về dòng bánh kem cao cấp,
-                        chún...
-                    </p>
-                </div>
-                <div className={cx('cart')}>
-                    <img
-                        src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/banh-kem-su-kien.png"
-                        alt=""
-                        className={cx('img')}
-                    />
-                    <h3>BÁNH KEM THEO SỰ KIỆN</h3>
-                    <p>Bánh sinh Nhật Đẹp mang nét mộc mạc, đặc trung làm say lòng không biết bao thế hệ người...</p>
-                </div>
-                <div className={cx('cart')}>
-                    <img
-                        src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/FRESH%20GARDEN.png"
-                        alt=""
-                        className={cx('img')}
-                    />
-                    <h3>BÁNH GATO FRESH GARDEN</h3>
-                    <p>
-                        Trong tiềm thức của nhiều người Việt, bánh sinh nhật không chỉ là một loại quà bình thường mà nó
-                        có mang ý nghĩa cho ...
-                    </p>
-                </div>
+                <Link to={'/product'}>
+                    <div className={cx('cart')}>
+                        <img
+                            src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/banh-tu-chon.png"
+                            alt=""
+                            className={cx('img')}
+                        />
+                        <h3>BÁNH THEO CHỦ ĐỀ</h3>
+                        <p>
+                            Với mục tiêu trở thành lựa chọn tin cậy , duy nhất và tốt nhất về dòng bánh kem cao cấp,
+                            chún...
+                        </p>
+                    </div>
+                </Link>
+
+                <Link to={'/product'}>
+                    <div className={cx('cart')}>
+                        <img
+                            src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/banh-sinh-nhat.png"
+                            alt=""
+                            className={cx('img')}
+                        />
+                        <h3>BÁNH SINH NHẬT TẠO HÌNH</h3>
+                        <p>
+                            Với mục tiêu trở thành điểm lựa chọn tin cậy, duy nhất và tốt nhất về dòng bánh kem cao cấp,
+                            chún...
+                        </p>
+                    </div>
+                </Link>
+                <Link to={'/product'}>
+                    <div className={cx('cart')}>
+                        <img
+                            src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/banh-kem-su-kien.png"
+                            alt=""
+                            className={cx('img')}
+                        />
+                        <h3>BÁNH KEM THEO SỰ KIỆN</h3>
+                        <p>
+                            Bánh sinh Nhật Đẹp mang nét mộc mạc, đặc trung làm say lòng không biết bao thế hệ người...
+                        </p>
+                    </div>
+                </Link>
+                <Link to={'/product'}>
+                    <div className={cx('cart')}>
+                        <img
+                            src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/FRESH%20GARDEN.png"
+                            alt=""
+                            className={cx('img')}
+                        />
+                        <h3>BÁNH GATO FRESH GARDEN</h3>
+                        <p>
+                            Trong tiềm thức của nhiều người Việt, bánh sinh nhật không chỉ là một loại quà bình thường
+                            mà nó có mang ý nghĩa cho ...
+                        </p>
+                    </div>
+                </Link>
             </div>
             <div className={cx('discountGoods')}>
                 <div className={cx('discount1')}>
@@ -128,7 +141,9 @@ function Home() {
                         <h2>
                             Bánh mì <br /> Baguette
                         </h2>
-                        <button>SẢN PHẨM</button>
+                        <Link to={'/product'}>
+                            <button>SẢN PHẨM</button>{' '}
+                        </Link>
                     </div>
                 </div>
                 <div className={cx('discount2')}>
@@ -137,7 +152,9 @@ function Home() {
                         <h2>
                             Bánh mì <br /> cao cấp
                         </h2>
-                        <button>SẢN PHẨM</button>
+                        <Link to={'/product'}>
+                            <button>SẢN PHẨM</button>{' '}
+                        </Link>
                     </div>
                 </div>
             </div>
