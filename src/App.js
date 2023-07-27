@@ -9,7 +9,7 @@ import Support from './pages/Support/Support';
 import Header from './component/Header/Header';
 import Footer from './component/Footer/Footer';
 import Contact from './pages/Contact/Contact';
-
+import './App.css';
 function App() {
     return (
         <AppProvider>

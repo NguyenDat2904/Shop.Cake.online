@@ -1,0 +1,103 @@
+.birthdayCake {
+    margin: 0 auto;
+    padding: 150px 150px 0;
+    --widthcontainer: 1200px;
+    width: var(--width-container);
+    max-width: 100%;
+    background-image: url('https://demo037126.web30s.vn/datafiles/web30s/upload/images/7101-7200/30S-03-7126/bg-banner-01.jpg');
+    height: 800px;
+    position: relative;
+    .brithday {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        .discount {
+            padding: 10px;
+            h3 {
+                margin-top: 55px;
+                font-size: 30px;
+                color: var(--c-1668480487215, #2b4174);
+                font-weight: 600;
+            }
+            h2 {
+                margin-top: 15px;
+                font-size: 60px;
+                text-align: left;
+                font-family: Playfair Display;
+                line-height: 80px;
+                font-weight: 600;
+            }
+            .although {
+                display: flex;
+                gap: 30px;
+                button {
+                    margin-top: 78px;
+                    color: var(--c-1668480534016, #fff);
+                    font-size: 18px;
+                    border-radius: 50px;
+                    font-family: Roboto, sans-serif;
+                    text-align: center;
+                    background-color: var(--c-1668480339968, #fc7c7c);
+                    padding: 10px 40px;
+                    border: none;
+                    height: auto;
+                    font-weight: 600;
+                    &:hover {
+                        background-color: #2b4174;
+                        transition: 1s;
+                    }
+                }
+                .button {
+                    color: var(--c-1668480534016, #fff);
+                    font-size: 18px;
+                    border-radius: 50px;
+                    font-family: Roboto, sans-serif;
+                    text-align: center;
+                    background-color: var(--c-1668480339968, #2b4174);
+                    padding: 10px 40px;
+                    border: none;
+                    height: auto;
+                    font-weight: 600;
+                    &:hover {
+                        background-color: #13e150;
+                        transition: 1s;
+                    }
+                }
+            }
+        }
+        .brithdayCakeImg {
+            width: 100%;
+            height: auto;
+            align-self: flex-start;
+            position: relative;
+            animation-name: example;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            @keyframes example {
+                0% {
+                    left: 0px;
+                    top: 0px;
+                }
+                75% {
+                    left: 0px;
+                    top: 30px;
+                }
+                100% {
+                    left: 0px;
+                    top: 0px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 1146px) {
+    .birthdayCake {
+        .brithday {
+            .discount {
+                .although {
+                    display: block;
+                }
+            }
+        }
+    }
+}
