@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './Register.module.scss';
 import classnames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classnames.bind(styles);
 
@@ -64,6 +66,7 @@ const Register = () => {
                         <div className={cx('inputblock')}>
                             <span className={cx('input-group-text')}>*</span>
                             <input className={cx('input')} type="text" placeholder='Mã bảo mật'/>
+                            <button className={cx('sync')}><FontAwesomeIcon icon={faArrowsRotate} /></button>
                         </div>
                     </div>
                 </div>
