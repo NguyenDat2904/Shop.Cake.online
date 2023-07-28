@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faCalendarDays, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 const cx = classnames.bind(styles);
 
-function Home() {
+function Home({ toggle }) {
     const [select, setSelect] = useState(false);
     const [array, setArray] = useState([]);
     const [array1, setArray1] = useState([]);
@@ -172,7 +172,7 @@ function Home() {
                     </span>
                 </div>
                 <div className={cx('productsList')}>
-                    <ProductsList list={productList} array={array} />
+                    <ProductsList list={productList} toggle={toggle} array={array} />
                 </div>
             </div>
             <div className={cx('allKindsOfBread')}>
@@ -194,7 +194,7 @@ function Home() {
                         mộc mạc, đặc trưng làm say lòng người không biết bao nhiêu thế hệ người thưởng thức.
                     </p>
                 </div>
-                <Slick slider={slider} />
+                <Slick toggle={toggle} slider={slider} />
             </div>
             <div className={cx('armorial')}>
                 <div className={cx('img1')}></div>
