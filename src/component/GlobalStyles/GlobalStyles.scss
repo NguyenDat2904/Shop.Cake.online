@@ -13,6 +13,16 @@ body {
     font-weight: 500;
     font-size: 15px;
     line-height: 1.5;
+    color: #282828;
+    width: 100%;
+    overflow-y: auto;
+}
+body::-webkit-scrollbar {
+    width: 8px;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: #243a6e;
+    border-radius: 50px;
 }
 .img-full {
     width: 100%;

@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 import { AppContext } from '~/hook/context';
 
 const cx = classnames.bind(styles);
-function ItemCart({ data }) {
+function ItemCart({ data, toggle }) {
     // 1. State
     const { productDataCart, setProductDataCart, arrayCompare, setArrayCompare } = useContext(AppContext);
 
@@ -22,6 +22,7 @@ function ItemCart({ data }) {
 
     const handleClickCart = (e) => {
         e.preventDefault();
+        toggle(2);
         const existingItemIndex = productDataCart.findIndex((item) => item.id === data.id);
         if (existingItemIndex >= 0) {
             const updatedItems = [...productDataCart];

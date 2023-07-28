@@ -12,6 +12,13 @@ const AppProvider = (props) => {
     const [arrayCompare, setArrayCompare] = useState([]);
     const [perPage, setPerPage] = useState(1);
     const [limit, setLimit] = useState(15);
+    const [acceptProduct, setAcceptProduct] = useState(null);
+
+    const handleConfirmRemove = () => {
+        const updatedItems = productDataCart.filter((item) => item.id !== acceptProduct.id);
+        setProductDataCart(updatedItems);
+        localStorage.setItem('cart', JSON.stringify(updatedItems));
+    };
 
     const value = {
         selectIcon,
@@ -37,6 +44,7 @@ const AppProvider = (props) => {
         arrayCompare,
         setArrayCompare,
     };
+
     return (
         <AppContext.Provider value={value} {...props}>
             {}

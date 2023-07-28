@@ -6,11 +6,10 @@ import { faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { formatCurrencyVND } from '~/component/NumberToPrice/currency';
 import { AppContext } from '~/hook/context';
 const cx = classnames.bind(styles);
-function CartItem({ product }) {
+function CartItem({ product, toggle }) {
     // 1. State
     const [count, setCount] = useState(product.quantity);
-    const { productDataCart, setProductDataCart } = useContext(AppContext);
-    // 2. useEffect
+    const { productDataCart, setProductDataCart, setAcceptProduct } = useContext(AppContext);
     // 2. UseEffect
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(productDataCart));
@@ -20,10 +19,9 @@ function CartItem({ product }) {
     const formattedSold = formatCurrencyVND(priceSold);
     const formattedPrice = formatCurrencyVND(product.price);
 
-    const handleRemove = () => {
-        const updatedItems = productDataCart.filter((item) => item.id !== product.id);
-        setProductDataCart(updatedItems);
-        localStorage.setItem('cart', JSON.stringify(updatedItems));
+    const handleRemove = (product) => {
+        setAcceptProduct(product);
+        toggle(1);
     };
 
     const handleCountPlus = (id) => {
@@ -62,7 +60,7 @@ function CartItem({ product }) {
                                 <span>{product.name}</span>
                             </h2>
                             <div className={cx('detail')}>Đỏ-Bánh kem-10 "</div>
-                            <div className={cx('delete')} onClick={() => handleRemove(product.id)}>
+                            <div className={cx('delete')} onClick={() => handleRemove(product)}>
                                 <FontAwesomeIcon className={cx('btn-delete', 'flex-center')} icon={faTrash} />
                                 <span className={cx('delete-text')}>Xóa</span>
                             </div>

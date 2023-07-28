@@ -10,7 +10,7 @@ import { AppContext } from '~/hook/context';
 import { formatCurrencyVND } from '~/component/NumberToPrice/currency';
 
 const cx = classnames.bind(styles);
-function ProductDetail() {
+function ProductDetail({ toggle }) {
     // 1. state
     const [count, setCount] = useState(1);
     const { productDataDetail, setProductDataDetail, productDataCart, setProductDataCart } = useContext(AppContext);
@@ -35,6 +35,7 @@ function ProductDetail() {
 
     // 3. Sự kiện
     const handleAddProduct = (id) => {
+        toggle(2);
         const existingItemIndex = productDataCart.findIndex((item) => item.id === productDataDetail.id);
         if (existingItemIndex >= 0) {
             const updatedItems = [...productDataCart];
