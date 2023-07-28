@@ -6,10 +6,11 @@ import { faBagShopping, faEye, faHeart, faRotate } from '@fortawesome/free-solid
 import { formatCurrencyVND } from '../NumberToPrice/currency';
 import { NavLink } from 'react-router-dom';
 import { AppContext } from '~/hook/context';
+
 const cx = classnames.bind(styles);
 function ItemCart({ data, toggle }) {
     // 1. State
-    const { productDataCart, setProductDataCart } = useContext(AppContext);
+    const { productDataCart, setProductDataCart, arrayCompare, setArrayCompare } = useContext(AppContext);
 
     // 2. UseEffect
     useEffect(() => {
@@ -41,6 +42,23 @@ function ItemCart({ data, toggle }) {
             setProductDataCart([...productDataCart, product]);
         }
     };
+    const hendleCompare = (e) => {
+        e.preventDefault();
+        const existingItemIndex = arrayCompare?.findIndex((item) => item.id === data.id);
+        if (existingItemIndex < 0) {
+            const product = {
+                id: data.id,
+                name: data.name,
+                price: data.price,
+                img: data.img,
+                color: data.color,
+                type: data.type,
+                size: data.size,
+                quantity: 1,
+            };
+            setArrayCompare([...arrayCompare, product]);
+        }
+    };
     return (
         <NavLink to={`/product/${data.id}`}>
             <article>
@@ -58,7 +76,8 @@ function ItemCart({ data, toggle }) {
                                 <div className={cx('btn', 'flex-center')}>
                                     <FontAwesomeIcon icon={faHeart} />
                                 </div>
-                                <div className={cx('btn', 'flex-center')}>
+
+                                <div className={cx('btn', 'flex-center')} onClick={hendleCompare}>
                                     <FontAwesomeIcon icon={faRotate} />
                                 </div>
                             </div>

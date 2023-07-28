@@ -2,9 +2,9 @@ import Slider from 'react-slick';
 import ItemCart from '~/component/ItemCart/ItemCart';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Link } from 'react-router-dom';
+
 export const Slick = (prop) => {
-    const { slider, toggle } = prop;
+    const { slider } = prop;
     let settings = {
         dots: true,
         speed: 500,
@@ -48,9 +48,9 @@ export const Slick = (prop) => {
         <Slider {...settings}>
             {slider?.map((item, index) => {
                 return (
-                    <Link to={`/product/${item.id}`}>
-                        <ItemCart toggle={toggle} data={item} index={index} />
-                    </Link>
+                    <div key={index}>
+                        <ItemCart data={item} index={index} />
+                    </div>
                 );
             })}
         </Slider>
