@@ -1,0 +1,84 @@
+.News {
+    font-size: 14px;
+    min-height: 40px;
+    padding: 20px 20px;
+}
+.Hop {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: row;
+}
+.news-left {
+    flex-basis: 33.3333%;
+    border-radius: 5px;
+    display: block;
+    padding: 30px;
+    margin: 0px 0px 30px;
+}
+.Side_bar1 {
+}
+.news-right {
+    flex-basis: 66.6666%;
+    display: grid;
+    width: 100%;
+    grid-gap: 25px 25px;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
+}
+.New_img {
+    background-image: url(https://demo037126.web30s.vn/datafiles/38469/upload/images/tin-tuc/photo1636173931780-16361739319271242885976.png?t=1668479886);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0px;
+    border-radius: 10px;
+    transition: all 500ms ease;
+    display: block;
+    padding: 0 0 75% 0;
+    position: relative;
+}
+.New_img2 {
+    background-image: url(https://demo037126.web30s.vn/datafiles/38469/upload/images/tin-tuc/doc-dao-banh-kem-dieu-khac-cua-co-gai-9x-que-ca-mau-1.png?t=1668479886);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0px;
+    border-radius: 10px;
+    transition: all 500ms ease;
+    display: block;
+    padding: 0 0 75% 0;
+    position: relative;
+}
+.New_img3 {
+    background-image: url(https://demo037126.web30s.vn/datafiles/38469/upload/images/tin-tuc/hiec-banh-sinh-nhat-hot-nhat-hien-nay-mo-ra-biet-ngay-tinh-ban.jpg?t=1668479886);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0px;
+    border-radius: 10px;
+    transition: all 500ms ease;
+    display: block;
+    padding: 0 0 75% 0;
+    position: relative;
+}
+.New_text {
+    width: 100%;
+    height: auto;
+    top: 0;
+    left: 0px;
+    background-color: var(--c-1668480311287, #fff);
+    padding: 35px 25px;
+    overflow: visible;
+    display: block;
+    position: relative;
+}
