@@ -23,7 +23,7 @@ import Banner from '~/component/Banner/Banner';
 
 const cx = classnames.bind(styles);
 
-function Product() {
+function Product({ toggle }) {
     const targetElementRef = useRef(null);
 
     // 1. State
@@ -174,7 +174,7 @@ function Product() {
     };
     // 4. Render sản phẩm trend và list sản phẩm
     const trendProduct = productDataTrends?.map((data) => <ProductItem data={data} key={data.id} />);
-    const productList = sortedProductData?.map((data) => <ItemCart data={data} key={data.id} />);
+    const productList = sortedProductData?.map((data) => <ItemCart toggle={toggle} data={data} key={data.id} />);
     return (
         <>
             <Banner page="Sản phẩm" title="Sản phẩm" />

@@ -7,9 +7,9 @@ import { AppContext } from '~/hook/context';
 import { NavLink } from 'react-router-dom';
 import { formatCurrencyVND } from '../NumberToPrice/currency';
 const cx = classnames.bind(styles);
-function CartRight() {
+function CartRight({ toggle }) {
     // 1. useState
-    const { toggleCart, setToggleCart, productDataCart, setProductDataCart } = useContext(AppContext);
+    const { toggleCart, setToggleCart, productDataCart, setAcceptProduct } = useContext(AppContext);
 
     // 3. Function
     const total = productDataCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -19,9 +19,8 @@ function CartRight() {
     const renderCartItem = productDataCart?.map((product) => {
         const formattedPrice = formatCurrencyVND(product.price);
         const handleRemove = (product) => {
-            const updatedItems = productDataCart.filter((item) => item.id !== product.id);
-            setProductDataCart(updatedItems);
-            localStorage.setItem('cart', JSON.stringify(updatedItems));
+            setAcceptProduct(product);
+            toggle(1);
         };
         return (
             <article className={cx('repeat-item')} key={product.id}>

@@ -8,7 +8,7 @@ import { formatCurrencyVND } from '~/component/NumberToPrice/currency';
 import { NavLink } from 'react-router-dom';
 
 const cx = classnames.bind(styles);
-function Cart() {
+function Cart({ toggle }) {
     // 1. State
     const { productDataCart } = useContext(AppContext);
 
@@ -18,7 +18,9 @@ function Cart() {
 
     // 4. Render
 
-    const renderListItem = productDataCart?.map((product) => <CartItem product={product} key={product.id} />);
+    const renderListItem = productDataCart?.map((product) => (
+        <CartItem toggle={toggle} product={product} key={product.id} />
+    ));
     return (
         <>
             <Banner page="Giỏ hàng" />
