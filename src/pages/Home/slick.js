@@ -47,7 +47,11 @@ export const Slick = (prop) => {
     return (
         <Slider {...settings}>
             {slider?.map((item, index) => {
-                return <ItemCart data={item} index={index} />;
+                return (
+                    <div key={index}>
+                        <ItemCart data={item} index={index} />
+                    </div>
+                );
             })}
         </Slider>
     );
