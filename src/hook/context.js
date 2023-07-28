@@ -9,7 +9,7 @@ const AppProvider = (props) => {
     const [addressData, setAddressData] = useState([]);
     const [toggleCart, setToggleCart] = useState(false);
     const [productDataCart, setProductDataCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
-
+    const [arrayCompare, setArrayCompare] = useState([]);
     const [perPage, setPerPage] = useState(1);
     const [limit, setLimit] = useState(15);
 
@@ -34,6 +34,8 @@ const AppProvider = (props) => {
         setProductDataCart,
         addressData,
         setAddressData,
+        arrayCompare,
+        setArrayCompare,
     };
     return (
         <AppContext.Provider value={value} {...props}>

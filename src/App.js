@@ -9,6 +9,7 @@ import Support from './pages/Support/Support';
 import Header from './component/Header/Header';
 import Footer from './component/Footer/Footer';
 import Contact from './pages/Contact/Contact';
+import { Compare } from './pages/Compare/compare';
 import './App.css';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
@@ -33,6 +34,7 @@ function App() {
                         <Route path="/product/:id" element={<ProductDetail />} />
                         <Route path="/cart" element={<Cart />} />
                         <Route path="/pay" element={<PayMent />} />
+                        <Route path="/compare" element={<Compare />} />
                     </Routes>
                 </div>
                 <Footer />
