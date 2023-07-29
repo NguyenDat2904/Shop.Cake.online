@@ -165,6 +165,7 @@
         position: absolute;
         &:hover {
             color: var(--c-1668480487215, #2b4174);
+            cursor: pointer;
         }
     }
 }
@@ -235,9 +236,20 @@
             color: #ffffff;
         }
     }
+    .disabled {
+        pointer-events: none;
+        opacity: 0.5;
+        cursor: not-allowed;
+        user-select: none;
+    }
     .btn-total {
         border-color: #d01f62;
         background-color: var(--c-1668480339968, #fc7c7c);
         color: #ffffff;
     }
+}
+.content {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
 }

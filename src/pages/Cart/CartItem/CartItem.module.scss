@@ -54,6 +54,7 @@
             transition: 0.2s ease;
             &:hover {
                 color: var(--c-1668480518886, #fc7c7c);
+                cursor: pointer;
             }
         }
         .detail {
@@ -69,6 +70,7 @@
             transition: 0.2s ease;
             &:hover {
                 color: var(--c-1668480518886, #28a745);
+                cursor: pointer;
             }
         }
     }
@@ -133,11 +135,14 @@
     transition: 0.2s ease;
     &:hover {
         color: var(--c-1668480487215, #2b4174);
+        cursor: pointer;
     }
     .btn-delete {
         padding: 3px 5px 0px 0px;
+        // cursor: pointer;
     }
     .delete-text {
         padding: 3px 0px 0px;
+        // cursor: pointer;
     }
 }

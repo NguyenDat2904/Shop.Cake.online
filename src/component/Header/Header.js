@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import classnames from 'classnames/bind';
-import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleUp, faBagShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal/Modal';
@@ -14,28 +13,12 @@ const cx = classnames.bind(styles);
 
 function Header() {
     // 1. State
-    const [activeMenu, setActiveMenu] = useState(1);
-    const [hoveredMenu, setHoveredMenu] = useState(null);
+    const [icon, setIcon] = useState(false);
     const { setToggleCart, productDataCart } = useContext(AppContext);
 
     // 3. Functions
-    const handleMenuClick = (index) => {
-        setActiveMenu(index);
-    };
-
-    const handleMenuMouseOver = (index) => {
-        setHoveredMenu(index);
-    };
-
-    const handleMenuMouseOut = () => {
-        setHoveredMenu(null);
-    };
-    const checkNumber = (number) => {
-        if (activeMenu === number || (hoveredMenu === number && activeMenu !== null)) {
-            return true;
-        } else {
-            return false;
-        }
+    const activeClass = (params) => {
+        return params.isActive ? cx('active') : '';
     };
     // 4. Render
     return (
@@ -89,36 +72,21 @@ function Header() {
                     <div className={cx('group')}>
                         <div className={cx('menu')}>
                             <ul className={cx('list')}>
-                                <li
-                                    className={cx('item', checkNumber(1) ? 'active' : '')}
-                                    onClick={() => handleMenuClick(1)}
-                                    onMouseOver={() => handleMenuMouseOver(1)}
-                                    onMouseOut={handleMenuMouseOut}
-                                >
+                                <li className={cx('item')}>
                                     <div>
-                                        <NavLink to={'/'}>
+                                        <NavLink to={'/'} className={activeClass}>
                                             <span>Trang chủ</span>
                                         </NavLink>
                                     </div>
                                 </li>
-                                <li
-                                    className={cx('item', checkNumber(2) ? 'active' : '')}
-                                    onClick={() => handleMenuClick(2)}
-                                    onMouseOver={() => handleMenuMouseOver(2)}
-                                    onMouseOut={handleMenuMouseOut}
-                                >
+                                <li className={cx('item', activeClass)}>
                                     <div>
-                                        <NavLink to={'introduce'}>
+                                        <NavLink to={'introduce'} className={activeClass}>
                                             <span>Giới thiệu</span>
                                         </NavLink>
                                     </div>
                                 </li>
-                                <li
-                                    className={cx('item', checkNumber(3) ? 'active' : '')}
-                                    onClick={() => handleMenuClick(3)}
-                                    onMouseOver={() => handleMenuMouseOver(3)}
-                                    onMouseOut={handleMenuMouseOut}
-                                >
+                                <li className={cx('item', activeClass)}>
                                     <Tippy
                                         placement="bottom-start"
                                         render={(attrs) => (
@@ -128,9 +96,9 @@ function Header() {
                                         )}
                                     >
                                         <div>
-                                            <NavLink to="product">
+                                            <NavLink to="product" className={activeClass}>
                                                 <span>Sản phẩm</span>
-                                                {checkNumber(3) ? (
+                                                {icon ? (
                                                     <FontAwesomeIcon className={cx('down-icon')} icon={faAngleDown} />
                                                 ) : (
                                                     <FontAwesomeIcon className={cx('down-icon')} icon={faAngleUp} />
@@ -139,12 +107,7 @@ function Header() {
                                         </div>
                                     </Tippy>
                                 </li>
-                                <li
-                                    className={cx('item', checkNumber(4) ? 'active' : '')}
-                                    onClick={() => handleMenuClick(4)}
-                                    onMouseOver={() => handleMenuMouseOver(4)}
-                                    onMouseOut={handleMenuMouseOut}
-                                >
+                                <li className={cx('item')}>
                                     <Tippy
                                         placement="bottom-start"
                                         interactive
@@ -161,9 +124,9 @@ function Header() {
                                         )}
                                     >
                                         <div>
-                                            <NavLink to="support">
+                                            <NavLink to="support" className={activeClass}>
                                                 <span>Dịch vụ</span>
-                                                {checkNumber(4) ? (
+                                                {icon ? (
                                                     <FontAwesomeIcon className={cx('down-icon')} icon={faAngleDown} />
                                                 ) : (
                                                     <FontAwesomeIcon className={cx('down-icon')} icon={faAngleUp} />
@@ -172,12 +135,7 @@ function Header() {
                                         </div>
                                     </Tippy>
                                 </li>
-                                <li
-                                    className={cx('item', checkNumber(5) ? 'active' : '')}
-                                    onClick={() => handleMenuClick(5)}
-                                    onMouseOver={() => handleMenuMouseOver(5)}
-                                    onMouseOut={handleMenuMouseOut}
-                                >
+                                <li className={cx('item')}>
                                     <Tippy
                                         // visible
                                         placement="bottom-start"
@@ -191,9 +149,9 @@ function Header() {
                                         )}
                                     >
                                         <div>
-                                            <NavLink to="library">
+                                            <NavLink to="library" className={activeClass}>
                                                 <span>Thư viện</span>
-                                                {checkNumber(5) ? (
+                                                {icon ? (
                                                     <FontAwesomeIcon className={cx('down-icon')} icon={faAngleDown} />
                                                 ) : (
                                                     <FontAwesomeIcon className={cx('down-icon')} icon={faAngleUp} />
@@ -202,12 +160,7 @@ function Header() {
                                         </div>
                                     </Tippy>
                                 </li>
-                                <li
-                                    className={cx('item', checkNumber(6) ? 'active' : '')}
-                                    onClick={() => handleMenuClick(6)}
-                                    onMouseOver={() => handleMenuMouseOver(6)}
-                                    onMouseOut={handleMenuMouseOut}
-                                >
+                                <li className={cx('item')}>
                                     <Tippy
                                         placement="bottom-start"
                                         interactive
@@ -220,9 +173,9 @@ function Header() {
                                         )}
                                     >
                                         <div>
-                                            <NavLink to="news">
+                                            <NavLink to="news" className={activeClass}>
                                                 <span>Tin tức</span>
-                                                {checkNumber(6) ? (
+                                                {icon ? (
                                                     <FontAwesomeIcon className={cx('down-icon')} icon={faAngleDown} />
                                                 ) : (
                                                     <FontAwesomeIcon className={cx('down-icon')} icon={faAngleUp} />
@@ -231,14 +184,9 @@ function Header() {
                                         </div>
                                     </Tippy>
                                 </li>
-                                <li
-                                    className={cx('item', checkNumber(7) ? 'active' : '')}
-                                    onClick={() => handleMenuClick(7)}
-                                    onMouseOver={() => handleMenuMouseOver(7)}
-                                    onMouseOut={handleMenuMouseOut}
-                                >
+                                <li className={cx('item')}>
                                     <div>
-                                        <NavLink to="contact">
+                                        <NavLink to="contact" className={activeClass}>
                                             <span>Liên hệ</span>
                                         </NavLink>
                                     </div>

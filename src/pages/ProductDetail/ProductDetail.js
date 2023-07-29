@@ -34,7 +34,10 @@ function ProductDetail({ toggle }) {
     }, [productDataCart]);
 
     // 3. Sự kiện
-    const handleAddProduct = (id) => {
+    const handleCountPlus = () => {
+        setCount(count + 1);
+    };
+    const handleAddProduct = () => {
         toggle(2);
         const existingItemIndex = productDataCart.findIndex((item) => item.id === productDataDetail.id);
         if (existingItemIndex >= 0) {
@@ -50,13 +53,11 @@ function ProductDetail({ toggle }) {
                 color: productDataDetail.color,
                 type: productDataDetail.type,
                 size: productDataDetail.size,
-                quantity: 1,
+                quantity: count,
             };
             setProductDataCart([...productDataCart, product]);
         }
-    };
-    const handleCountPlus = (id) => {
-        setCount(count + 1);
+        setCount(1);
     };
     const handleCountMinus = (id) => {
         const productIndex = productDataCart.findIndex((product) => product.id === productDataDetail.id);

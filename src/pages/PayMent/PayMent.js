@@ -62,6 +62,9 @@ function PayMent() {
         };
         fetchAPI();
     }, []);
+    useEffect(() => {
+        if (valueProvince === '---Chọn tỉnh thành---') setDataWard([]);
+    }, [valueProvince]);
     // 3. function
     const handleTransport = () => {
         if (!toggleTransport) {
@@ -82,11 +85,13 @@ function PayMent() {
         setValueDistrict(value);
         const existingDistrict = dataDistrict[0].districts?.filter((data) => data.name === value);
         setDataWard([...existingDistrict]);
+        console.log(valueProvince);
     };
     const handleChangeWard = (e) => {
         const value = e.target.value;
         setValueWard(value);
     };
+    console.log(dataWard);
     // Handle Input
     const handleNameBuy = (e) => {
         setValueNamBuy(e.target.value);

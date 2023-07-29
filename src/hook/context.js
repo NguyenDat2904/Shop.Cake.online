@@ -43,6 +43,8 @@ const AppProvider = (props) => {
         setAddressData,
         arrayCompare,
         setArrayCompare,
+        setAcceptProduct,
+        handleConfirmRemove,
     };
 
     return (

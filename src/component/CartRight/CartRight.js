@@ -60,7 +60,11 @@ function CartRight({ toggle }) {
                         <FontAwesomeIcon icon={faXmark} />
                     </div>
                 </header>
-                <div className={cx('repeat-box')}>{renderCartItem}</div>
+                {productDataCart.length === 0 ? (
+                    <div className={cx('content')}>Bạn chưa thêm sản phẩm vào giỏ hàng</div>
+                ) : (
+                    <div className={cx('repeat-box')}>{renderCartItem}</div>
+                )}
                 <div className={cx('total')}>
                     <h3 className={cx('total-title')}>
                         <span>Tổng tiền: </span>
@@ -68,10 +72,18 @@ function CartRight({ toggle }) {
                     <div className={cx('total-count')}>{formattedTotal}</div>
                 </div>
                 <div className={cx('btn-group')}>
-                    <NavLink to="/cart" onClick={() => setToggleCart(false)}>
+                    <NavLink
+                        to="/cart"
+                        className={cx(productDataCart.length === 0 && 'disabled')}
+                        onClick={() => setToggleCart(false)}
+                    >
                         <div className={cx('btn-cart')}>GIỎ HÀNG</div>
                     </NavLink>
-                    <NavLink to="/pay" onClick={() => setToggleCart(false)}>
+                    <NavLink
+                        to="/pay"
+                        className={cx(productDataCart.length === 0 && 'disabled')}
+                        onClick={() => setToggleCart(false)}
+                    >
                         <div className={cx('btn-cart', 'btn-total')}>THANH TOÁN</div>
                     </NavLink>
                 </div>

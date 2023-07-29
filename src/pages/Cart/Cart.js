@@ -32,7 +32,11 @@ function Cart({ toggle }) {
                         <div className={cx('table', 'table-small')}>Số lượng</div>
                         <div className={cx('table', 'table-end')}>Thành tiền</div>
                     </div>
-                    <div className={cx('repeat-box')}>{renderListItem}</div>
+                    {productDataCart.length === 0 ? (
+                        <div className={cx('context')}>Bạn chưa có sản phẩm nào trong giỏ hàng</div>
+                    ) : (
+                        <div className={cx('repeat-box')}>{renderListItem}</div>
+                    )}
                     <div className={cx('pay')}>
                         <div className={cx('pay-total')}>
                             <h3 className={cx('title')}>
@@ -42,9 +46,9 @@ function Cart({ toggle }) {
                         </div>
                         <div className={cx('pay-btn')}>
                             <NavLink to="/product">
-                                <span className={cx('btn')}>Thêm sản phẩm</span>
+                                <span className={cx('btn')}>Xem thêm sản phẩm</span>
                             </NavLink>
-                            <NavLink to="/pay">
+                            <NavLink to="/pay" className={cx(productDataCart.length === 0 && 'disabled')}>
                                 <span className={cx('btn')}>Thanh toán</span>
                             </NavLink>
                         </div>
