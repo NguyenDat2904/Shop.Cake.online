@@ -40,7 +40,7 @@ function App() {
                         <Route path="/product/:id" element={<ProductDetail toggle={toggle} />} />
                         <Route path="/cart" element={<Cart toggle={toggle} />} />
                         <Route path="/pay" element={<PayMent />} />
-                        <Route path="/compare" element={<Compare />} />
+                        <Route path="/compare" element={<Compare toggle={toggle} />} />
                     </Routes>
                 </div>
                 <Footer />

@@ -375,6 +375,9 @@ button {
                     font-family: Playfair Display;
                     font-weight: 600;
                     line-height: 30px;
+                    &:hover {
+                        color: #fc7c7c;
+                    }
                 }
             }
 

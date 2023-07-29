@@ -6,8 +6,9 @@ import styles from './cartCompare.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
-export const CartCompare = () => {
-    const { arrayCompare, setArrayCompare } = useContext(AppContext);
+export const CartCompare = (prop) => {
+    const { toggle } = prop;
+    const { arrayCompare, setArrayCompare, productDataCart, setProductDataCart } = useContext(AppContext);
 
     return (
         <div className={cx('productList')}>
@@ -16,6 +17,28 @@ export const CartCompare = () => {
                 const removeCompare = () => {
                     const remove = arrayCompare.filter((item) => item.id !== product.id);
                     setArrayCompare(remove);
+                };
+                const handleClickCartCompare = (e) => {
+                    e.preventDefault();
+                    toggle(2);
+                    const existingItemIndex = productDataCart.findIndex((item) => item.id === product.id);
+                    if (existingItemIndex >= 0) {
+                        const updatedItems = [...productDataCart];
+                        updatedItems[existingItemIndex].quantity += 1;
+                        setProductDataCart(updatedItems);
+                    } else {
+                        const products = {
+                            id: product.id,
+                            name: product.name,
+                            price: product.price,
+                            img: product.img,
+                            color: product.color,
+                            type: product.type,
+                            size: product.size,
+                            quantity: 1,
+                        };
+                        setProductDataCart([...productDataCart, products]);
+                    }
                 };
                 return (
                     <div key={index} className={cx('arrayCompare')}>
@@ -53,7 +76,7 @@ export const CartCompare = () => {
                         </div>
 
                         <div className={cx('button')}>
-                            <button>THÊM VÀO GIỎ HÀNG</button>
+                            <button onClick={handleClickCartCompare}>THÊM VÀO GIỎ HÀNG</button>
                         </div>
                     </div>
                 );
