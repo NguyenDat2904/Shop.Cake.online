@@ -1,0 +1,216 @@
+.banner {
+    background-image: url(https://demo037126.web30s.vn/datafiles/web30s/upload/images/7101-7200/30S-03-7126/breadcrumbs-bg.png);
+    background-size: cover;
+    background-position: 50% 50%;
+    padding: 180px 10px;
+    z-index: 7;
+    height: auto;
+    display: block;
+}
+.col {
+    width: 100%;
+    order: 1;
+    display: block;
+    .childrens {
+        width: 100%;
+        height: auto;
+        position: relative;
+        .title {
+            height: auto;
+            width: 100%;
+            color: var(--c-1668480455247, #282828);
+            font-size: 40px;
+            top: 0;
+            left: 0px;
+            font-family: Playfair Display;
+            font-weight: 600;
+            margin: 0px 0px 15px;
+            display: block;
+            position: relative;
+        }
+    }
+    .breadscrumb {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        display: inline-flex;
+        position: relative;
+        .breadscrumb-item {
+            color: var(--c-1668480455247, #282828);
+            margin: auto 3px;
+            font-weight: 500;
+            font-size: 18px;
+        }
+        .breadscrumb-icon {
+            color: var(--c-1668480518886, #fc7c7c);
+            font-size: 18px;
+        }
+        .active {
+            color: var(--c-1668480518886, #fc7c7c);
+        }
+    }
+}
+
+.video{
+    display: flex;
+    background-color: white;
+    height: auto;
+    padding: 100px 10px;
+    .videoimg{
+        content: " ";
+        display: flex;
+        justify-content: center;
+        width: 80%;
+        height: 100%;
+        .img{
+            display: flex;
+            transform: translateX(13%);
+        }
+        .intro-icon{
+            background-color: white;
+            width: 80px;
+            height: 80px;
+            display: block;
+            transform: translate(150px,250px);
+            position: absolute;
+            color: #f80303;
+            font-size: 50px;
+            border-radius: 100%;
+            .icon{
+                display: flex;
+                margin-left: 23px;
+                margin-top: 15px;
+            }
+        }
+    }
+}
+
+.text{
+    display: block;
+    .lefttext{
+        
+        display: block;
+        .header{
+            font-size: 32px;
+            margin-left: 10px;
+            font-size: 40px;
+        }
+        .pa1{
+            font-size: 16;
+            color: #484646;
+            margin: 20px 10px;
+            display: block;
+            width: 550px;
+        }
+    }
+    .righttext{
+        display: block;
+        transform: translate(640px, -220px);
+        .pa1{
+            font-size: 16;
+            color: #484646;
+            margin: 20px 10px;
+            display: block;
+            width: 550px;
+        }
+    }
+}
+
+.shop-icon{
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    transform: translateY(-100px);
+    margin-bottom: 40px;
+    .iconbox{
+        width: 240px;
+        height: 297px;
+        border: 1px solid #4f659a;
+        background-color: #33456f;
+        .icon{
+            height: 100px;
+            width: 100px;
+            position: relative;
+            transform: translate(70%, 90%);
+        }
+    }
+}
+
+.staff-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+
+    .text1{
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+    .text2{
+        position: relative;
+        width: 80%;
+        display: block;
+        font-size: 20px;
+        color: #484646;
+        text-align: center;
+    }
+}
+
+.staff-img{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    .staff{
+        background-color: red;
+        .pic{
+            position: relative;
+            cursor: pointer;
+            &:hover {
+                background-color: var(--c-1668480339968, #6c757d);;
+            }
+        }
+        .staff-name{
+            display: block;
+            transform: translate(30px, -100px);
+            color: white;
+            .name{
+                font-size: 32px;
+            }
+            .position{
+                font-size: 24px;
+            }
+        }
+    }
+}
+
+.banner2{
+    background-image: url(https://demo037126.web30s.vn/datafiles/web30s/upload/images/7101-7200/30S-03-7126/testimonial-bg.png);
+    background-size: cover;
+    background-position: 50% 50%;
+    padding: 180px 10px;
+    z-index: 7;
+    height: auto;
+    display: block;
+    margin-top: 80px;
+    .customer{
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        transform: translate(50px, -120px);
+    }
+    .review{
+        display: flex;
+        flex-direction: column;
+        transform: translateX(400px);
+        .name{
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        .comment{
+            font-size: 20px;
+            width: 550px;
+        }
+    }
+}

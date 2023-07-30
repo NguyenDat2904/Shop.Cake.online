@@ -30,11 +30,11 @@ function App() {
                 <ModalNotion isShowing={isShowingNotion} hide={toggle} />
                 <div className="App">
                     <Routes>
-                        <Route path="/" element={<Home toggle={toggle} />} />
+                        <Route path="/" element={<Home />} />
                         <Route path="/introduce" element={<Introduce />} />
                         <Route path="/library" element={<Library />} />
                         <Route path="/news" element={<News />} />
-                        <Route path="/product" element={<Product toggle={toggle} />} />
+                        <Route path="/product" element={<Product />} />
                         <Route path="/support" element={<Support />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/product/:id" element={<ProductDetail toggle={toggle} />} />
