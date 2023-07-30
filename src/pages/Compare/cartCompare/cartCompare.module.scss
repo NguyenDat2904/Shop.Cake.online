@@ -1,0 +1,110 @@
+.productList {
+    margin: 0 auto;
+    margin-left: 10%;
+    --widthcontainer: 1200px;
+    width: var(--widthcontainer);
+    max-width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    .arrayCompare {
+        border: 1px solid rgb(177, 172, 172);
+        width: 300px;
+        height: auto;
+        position: relative;
+        .detail {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            p {
+                font-size: 15px;
+                text-align: left;
+                overflow: auto;
+                font-weight: 300;
+            }
+        }
+        .pass {
+            border: 1px solid rgb(177, 172, 172);
+
+            width: 100%;
+            height: 60px;
+            position: relative;
+            h4 {
+                font-size: 18px;
+                font-weight: 600;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        .button {
+            border: 1px solid rgb(177, 172, 172);
+
+            width: 100%;
+            height: 60px;
+            position: relative;
+            button {
+                border-radius: 5px;
+                width: 70%;
+                height: 40px;
+                font-size: 15px;
+                text-align: center;
+                background-color: var(--c-1668480339968, #fc7c7c);
+                padding: 8px 15px 8px;
+                font-weight: 400;
+                position: absolute;
+
+                left: 50%;
+                transform: translate(-50%, -40%);
+                &:hover {
+                    background-color: #2b4174;
+                }
+            }
+        }
+        .icon {
+            font-size: 24px;
+            position: absolute;
+            top: 15px;
+            left: 90%;
+            color: #fc7c7c;
+            &:hover {
+                color: #2b4174;
+            }
+        }
+    }
+}
+@media (max-width: 1125px) and (min-width: 959px) {
+    .productList {
+        margin-left: 0;
+        .arrayCompare {
+            .detail {
+                height: 350px;
+                overflow: scroll;
+            }
+        }
+    }
+}
+@media (max-width: 959px) and (min-width: 320px) {
+    .productList {
+        .arrayCompare {
+            .detail {
+                height: 350px;
+                overflow: scroll;
+            }
+        }
+    }
+}
+@media (max-width: 320px) {
+    .productList {
+        margin-left: 0;
+        .arrayCompare {
+            .detail {
+                height: 350px;
+                overflow: scroll;
+            }
+        }
+    }
+}

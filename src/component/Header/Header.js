@@ -63,8 +63,8 @@ function Header() {
                                                 text_4="So sánh"
                                                 link_1="login"
                                                 link_2="register"
-                                                link_3="compare"
-                                                link_4="like"
+                                                link_3="like"
+                                                link_4="compare"
                                                 toggle
                                             />
                                         </Modal>

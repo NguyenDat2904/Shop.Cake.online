@@ -1,0 +1,80 @@
+.compare {
+    background-image: url('https://demo037126.web30s.vn/datafiles/web30s/upload/images/7101-7200/30S-03-7126/breadcrumbs-bg.png');
+    background-size: cover;
+    background-position: 50% 50%;
+    padding: 180px 10px;
+    z-index: 7;
+    height: auto;
+    display: block;
+    .textCompare {
+        margin: 0 auto;
+        --widthcontainer: 1200px;
+        width: var(--widthcontainer);
+        max-width: 100%;
+        h2 {
+            padding: 0;
+            color: var(--c-1668480455247, #282828);
+            font-size: 40px;
+            top: 0;
+            left: 0px;
+            font-family: Playfair Display;
+            font-weight: 600;
+        }
+        .linkCompare {
+            margin-top: 15px;
+            display: flex;
+            h4 {
+                color: var(--c-1668480455247, #282828);
+                margin: auto 5px;
+                font-weight: 500;
+                font-size: 18px;
+            }
+            h5 {
+                color: #fc7c7c;
+                font-size: 18px;
+                font-weight: 500;
+            }
+        }
+    }
+}
+.test {
+    margin: 0 auto;
+    --widthcontainer: 1200px;
+    width: var(--widthcontainer);
+    max-width: 100%;
+    padding: 100px 10px;
+    p {
+        overflow: inherit;
+        font-family: Roboto, sans-serif;
+        color: #282828;
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+@media (max-width: 1025px) {
+    .compare {
+        .textCompare {
+            h2 {
+                font-size: 28px;
+            }
+        }
+    }
+}
+@media (max-width: 768px) and (min-width: 640px) {
+    .compare {
+        .textCompare {
+            h2 {
+                font-size: 26px;
+            }
+        }
+    }
+}
+@media (max-width: 640px) {
+    .compare {
+        .textCompare {
+            h2 {
+                font-size: 24px;
+            }
+        }
+    }
+}
