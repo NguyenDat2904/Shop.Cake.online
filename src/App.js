@@ -9,6 +9,7 @@ import Support from './pages/Support/Support';
 import Header from './component/Header/Header';
 import Footer from './component/Footer/Footer';
 import Contact from './pages/Contact/Contact';
+import { Compare } from './pages/Compare/compare';
 import './App.css';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Cart from './pages/Cart/Cart';
@@ -19,10 +20,14 @@ import useModal from './hook/useModal';
 import ModalNotion from './component/ModalNotion/ModalNotion';
 
 function App() {
+    const { isShowing, isShowingNotion, toggle } = useModal();
     return (
         <AppProvider>
             <Router>
                 <Header />
+                <CartRight toggle={toggle} />
+                <Modal isShowing={isShowing} hide={toggle} />
+                <ModalNotion isShowing={isShowingNotion} hide={toggle} />
                 <div className="App">
                     <Routes>
                         <Route path="/" element={<Home />} />
@@ -35,6 +40,7 @@ function App() {
                         <Route path="/product/:id" element={<ProductDetail toggle={toggle} />} />
                         <Route path="/cart" element={<Cart toggle={toggle} />} />
                         <Route path="/pay" element={<PayMent />} />
+                        <Route path="/compare" element={<Compare toggle={toggle} />} />
                     </Routes>
                 </div>
                 <Footer />

@@ -1,9 +1,16 @@
 import React from 'react';
 import classnames from 'classnames/bind';
 import styles from './Home.module.scss';
-
+import OneCake from './oneCake';
+import NewCake from './newCake';
+import { Link } from 'react-router-dom';
+import { Slick } from './slick';
+import { ProductsList } from './productsList';
+import * as products from '~/services/productService';
+import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faCalendarDays, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 const cx = classnames.bind(styles);
-// Hi, Monica
 
 function Home({ toggle }) {
     const [select, setSelect] = useState(false);
@@ -214,10 +221,12 @@ function Home({ toggle }) {
                                 alt=""
                             />
                         </div>
+                        <Link to={'/news'}>
+                            <div className={cx('icon')}>
+                                <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
+                            </div>
+                        </Link>
 
-                        <div className={cx('icon')}>
-                            <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
-                        </div>
                         <div className={cx('drama')}>
                             <h5>
                                 Biết bạn thân thích "đơn giản không màu mè",cả nhóm hùa nhau tặng các bánh kem làm kh...
@@ -238,9 +247,12 @@ function Home({ toggle }) {
                                 alt=""
                             />
                         </div>
-                        <div className={cx('icon')}>
-                            <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
-                        </div>
+                        <Link to={'/news'}>
+                            <div className={cx('icon')}>
+                                <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
+                            </div>
+                        </Link>
+
                         <div className={cx('drama')}>
                             <h5>Độc đáo bánh kem điêu khắc của cô gái 9X quê Cà Mau</h5>
                         </div>
@@ -259,9 +271,12 @@ function Home({ toggle }) {
                                 alt=""
                             />
                         </div>
-                        <div className={cx('icon')}>
-                            <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
-                        </div>
+                        <Link to={'/news'}>
+                            <div className={cx('icon')}>
+                                <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
+                            </div>
+                        </Link>
+
                         <div className={cx('drama')}>
                             <h5>Chiếc bánh sinh nhật hót nhất hiện nay:Mở ra biết ngay tình bạn</h5>
                         </div>
@@ -278,5 +293,5 @@ function Home({ toggle }) {
         </div>
     );
 }
-
+//danh mục chính danh mục sản phẩm sau discountGoods
 export default Home;
