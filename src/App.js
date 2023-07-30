@@ -9,25 +9,25 @@ import Support from './pages/Support/Support';
 import Header from './component/Header/Header';
 import Footer from './component/Footer/Footer';
 import Contact from './pages/Contact/Contact';
+import Register from './pages/Register/Register';
+import Login from './pages/Login/Login';
 
 function App() {
-    const { isShowing, isShowingNotion, toggle } = useModal();
     return (
         <AppProvider>
             <Router>
                 <Header />
-                <CartRight toggle={toggle} />
-                <Modal isShowing={isShowing} hide={toggle} />
-                <ModalNotion isShowing={isShowingNotion} hide={toggle} />
                 <div className="App">
                     <Routes>
-                        <Route path="/" element={<Home toggle={toggle} />} />
+                        <Route path="/" element={<Home />} />
                         <Route path="/introduce" element={<Introduce />} />
                         <Route path="/library" element={<Library />} />
                         <Route path="/news" element={<News />} />
-                        <Route path="/product" element={<Product toggle={toggle} />} />
+                        <Route path="/product" element={<Product />} />
                         <Route path="/support" element={<Support />} />
                         <Route path="/contact" element={<Contact />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<Login />} />
                     </Routes>
                 </div>
                 <Footer />
