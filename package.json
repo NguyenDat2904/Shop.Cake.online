@@ -15,6 +15,7 @@
         "classnames": "^2.3.2",
         "create-react-app": "^5.0.1",
         "customize-cra": "^1.0.0",
+        "enquire.js": "^2.1.6",
         "firebase": "^10.0.0",
         "font-awesome": "^4.7.0",
         "json-server": "^0.17.3",
@@ -25,7 +26,10 @@
         "react-router-dom": "^6.14.1",
         "react-scripts": "^5.0.1",
         "react-scroll": "^1.8.9",
+        "react-slick": "^0.29.0",
         "sass": "^1.63.6",
+        "scripts": "^0.1.0",
+        "slick-carousel": "^1.8.1",
         "web-vitals": "^2.1.4"
     },
     "scripts": {

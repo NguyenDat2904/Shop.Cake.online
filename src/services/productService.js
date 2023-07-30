@@ -18,3 +18,13 @@ export const getProductPerPage = async (currentPage, perPage) => {
         console.log(error);
     }
 };
+export const getProductDetails = async (id) => {
+    try {
+        const results = await httpRequest.getProduct(`products/${id}`, {
+            id,
+        });
+        return results;
+    } catch (error) {
+        console.log(error);
+    }
+};
