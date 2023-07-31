@@ -1,11 +1,10 @@
 .News {
     font-size: 14px;
-    min-height: 40px;
-    padding: 20px 20px;
+    padding: 100px 10px;
 }
 .Hop {
-    width: 80%;
-    margin: 50px auto;
+    width: 70%;
+    margin: auto;
     display: flex;
     flex-direction: row;
 }
@@ -13,10 +12,12 @@
     flex-basis: 33.3333%;
     border-radius: 5px;
     display: block;
-    padding: 30px;
+    padding: 0px 30px;
     margin: 0px 0px 30px;
 }
-.Side_bar1 {
+.wrapper{
+    padding: 0px 20px;
+    margin: 0px 0px 30px;
 }
 .news-right {
     flex-basis: 66.6666%;
@@ -81,4 +82,22 @@
     overflow: visible;
     display: block;
     position: relative;
+    overflow:hidden;
+}
+.box {
+    width:100%;
+    border-radius: 15px;
+    font-size:16px;
+    text-align: left;
+    justify-content: space-between;
+    justify-items: center;
+    padding:10px;
+    margin:0px 0px 10px;
+}
+.wrapper input[type="text"] {
+    width:85%;
+    border-radius: 15px;    
+    font-size:16px;
+    min-height:40px;
+    padding-left:15px;
 }

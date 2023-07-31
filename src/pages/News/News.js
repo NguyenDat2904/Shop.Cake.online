@@ -2,8 +2,7 @@ import React from 'react';
 import styles from './News.module.scss';
 import classnames from 'classnames/bind';
 import SideBar from '../Product/SideBar/SideBar';
-import Select from '~/component/Select/Select';
-import Banner from '';
+import Banner from '~/component/Banner/Banner';
 const cx = classnames.bind(styles);
 function News() {
     return (
@@ -12,23 +11,25 @@ function News() {
             <div className={cx('News')}>
                 <div className={cx('Hop')}>
                     <div className={cx('news-left')}>
-                        <div className="Sidebar_1">
-                            <SideBar title="Nhập từ khoá"></SideBar>
-                        </div>
-                        <div className="Sidebar_2">
-                            {' '}
-                            <SideBar title="Danh mục Tin tức">
-                                <Select title="Mẫu Bánh mới" />
-                                <Select title="Tin vắn" />
+                            <SideBar title="Thanh tìm kiếm " className={cx('wrapper')} >
+                                <input classname={cx('box')} type ="text" placeholder="Nhập từ khóa"></input>
                             </SideBar>
-                        </div>
-                        <div className="Sidebar_3">
                             {' '}
-                            <SideBar title="BÀI VIẾT MỚI NHẤT"></SideBar>
-                        </div>
-                        <div className="Sidebar_4">
-                            <SideBar title="TAG"></SideBar>
-                        </div>
+                            <SideBar title="Danh mục Tin tức" className={cx('wrapper')}>
+                                <input className={cx('box')} type ="button" Value="Mẫu Bánh Mới"></input> <br/>
+                                <input className={cx('box')} type ="button" Value="Tin Vắn"></input> <br/>
+                            </SideBar>
+                            {' '}
+                            <SideBar title="BÀI VIẾT MỚI NHẤT" className={cx('wrapper')} ></SideBar>
+                            <SideBar title="TAG" className={cx('wrapper')} >
+                            <input className={cx('box')} type ="button" Value="Bánh"></input> <br/>
+                            <input className={cx('box')} type ="button" Value="Trà sữa"></input> <br/>
+                            <input className={cx('box')} type ="button" Value="Thức uống"></input> <br/>
+                            <input className={cx('box')} type ="button" Value="Thực phẩm"></input> <br/>
+                            <input className={cx('box')} type ="button" Value="Tiệm bánh"></input> <br/>
+                            <input className={cx('box')} type ="button" Value="Tiệm bánh trực tiếp"></input> <br/>
+                            
+                            </SideBar>
                     </div>
                     <div className={cx('news-right')}>
                         <form>
