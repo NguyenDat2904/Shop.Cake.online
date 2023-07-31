@@ -3,8 +3,10 @@ import classnames from 'classnames/bind';
 import styles from './Home.module.scss';
 import OneCake from './oneCake';
 import NewCake from './newCake';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Slick } from './slick';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { ProductsList } from './productsList';
 import * as products from '~/services/productService';
 import { useState, useEffect } from 'react';
@@ -22,6 +24,10 @@ function Home({ toggle }) {
     const [color1, SetColor1] = useState(true);
     const [color2, SetColor2] = useState(true);
     const [productList, setproductList] = useState([]);
+
+    useEffect(() => {
+        AOS.init();
+    }, []);
 
     const hendless = (item) => {
         const bulen = item;
@@ -76,7 +82,13 @@ function Home({ toggle }) {
                     <NewCake hendless={hendless} select={select} />
                 )}
             </div>
-            <div className={cx('select')}>
+            <div
+                className={cx('select')}
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="50"
+                data-aos-offset="300"
+            >
                 <Link to={'/product'}>
                     <div className={cx('cart')}>
                         <img
@@ -91,7 +103,6 @@ function Home({ toggle }) {
                         </p>
                     </div>
                 </Link>
-
                 <Link to={'/product'}>
                     <div className={cx('cart')}>
                         <img
@@ -135,31 +146,37 @@ function Home({ toggle }) {
                 </Link>
             </div>
             <div className={cx('discountGoods')}>
-                <div className={cx('discount1')}>
+                <div className={cx('discount1')} data-aos="fade-up" data-aos-duration="1000" data-aos-offset="300">
                     <div className={cx('position')}>
-                        <h3>Giảm giá 70%</h3>
-                        <h2>
+                        <h3 data-aos="fade-up" data-aos-duration="700" data-aos-offset="300" data-aos-easing="ease">
+                            Giảm giá 70%
+                        </h3>
+                        <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-offset="300" data-aos-easing="ease">
                             Bánh mì <br /> Baguette
                         </h2>
                         <Link to={'/product'}>
-                            <button>SẢN PHẨM</button>{' '}
+                            <button className={cx('btnProduct')}>SẢN PHẨM</button>{' '}
                         </Link>
                     </div>
                 </div>
-                <div className={cx('discount2')}>
+                <div className={cx('discount2')} data-aos="fade-up" data-aos-duration="1000" data-aos-offset="300">
                     <div className={cx('position')}>
-                        <h3>Giảm giá 25%</h3>
-                        <h2>
+                        <h3 data-aos="fade-up" data-aos-duration="700" data-aos-offset="300" data-aos-easing="ease">
+                            Giảm giá 25%
+                        </h3>
+                        <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-offset="300" data-aos-easing="ease">
                             Bánh mì <br /> cao cấp
                         </h2>
                         <Link to={'/product'}>
-                            <button>SẢN PHẨM</button>{' '}
+                            <button className={cx('btnProduct')}>SẢN PHẨM</button>{' '}
                         </Link>
                     </div>
                 </div>
             </div>
             <div className={cx('mainDirectory')}>
-                <h3>SẢN PHẨM CHÍNH</h3>
+                <h3 data-aos="fade-up" data-aos-duration="800" data-aos-offset="100" data-aos-easing="ease">
+                    SẢN PHẨM CHÍNH
+                </h3>
                 <div className={cx('cakes')}>
                     <span onClick={hendleList} className={cx(classNameColor)}>
                         Bánh theo chủ đề
@@ -177,19 +194,25 @@ function Home({ toggle }) {
             </div>
             <div className={cx('allKindsOfBread')}>
                 <div className={cx('allKinds')}>
-                    <h3>GIẢM GIÁ 45%</h3>
-                    <h2>Tất cả các loại bánh mì</h2>
+                    <h3 data-aos="fade-up" data-aos-duration="700" data-aos-offset="200" data-aos-easing="ease">
+                        GIẢM GIÁ 45%
+                    </h3>
+                    <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-offset="200" data-aos-easing="ease">
+                        Tất cả các loại bánh mì
+                    </h2>
                     <p>
                         Đến với chúng tôi, bạn không chỉ có được những loại bánh ngọt hạng nhất, mà được nhiều ưu đãi
                         nhất.
                     </p>
-                    <button>SẢN PHẨM</button>
+                    <button className={cx('btnProduct')}>SẢN PHẨM</button>
                 </div>
             </div>
             <div className={cx('slick')}>
                 <div className={cx('promotionalProducts')}>
-                    <h2>SẢN PHẨM KHUYẾN MÃI </h2>
-                    <p>
+                    <h2 data-aos="fade-up" data-aos-duration="800" data-aos-offset="200">
+                        SẢN PHẨM KHUYẾN MÃI
+                    </h2>
+                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-offset="300" data-aos-easing="ease">
                         Không quá cầu kì, bánh được thiết kế theo yêu cầu của khách hàng ...Bánh Sinh Nhật Đẹp mang nét
                         mộc mạc, đặc trưng làm say lòng người không biết bao nhiêu thế hệ người thưởng thức.
                     </p>
@@ -197,20 +220,51 @@ function Home({ toggle }) {
                 <Slick toggle={toggle} slider={slider} />
             </div>
             <div className={cx('armorial')}>
-                <div className={cx('img1')}></div>
-                <div className={cx('img2')}></div>
-                <div className={cx('img3', 'img5None')}></div>
-                <div className={cx('img4', 'img4None')}></div>
-                <div className={cx('img5', 'img4None')}></div>
+                <div
+                    className={cx('img1')}
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                    data-aos-offset="100"
+                    data-aos-easing="ease"
+                ></div>
+                <div
+                    className={cx('img2')}
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                    data-aos-offset="100"
+                    data-aos-easing="ease"
+                ></div>
+                <div
+                    className={cx('img3', 'img5None')}
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                    data-aos-offset="100"
+                    data-aos-easing="ease"
+                ></div>
+                <div
+                    className={cx('img4', 'img4None')}
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                    data-aos-offset="100"
+                    data-aos-easing="ease"
+                ></div>
+                <div
+                    className={cx('img5', 'img4None')}
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                    data-aos-offset="100"
+                    data-aos-easing="ease"
+                ></div>
             </div>
 
             <div className={cx('news')}>
                 <div className={cx('text')}>
-                    <h2>Tin tức mới nhất</h2>
-                    <p>
-                        Không quá cầu kì, bánh được thiết kế theo yêu cầu của khách hàng... Bánh Sinh Nhật Đẹp mang nét{' '}
-                        <br />
-                        mọc mạc, đặc trưng làm say lòng không biết bao thế hệ người thưởng thức.
+                    <h2 data-aos="fade-up" data-aos-duration="800" data-aos-offset="300" data-aos-easing="ease">
+                        Tin tức mới nhất
+                    </h2>
+                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-offset="300" data-aos-easing="ease">
+                        Không quá cầu kì, bánh được thiết kế theo yêu cầu của khách hàng... Bánh Sinh Nhật Đẹp <br />
+                        mang nét mọc mạc, đặc trưng làm say lòng không biết bao thế hệ người thưởng thức.
                     </p>
                 </div>
                 <div className={cx('context')}>
@@ -221,7 +275,6 @@ function Home({ toggle }) {
                                 alt=""
                             />
                         </div>
-
                         <div className={cx('icon')}>
                             <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
                         </div>
@@ -229,13 +282,16 @@ function Home({ toggle }) {
                             <h5>
                                 Biết bạn thân thích "đơn giản không màu mè",cả nhóm hùa nhau tặng các bánh kem làm kh...
                             </h5>
-                        </div>
-
-                        <div className={cx('span')}>
-                            <FontAwesomeIcon icon={faEye} style={{ color: '#fc7c7c' }} />
-                            <span>49</span>
-                            <FontAwesomeIcon icon={faCalendarDays} style={{ marginLeft: 20, color: '#fc7c7c' }} />
-                            <span>2022-11-15T09:38:06+07:00</span>
+                            <div className="childrens flex-start">
+                                <NavLink className={cx('icon-view')}>
+                                    <FontAwesomeIcon icon={faEye} />
+                                    <span>49</span>
+                                </NavLink>
+                                <NavLink className={cx('icon-view')}>
+                                    <FontAwesomeIcon icon={faCalendarDays} />
+                                    <span>2022-11-15T09:38:06+07:00</span>
+                                </NavLink>
+                            </div>
                         </div>
                     </div>
                     <div className={cx('cart', 'toNone')}>
@@ -250,13 +306,16 @@ function Home({ toggle }) {
                         </div>
                         <div className={cx('drama')}>
                             <h5>Độc đáo bánh kem điêu khắc của cô gái 9X quê Cà Mau</h5>
-                        </div>
-
-                        <div className={cx('span')}>
-                            <FontAwesomeIcon icon={faEye} style={{ color: '#fc7c7c' }} />
-                            <span>19</span>
-                            <FontAwesomeIcon icon={faCalendarDays} style={{ marginLeft: 20, color: '#fc7c7c' }} />
-                            <span>2022-11-15T09:38:06+07:00</span>
+                            <div className="childrens flex-start">
+                                <NavLink className={cx('icon-view')}>
+                                    <FontAwesomeIcon icon={faEye} />
+                                    <span>19</span>
+                                </NavLink>
+                                <NavLink className={cx('icon-view')}>
+                                    <FontAwesomeIcon icon={faCalendarDays} />
+                                    <span>2022-11-15T09:38:06+07:00</span>
+                                </NavLink>
+                            </div>
                         </div>
                     </div>
                     <div className={cx('cart', 'none')}>
@@ -270,14 +329,17 @@ function Home({ toggle }) {
                             <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
                         </div>
                         <div className={cx('drama')}>
-                            <h5>Chiếc bánh sinh nhật hót nhất hiện nay:Mở ra biết ngay tình bạn</h5>
-                        </div>
-
-                        <div className={cx('span')}>
-                            <FontAwesomeIcon icon={faEye} style={{ color: '#fc7c7c' }} />
-                            <span>11</span>
-                            <FontAwesomeIcon icon={faCalendarDays} style={{ marginLeft: 20, color: '#fc7c7c' }} />
-                            <span>2022-11-15T09:38:06+07:00</span>
+                            <h5>Chiếc bánh sinh nhật hót nhất hiện nay: Mở ra biết ngay tình bạn</h5>
+                            <div className="childrens flex-start">
+                                <NavLink className={cx('icon-view')}>
+                                    <FontAwesomeIcon icon={faEye} style={{ color: '#fc7c7c' }} />
+                                    <span>11</span>
+                                </NavLink>
+                                <NavLink className={cx('icon-view')}>
+                                    <FontAwesomeIcon icon={faCalendarDays} />
+                                    <span>2022-11-15T09:38:06+07:00</span>
+                                </NavLink>
+                            </div>
                         </div>
                     </div>
                 </div>

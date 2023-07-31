@@ -17,7 +17,6 @@ export const Slick = (prop) => {
         cssEase: 'linear',
         pauseOnHover: false,
         respondTo: 'slider',
-
         responsive: [
             {
                 breakpoint: 1024,
