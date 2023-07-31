@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
+import Banner from '~/component/Banner/Banner';
 import styles from './Contact.module.scss';
 import classnames from 'classnames/bind';
 const cx = classnames.bind(styles);
 function Contact() {
     return <div className={cx('contact')}>
+                    <Banner page="Liên hệ" title="Liên hệ" />
     <div className={cx('Hop')}>
         <div className={cx('contact-box')}>
             <div className={cx('contact-left')}>

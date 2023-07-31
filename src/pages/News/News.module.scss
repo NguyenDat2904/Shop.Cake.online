@@ -72,11 +72,54 @@
     padding: 0 0 75% 0;
     position: relative;
 }
+.New_img4 {
+    background-image: url(https://demo037126.web30s.vn/datafiles/38469/upload/images/tin-tuc/bi-nguoi-than-up-mat-vao-banh-sinh-nhat-cau-be-co-hanh-dong-khien-tat-ca-sung-so-1.png?t=1668479886);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0px;
+    border-radius: 10px;
+    transition: all 500ms ease;
+    display: block;
+    padding: 0 0 75% 0;
+    position: relative;
+}
+.New_img5 {
+    background-image: url(https://demo037126.web30s.vn/datafiles/38469/upload/images/tin-tuc/nga-ngua-khi-mua-banh-sinh-nhat-online-1.jpg?t=1668479886);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0px;
+    border-radius: 10px;
+    transition: all 500ms ease;
+    display: block;
+    padding: 0 0 75% 0;
+    position: relative;
+}
+.New_img6 {
+    background-image: url(https://demo037126.web30s.vn/datafiles/38469/upload/images/tin-tuc/chiec-banh-sinh-nhat-cua-gen-z-diem-tinh-va-khong-thich-mau-me-gay-bat-ngo-1.PNG?t=1668479887);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0px;
+    border-radius: 10px;
+    transition: all 500ms ease;
+    display: block;
+    padding: 0 0 75% 0;
+    position: relative;
+}
 .New_text {
     width: 100%;
     height: auto;
-    top: 0;
-    left: 0px;
     background-color: var(--c-1668480311287, #fff);
     padding: 35px 25px;
     overflow: visible;
@@ -92,7 +135,7 @@
     justify-content: space-between;
     justify-items: center;
     padding:10px;
-    margin:0px 0px 10px;
+    margin:0px 0px 25px 0px;
 }
 .wrapper input[type="text"] {
     width:85%;
@@ -100,4 +143,13 @@
     font-size:16px;
     min-height:40px;
     padding-left:15px;
+}
+.box_tag{
+    display: inline-block;
+    margin: 3px;
+    border-style: solid;
+    border-color: var(--c-1668480630600, #d9d9d9);
+    border-width: 1px;
+    border-radius: 50px;
+    padding: 4px 20px;
 }
