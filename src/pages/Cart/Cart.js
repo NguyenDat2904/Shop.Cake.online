@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
 const cx = classnames.bind(styles);
 function Cart({ toggle }) {
     // 1. State
-    const { productDataCart } = useContext(AppContext);
+    const { productDataCart, handleIsLoading } = useContext(AppContext);
 
     // 3. Functions
     const total = productDataCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -45,10 +45,14 @@ function Cart({ toggle }) {
                             <p className={cx('price')}>{formattedTotal}</p>
                         </div>
                         <div className={cx('pay-btn')}>
-                            <NavLink to="/product">
+                            <NavLink to="/product" onClick={handleIsLoading}>
                                 <span className={cx('btn')}>Xem thêm sản phẩm</span>
                             </NavLink>
-                            <NavLink to="/pay" className={cx(productDataCart.length === 0 && 'disabled')}>
+                            <NavLink
+                                to="/pay"
+                                className={cx(productDataCart.length === 0 && 'disabled')}
+                                onClick={handleIsLoading}
+                            >
                                 <span className={cx('btn')}>Thanh toán</span>
                             </NavLink>
                         </div>

@@ -9,7 +9,7 @@ import { formatCurrencyVND } from '../NumberToPrice/currency';
 const cx = classnames.bind(styles);
 function CartRight({ toggle }) {
     // 1. useState
-    const { toggleCart, setToggleCart, productDataCart, setAcceptProduct } = useContext(AppContext);
+    const { toggleCart, setToggleCart, productDataCart, setAcceptProduct, handleIsLoading } = useContext(AppContext);
 
     // 3. Function
     const total = productDataCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -75,14 +75,20 @@ function CartRight({ toggle }) {
                     <NavLink
                         to="/cart"
                         className={cx(productDataCart.length === 0 && 'disabled')}
-                        onClick={() => setToggleCart(false)}
+                        onClick={() => {
+                            setToggleCart(false);
+                            handleIsLoading();
+                        }}
                     >
                         <div className={cx('btn-cart')}>GIỎ HÀNG</div>
                     </NavLink>
                     <NavLink
                         to="/pay"
                         className={cx(productDataCart.length === 0 && 'disabled')}
-                        onClick={() => setToggleCart(false)}
+                        onClick={() => {
+                            setToggleCart(false);
+                            handleIsLoading();
+                        }}
                     >
                         <div className={cx('btn-cart', 'btn-total')}>THANH TOÁN</div>
                     </NavLink>

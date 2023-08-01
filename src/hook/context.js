@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { generateRandomCode } from '~/pages/Register/CapCha/CapCha';
 const AppContext = createContext();
 const AppProvider = (props) => {
     const [selectIcon, setSelectIcon] = useState(true);
@@ -13,13 +14,23 @@ const AppProvider = (props) => {
     const [perPage, setPerPage] = useState(1);
     const [limit, setLimit] = useState(15);
     const [acceptProduct, setAcceptProduct] = useState(null);
+    const [slider, setSlider] = useState([]);
+    const [relatedProducts, setRelatedProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [capCha, setCapCha] = useState(generateRandomCode(5));
 
     const handleConfirmRemove = () => {
         const updatedItems = productDataCart.filter((item) => item.id !== acceptProduct.id);
         setProductDataCart(updatedItems);
         localStorage.setItem('cart', JSON.stringify(updatedItems));
     };
-
+    const handleIsLoading = () => {
+        setIsLoading(true);
+    };
+    const reFeshCapCha = (e) => {
+        e.preventDefault();
+        setCapCha(generateRandomCode(5));
+    };
     const value = {
         selectIcon,
         setSelectIcon,
@@ -45,6 +56,16 @@ const AppProvider = (props) => {
         setArrayCompare,
         setAcceptProduct,
         handleConfirmRemove,
+        slider,
+        setSlider,
+        relatedProducts,
+        setRelatedProducts,
+        isLoading,
+        setIsLoading,
+        handleIsLoading,
+        capCha,
+        setCapCha,
+        reFeshCapCha,
     };
 
     return (

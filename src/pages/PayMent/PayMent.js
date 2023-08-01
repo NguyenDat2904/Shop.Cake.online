@@ -13,7 +13,7 @@ function PayMent() {
     // 1. useState
     const [toggleTransport, setToggleTransport] = useState(false);
     const [toggleShip, setToggleShip] = useState(true);
-    const { productDataCart, addressData, setAddressData } = useContext(AppContext);
+    const { productDataCart, addressData, setAddressData, handleIsLoading } = useContext(AppContext);
     const [priceShip, setPriceShip] = useState(false);
     const [currentShip, setCurrentShip] = useState(50000);
     // Value Input
@@ -487,7 +487,7 @@ function PayMent() {
                                 <div className={cx('content-right')}>
                                     <div className={cx('content-right-header')}>
                                         <h3 className={cx('payment-title-left', 'cart')}>Thông tin đơn hàng</h3>
-                                        <NavLink to="/cart" className={cx('edit')}>
+                                        <NavLink to="/cart" className={cx('edit')} onClick={handleIsLoading}>
                                             Sửa
                                         </NavLink>
                                     </div>

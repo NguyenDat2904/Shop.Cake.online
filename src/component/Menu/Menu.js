@@ -8,7 +8,7 @@ import Modal from '../Header/Modal/Modal';
 import { NavLink } from 'react-router-dom';
 
 const cx = classnames.bind(styles);
-function Menu({ text_1, text_2, text_3, text_4, icon, toggle, link_1, link_2, link_3, link_4 }) {
+function Menu({ text_1, text_2, text_3, text_4, icon, toggle, link_1, link_2, link_3, link_4, handleLoading }) {
     const [hoveredMenu, setHoveredMenu] = useState(null);
     const visibleValue = toggle ? false : undefined;
 
@@ -22,10 +22,15 @@ function Menu({ text_1, text_2, text_3, text_4, icon, toggle, link_1, link_2, li
     const handleMenuMouseOut = () => {
         setHoveredMenu(null);
     };
+    const handleLogout = () => {
+        if (text_4 === 'Đăng xuất') {
+            localStorage.clear();
+        }
+    };
     return (
         <div className={cx('wrapper')}>
             <ul className={cx('list')}>
-                <NavLink to={link_1}>
+                <NavLink to={link_1} onClick={handleLoading}>
                     <Tippy
                         {...tippyProps}
                         placement="left-start"
@@ -68,7 +73,7 @@ function Menu({ text_1, text_2, text_3, text_4, icon, toggle, link_1, link_2, li
                         </li>
                     </Tippy>
                 </NavLink>
-                <NavLink to={link_2}>
+                <NavLink to={link_2} onClick={handleLoading}>
                     <Tippy
                         {...tippyProps}
                         placement="left-start"
@@ -108,14 +113,16 @@ function Menu({ text_1, text_2, text_3, text_4, icon, toggle, link_1, link_2, li
                         </li>
                     </Tippy>
                 </NavLink>
-                <NavLink to={link_3}>
+                <NavLink to={link_3} onClick={handleLoading}>
                     <li className={cx('item')}>
                         <span className={cx('text')}>{text_3}</span>
                     </li>
                 </NavLink>
-                <NavLink to={link_4}>
+                <NavLink to={link_4} onClick={handleLoading}>
                     <li className={cx('item')}>
-                        <span className={cx('text')}>{text_4}</span>
+                        <span className={cx('text')} onClick={handleLogout}>
+                            {text_4}
+                        </span>
                     </li>
                 </NavLink>
             </ul>

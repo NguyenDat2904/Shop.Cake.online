@@ -5,7 +5,8 @@ import { AppContext } from '~/hook/context';
 import classNames from 'classnames/bind';
 import styles from './compare.module.scss';
 const cx = classNames.bind(styles);
-export const Compare = () => {
+export const Compare = (prop) => {
+    const { toggle } = prop;
     const { arrayCompare } = useContext(AppContext);
     {
         console.log(arrayCompare);
@@ -28,7 +29,7 @@ export const Compare = () => {
             <div className={cx('test')}>
                 <p>{test}</p>
 
-                <CartCompare />
+                <CartCompare toggle={toggle} />
             </div>
         </>
     );

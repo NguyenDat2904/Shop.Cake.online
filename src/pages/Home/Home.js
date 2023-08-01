@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classnames from 'classnames/bind';
 import styles from './Home.module.scss';
 import OneCake from './oneCake';
@@ -12,6 +12,7 @@ import * as products from '~/services/productService';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faCalendarDays, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { AppContext } from '~/hook/context';
 const cx = classnames.bind(styles);
 
 function Home({ toggle }) {
@@ -19,11 +20,12 @@ function Home({ toggle }) {
     const [array, setArray] = useState([]);
     const [array1, setArray1] = useState([]);
     const [array2, setArray2] = useState([]);
-    const [slider, setSlider] = useState([]);
     const [color, SetColor] = useState(true);
     const [color1, SetColor1] = useState(true);
     const [color2, SetColor2] = useState(true);
     const [productList, setproductList] = useState([]);
+
+    const { slider, setSlider } = useContext(AppContext);
 
     useEffect(() => {
         AOS.init();
@@ -275,9 +277,12 @@ function Home({ toggle }) {
                                 alt=""
                             />
                         </div>
-                        <div className={cx('icon')}>
-                            <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
-                        </div>
+                        <Link to={'/news'}>
+                            <div className={cx('icon')}>
+                                <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
+                            </div>
+                        </Link>
+
                         <div className={cx('drama')}>
                             <h5>
                                 Biết bạn thân thích "đơn giản không màu mè",cả nhóm hùa nhau tặng các bánh kem làm kh...
@@ -301,9 +306,12 @@ function Home({ toggle }) {
                                 alt=""
                             />
                         </div>
-                        <div className={cx('icon')}>
-                            <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
-                        </div>
+                        <Link to={'/news'}>
+                            <div className={cx('icon')}>
+                                <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
+                            </div>
+                        </Link>
+
                         <div className={cx('drama')}>
                             <h5>Độc đáo bánh kem điêu khắc của cô gái 9X quê Cà Mau</h5>
                             <div className="childrens flex-start">
@@ -325,9 +333,12 @@ function Home({ toggle }) {
                                 alt=""
                             />
                         </div>
-                        <div className={cx('icon')}>
-                            <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
-                        </div>
+                        <Link to={'/news'}>
+                            <div className={cx('icon')}>
+                                <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
+                            </div>
+                        </Link>
+
                         <div className={cx('drama')}>
                             <h5>Chiếc bánh sinh nhật hót nhất hiện nay: Mở ra biết ngay tình bạn</h5>
                             <div className="childrens flex-start">
