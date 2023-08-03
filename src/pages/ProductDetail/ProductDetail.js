@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
+
 import styles from './ProductDetail.module.scss';
 import classnames from 'classnames/bind';
 import Banner from '~/component/Banner/Banner';
@@ -8,12 +9,20 @@ import { useParams } from 'react-router-dom';
 import * as products from '~/services/productService';
 import { AppContext } from '~/hook/context';
 import { formatCurrencyVND } from '~/component/NumberToPrice/currency';
+import { Slick } from '../Home/slick';
 
 const cx = classnames.bind(styles);
 function ProductDetail({ toggle }) {
     // 1. state
     const [count, setCount] = useState(1);
-    const { productDataDetail, setProductDataDetail, productDataCart, setProductDataCart } = useContext(AppContext);
+    const {
+        productDataDetail,
+        setProductDataDetail,
+        productDataCart,
+        setProductDataCart,
+        relatedProducts,
+        setRelatedProducts,
+    } = useContext(AppContext);
     const [color, setColor] = useState('');
     const { id } = useParams();
 
@@ -23,6 +32,9 @@ function ProductDetail({ toggle }) {
         const fetchAPI = async () => {
             const targetElement = targetElementRef.current;
             const result = await products.getProductDetails(id);
+            const resultProduct = await products.getProduct();
+            const filteredProducts = resultProduct.filter((product) => product.type === result.type);
+            setRelatedProducts(filteredProducts);
             setProductDataDetail(result);
             targetElement.scrollIntoView({ behavior: 'smooth' });
         };
@@ -34,7 +46,10 @@ function ProductDetail({ toggle }) {
     }, [productDataCart]);
 
     // 3. Sự kiện
-    const handleAddProduct = (id) => {
+    const handleCountPlus = () => {
+        setCount(count + 1);
+    };
+    const handleAddProduct = () => {
         toggle(2);
         const existingItemIndex = productDataCart.findIndex((item) => item.id === productDataDetail.id);
         if (existingItemIndex >= 0) {
@@ -50,13 +65,11 @@ function ProductDetail({ toggle }) {
                 color: productDataDetail.color,
                 type: productDataDetail.type,
                 size: productDataDetail.size,
-                quantity: 1,
+                quantity: count,
             };
             setProductDataCart([...productDataCart, product]);
         }
-    };
-    const handleCountPlus = (id) => {
-        setCount(count + 1);
+        setCount(1);
     };
     const handleCountMinus = (id) => {
         const productIndex = productDataCart.findIndex((product) => product.id === productDataDetail.id);
@@ -226,7 +239,7 @@ function ProductDetail({ toggle }) {
                                 </div>
                             </div>
                         </div>
-                        <section>
+                        <section className={cx('preview')}>
                             <nav className={cx('nav-tabs', 'flex-center')}>
                                 <div className={cx('btn', 'btn-add', 'active', 'flex-center')}>Mô tả sản phẩm</div>
                                 <div className={cx('btn', 'btn-add', 'flex-center')}>Bình luận</div>
@@ -260,6 +273,24 @@ function ProductDetail({ toggle }) {
                                 </div>
                             </div>
                         </section>
+                        <div className={cx('slick')}>
+                            <div className={cx('promotionalProducts')}>
+                                <h2 data-aos="fade-up" data-aos-duration="800" data-aos-offset="200">
+                                    Sản phẩm liên quan
+                                </h2>
+                                <p
+                                    data-aos="fade-up"
+                                    data-aos-duration="1000"
+                                    data-aos-offset="300"
+                                    data-aos-easing="ease"
+                                >
+                                    Không quá cầu kì, bánh được thiết kế theo yêu cầu của khách hàng ...Bánh Sinh Nhật
+                                    Đẹp mang nét mộc mạc, đặc trưng làm say lòng người không biết bao nhiêu thế hệ người
+                                    thưởng thức.
+                                </p>
+                            </div>
+                            <Slick toggle={toggle} slider={relatedProducts} />
+                        </div>
                     </div>
                 </div>
             </section>

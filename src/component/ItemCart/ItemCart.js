@@ -10,7 +10,8 @@ import { AppContext } from '~/hook/context';
 const cx = classnames.bind(styles);
 function ItemCart({ data, toggle }) {
     // 1. State
-    const { productDataCart, setProductDataCart, arrayCompare, setArrayCompare } = useContext(AppContext);
+    const { productDataCart, setProductDataCart, arrayCompare, setArrayCompare, handleIsLoading } =
+        useContext(AppContext);
 
     // 2. UseEffect
     useEffect(() => {
@@ -60,7 +61,7 @@ function ItemCart({ data, toggle }) {
         }
     };
     return (
-        <NavLink to={`/product/${data.id}`}>
+        <NavLink to={`/product/${data.id}`} onClick={handleIsLoading}>
             <article>
                 <div className="childrens flex-column">
                     <div className={cx('img', 'flex-center')}>

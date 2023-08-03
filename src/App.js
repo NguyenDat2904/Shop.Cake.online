@@ -18,25 +18,29 @@ import PayMent from './pages/PayMent/PayMent';
 import Modal from './component/Modal/Modal';
 import useModal from './hook/useModal';
 import ModalNotion from './component/ModalNotion/ModalNotion';
+import Register from './pages/Register/Register';
+import Login from './pages/Login/Login';
 
 function App() {
     const { isShowing, isShowingNotion, toggle } = useModal();
     return (
-        <AppProvider>
-            <Router>
+        <Router>
+            <AppProvider>
                 <Header />
                 <CartRight toggle={toggle} />
                 <Modal isShowing={isShowing} hide={toggle} />
                 <ModalNotion isShowing={isShowingNotion} hide={toggle} />
                 <div className="App">
                     <Routes>
-                        <Route path="/" element={<Home toggle={toggle} />} />
+                        <Route path="/" element={<Home />} />
                         <Route path="/introduce" element={<Introduce />} />
                         <Route path="/library" element={<Library />} />
                         <Route path="/news" element={<News />} />
-                        <Route path="/product" element={<Product toggle={toggle} />} />
+                        <Route path="/product" element={<Product />} />
                         <Route path="/support" element={<Support />} />
                         <Route path="/contact" element={<Contact />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<Login />} />
                         <Route path="/product/:id" element={<ProductDetail toggle={toggle} />} />
                         <Route path="/cart" element={<Cart toggle={toggle} />} />
                         <Route path="/pay" element={<PayMent />} />
@@ -44,8 +48,8 @@ function App() {
                     </Routes>
                 </div>
                 <Footer />
-            </Router>
-        </AppProvider>
+            </AppProvider>
+        </Router>
     );
 }
 

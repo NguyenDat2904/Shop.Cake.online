@@ -5,7 +5,7 @@ export const ProductsList = (prop) => {
     return list?.map((products, index) => {
         return (
             <div key={index}>
-                <ItemCart data={products} index={index} toggle={toggle} />
+                <ItemCart toggle={toggle} data={products} />
             </div>
         );
     });

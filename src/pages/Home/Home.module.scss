@@ -5,7 +5,6 @@
     width: var(--widthcontainer);
     max-width: 100%;
     display: grid;
-    height: 700px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     gap: 20px;
@@ -38,11 +37,9 @@
 }
 .discountGoods {
     margin: 0 auto;
-
     --widthcontainer: 1200px;
     width: var(--widthcontainer);
     max-width: 100%;
-    height: 450px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 330px;
@@ -78,7 +75,7 @@ h2 {
     padding: 0px 100px 0px 0px;
     font-size: 36px;
 }
-button {
+.btnProduct {
     margin-top: 25px;
     width: auto;
     color: var(--c-1668480534016, #fff);
@@ -87,13 +84,14 @@ button {
     border: none;
     font-family: Roboto, sans-serif;
     text-align: center;
-    background-color: var(--c-1668480339968, #fc7c7c);
+    background: var(--c-1668480339968, #fc7c7c);
     padding: 13px 40px;
     height: auto;
     font-weight: 600;
+    transition: 0.5s;
     &:hover {
-        background-color: var(--c-1668480369240, #2b4174);
-        transition: 0.5s;
+        background: var(--c-1668480369240, #2b4174);
+        cursor: pointer;
     }
 }
 .armorial {
@@ -110,25 +108,25 @@ button {
     grid-template-rows: 300px;
     gap: 10px;
     .img1 {
-        border-right: 1px solid rgb(195, 191, 191);
+        border-right: 1px solid #425788;
         background-image: url('https://demo037126.web30s.vn/datafiles/38469/upload/images/home/brand1.png');
         background-repeat: no-repeat;
         background-position: center;
     }
     .img2 {
-        border-right: 1px solid rgb(195, 191, 191);
+        border-right: 1px solid #425788;
         background-image: url('https://demo037126.web30s.vn/datafiles/38469/upload/images/home/brand2.png');
         background-repeat: no-repeat;
         background-position: center;
     }
     .img3 {
-        border-right: 1px solid rgb(195, 191, 191);
+        border-right: 1px solid #425788;
         background-image: url('https://demo037126.web30s.vn/datafiles/38469/upload/images/home/brand3.png');
         background-repeat: no-repeat;
         background-position: center;
     }
     .img4 {
-        border-right: 1px solid rgb(195, 191, 191);
+        border-right: 1px solid #425788;
         background-image: url('https://demo037126.web30s.vn/datafiles/38469/upload/images/home/brand4.png');
         background-repeat: no-repeat;
         background-position: center;
@@ -172,7 +170,10 @@ button {
             margin-right: 10px;
             font-weight: 500;
             padding: 10px;
+            transition: all 0.3s;
+            user-select: none;
             &:hover {
+                cursor: pointer;
                 color: var(--c-1668480518886, #fc7c7c);
                 font-size: 18px;
                 text-decoration: underline;
@@ -187,6 +188,7 @@ button {
             padding: 10px;
             border-width: 0px;
             border-style: solid;
+            cursor: pointer;
         }
         .noSpan1 {
             color: var(--c-1668480518886, #fc7c7c);
@@ -197,6 +199,7 @@ button {
             padding: 10px;
             border-width: 0px;
             border-style: solid;
+            cursor: pointer;
         }
         .noSpan2 {
             color: var(--c-1668480518886, #fc7c7c);
@@ -207,6 +210,7 @@ button {
             padding: 10px;
             border-width: 0px;
             border-style: solid;
+            cursor: pointer;
         }
     }
     .productsList {
@@ -275,20 +279,14 @@ button {
         }
         p {
             padding: 0;
-            margin: 15px 0 45px 0;
+            margin: 15px auto 45px;
             height: auto;
             width: 70%;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            font-size: 16px;
+            font-weight: 400;
             text-align: center;
             display: block;
             position: relative;
-            --my-transform: translateX(-50%);
-            --w30s-animation-duration: 1000ms;
-            --w30s-animation-fill-mode: both;
-            --w30s-animation-iteration-count: inherit;
-            --w30s-animation-timing-function: ease;
         }
     }
 }
@@ -297,11 +295,11 @@ button {
     --widthcontainer: 1200px;
     width: var(--widthcontainer);
     max-width: 100%;
-    height: 700px;
     margin: 0 auto;
     --widthcontainer: 1200px;
     width: var(--widthcontainer);
     max-width: 100%;
+    margin-bottom: 100px;
     .text {
         h2 {
             padding: 0;
@@ -313,9 +311,12 @@ button {
             line-height: 60px;
         }
         p {
-            margin-top: 20px;
+            margin: 20px auto 0;
+            font-size: 16px;
+            font-weight: 400;
             text-align: center;
-            color: rgb(83, 82, 82);
+            width: 60%;
+            color: #282828;
         }
     }
     .context {
@@ -323,21 +324,24 @@ button {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: auto;
-        gap: 30px;
         .cart {
             box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
             border-radius: 15px;
             position: relative;
+            width: 383.333px;
+            margin-right: 25px;
             .img {
-                max-width: 100%;
-                height: 280px;
+                width: 100%;
+                height: 50%;
                 overflow: hidden;
                 border-radius: 15px;
                 img {
                     border-radius: 10px;
-                    max-width: 100%;
+                    width: 100%;
                     height: 100%;
-                    transition: 1s;
+                    object-fit: cover;
+                    transition: 0.5s ease;
+                    cursor: pointer;
                 }
             }
 
@@ -349,8 +353,10 @@ button {
                 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
                 position: absolute;
                 left: 80%;
-                top: -30px;
-                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                position: absolute;
+                z-index: 10;
                 .arrow {
                     font-size: 18px;
                     font-weight: 500;
@@ -361,37 +367,67 @@ button {
                 }
                 &:hover {
                     background-color: #fc7c7c;
+                    cursor: pointer;
                     .arrow {
                         color: #fff;
                     }
                 }
             }
             .drama {
-                padding: 0 20px;
-                height: 120px;
+                width: 100%;
+                height: auto;
+                top: 0;
+                left: 0px;
+                background-color: var(--c-1668480311287, #fff);
+                padding: 35px 25px;
+                overflow: visible;
+                display: block;
+                position: relative;
                 h5 {
+                    height: 90px;
+                    width: 100%;
                     color: var(--c-1668480487215, #2b4174);
                     font-size: 20px;
+                    top: 0;
+                    left: 0px;
                     font-family: Playfair Display;
                     font-weight: 600;
                     line-height: 30px;
+                    transition: all 300ms ease;
+                    margin: 0px 0px 20px;
+                    position: relative;
                     &:hover {
-                        color: #fc7c7c;
+                        color: var(--c-1668480518886, #fc7c7c);
+                        cursor: pointer;
+                    }
+                }
+                .icon-view {
+                    width: auto;
+                    color: var(--c-1668480487215, #2b4174);
+                    font-size: 16px;
+                    text-align: center;
+                    top: 0;
+                    left: 0px;
+                    height: auto;
+                    transition: all 300ms ease;
+                    font-weight: 600;
+                    margin: 0px 20px 0px 0px;
+                    display: inline-flex;
+                    align-items: center;
+                    position: relative;
+                    > svg {
+                        padding: 0px 7px 0px 0px;
+                        color: var(--c-1668480518886, #fc7c7c);
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    span {
+                        color: var(--c-1668480487215, #2b4174);
+                        font-size: 16px;
                     }
                 }
             }
-
-            .span {
-                margin-bottom: 40px;
-                padding: 0 20px;
-                display: flex;
-                gap: 10px;
-                span {
-                    color: var(--c-1668480487215, #2b4174);
-                    font-size: 16px;
-                }
-            }
-
             &:hover {
                 .img {
                     img {

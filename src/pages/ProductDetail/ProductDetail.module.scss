@@ -299,3 +299,38 @@
 .active {
     background-color: var(--c-1668480339968, #fc7c7c);
 }
+.preview {
+    padding-bottom: 70px;
+}
+.slick {
+    margin: 0 auto;
+    --widthcontainer: 1200px;
+    width: var(--widthcontainer);
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 100px;
+    .promotionalProducts {
+        h2 {
+            padding: 0;
+            color: var(--c-1668480455247, #282828);
+            font-size: 42px;
+            top: 0;
+            left: 0px;
+            text-align: center;
+            font-family: Playfair Display;
+            font-weight: 600;
+            line-height: 60px;
+        }
+        p {
+            padding: 0;
+            margin: 15px auto 45px;
+            height: auto;
+            width: 70%;
+            font-size: 16px;
+            font-weight: 400;
+            text-align: center;
+            display: block;
+            position: relative;
+        }
+    }
+}
