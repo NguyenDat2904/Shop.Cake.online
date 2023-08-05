@@ -153,7 +153,13 @@ function Home({ toggle }) {
                         <h3 data-aos="fade-up" data-aos-duration="700" data-aos-offset="300" data-aos-easing="ease">
                             Giảm giá 70%
                         </h3>
-                        <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-offset="300" data-aos-easing="ease">
+                        <h2
+                            data-aos="fade-up"
+                            data-aos-duration="1000"
+                            data-aos-offset="300"
+                            data-aos-easing="ease"
+                            className={cx('title-h2')}
+                        >
                             Bánh mì <br /> Baguette
                         </h2>
                         <Link to={'/product'}>
@@ -199,7 +205,13 @@ function Home({ toggle }) {
                     <h3 data-aos="fade-up" data-aos-duration="700" data-aos-offset="200" data-aos-easing="ease">
                         GIẢM GIÁ 45%
                     </h3>
-                    <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-offset="200" data-aos-easing="ease">
+                    <h2
+                        data-aos="fade-up"
+                        data-aos-duration="1000"
+                        data-aos-offset="200"
+                        data-aos-easing="ease"
+                        className={cx('title-h2')}
+                    >
                         Tất cả các loại bánh mì
                     </h2>
                     <p>
@@ -211,7 +223,7 @@ function Home({ toggle }) {
             </div>
             <div className={cx('slick')}>
                 <div className={cx('promotionalProducts')}>
-                    <h2 data-aos="fade-up" data-aos-duration="800" data-aos-offset="200">
+                    <h2 data-aos="fade-up" data-aos-duration="800" data-aos-offset="200" className={cx('title-h2')}>
                         SẢN PHẨM KHUYẾN MÃI
                     </h2>
                     <p data-aos="fade-up" data-aos-duration="1000" data-aos-offset="300" data-aos-easing="ease">
@@ -261,7 +273,13 @@ function Home({ toggle }) {
 
             <div className={cx('news')}>
                 <div className={cx('text')}>
-                    <h2 data-aos="fade-up" data-aos-duration="800" data-aos-offset="300" data-aos-easing="ease">
+                    <h2
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                        data-aos-offset="300"
+                        data-aos-easing="ease"
+                        className={cx('title-h2')}
+                    >
                         Tin tức mới nhất
                     </h2>
                     <p data-aos="fade-up" data-aos-duration="1000" data-aos-offset="300" data-aos-easing="ease">

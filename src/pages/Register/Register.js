@@ -7,7 +7,6 @@ import Banner from '~/component/Banner/Banner';
 import * as register from '~/services/registerService';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '~/hook/context';
-import CapCha from './CapCha/CapCha';
 
 const cx = classnames.bind(styles);
 
@@ -83,7 +82,7 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         const regexName = /^[a-zA-Z ]+$/;
-        const regexPhone = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+        const regexPhone = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const regexUser = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
         if (!regexName.test(name)) {
@@ -123,7 +122,7 @@ const Register = () => {
         }
         if (
             regexName.test(name) &&
-            regexEmail.test(email) &&
+            regexPhone.test(phone) &&
             regexEmail.test(email) &&
             regexUser.test(user) &&
             regexUser.test(password) &&
@@ -131,11 +130,19 @@ const Register = () => {
             confirmPassword !== '' &&
             code === capCha
         ) {
-            const result = await register.postUser(name, phone, address, email, user, password);
-            if (result.status === 201) {
-                navigate('/login');
+            const resultAllUser = await register.getUser(user);
+            const checkRegister = resultAllUser.data?.some((username) => username.user === user);
+            if (checkRegister) {
+                setUserE('Tên truy cập đã tồn tại');
+            } else {
+                const result = await register.postUser(name, phone, address, email, user, password);
+                if (result.status === 201) {
+                    navigate('/login');
+                }
+                handleIsLoading();
             }
-            handleIsLoading();
+        } else {
+            console.log('erro');
         }
     };
     return (

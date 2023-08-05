@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+table thead td {
+    font-weight: 600;
+}
+table tr {
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+table tr:last-child {
+    border-bottom: none;
+}
+
+table tr td {
+    padding: 10px;
+}
+table tr td:last-child {
+    text-align: end;
+}

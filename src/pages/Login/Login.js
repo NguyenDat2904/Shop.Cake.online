@@ -10,23 +10,42 @@ import { AppContext } from '~/hook/context';
 
 const cx = classnames.bind(styles);
 
-const Login = () => {
+const Login = ({ setIsLoggedIn, setIsAdmin }) => {
     const navigate = useNavigate();
     const [user, setUser] = useState('');
+    const [userE, setUserE] = useState('');
+
     const [password, setPassword] = useState('');
+    const [passwordE, setPasswordE] = useState('');
     const { handleIsLoading } = useContext(AppContext);
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        handleIsLoading();
         const result = await login.getUser(user, password);
-        result.data.forEach((user) => {
-            localStorage.setItem('user', user.user);
-            localStorage.setItem('email', user.email);
-            localStorage.setItem('img', user.img);
-        });
-        const valueUser = localStorage.getItem('user');
-        if (valueUser === user) navigate('/');
+        if (result.data.length === 0) {
+            setUserE('Tên truy cập không tồn tại');
+        } else {
+            handleIsLoading();
+            result.data.forEach((user) => {
+                localStorage.setItem('user', user.user);
+                localStorage.setItem('email', user.email);
+                localStorage.setItem('img', user.img);
+                localStorage.setItem('role', user.role);
+            });
+            const valueUser = localStorage.getItem('user');
+            const valueRole = localStorage.getItem('role');
+            localStorage.setItem('isLogin', true);
+            setIsLoggedIn(true);
+            if (valueUser === user && valueRole === 'regular') {
+                navigate('/');
+                localStorage.setItem('isAdmin', true);
+                setIsAdmin(true);
+            } else if (valueUser === user && valueRole === 'admin') {
+                navigate('/admin/dashboard');
+                localStorage.setItem('isAdmin', false);
+                setIsAdmin(false);
+            }
+        }
     };
 
     const handleUser = (e) => {
@@ -52,6 +71,7 @@ const Login = () => {
                                     value={user}
                                     onChange={handleUser}
                                 />
+                                <span className={cx('errorMessage')}>{userE}</span>
                             </div>
                             <div className={cx('inputblock')}>
                                 <span className={cx('input-group-text')}>*</span>
@@ -62,6 +82,7 @@ const Login = () => {
                                     value={password}
                                     onChange={handlePassword}
                                 />
+                                <span className={cx('errorMessage')}>{passwordE}</span>
                             </div>
                             <div className={cx('button')}>
                                 <button className={cx('button')} type="submit">

@@ -8,7 +8,20 @@ import Modal from '../Header/Modal/Modal';
 import { NavLink } from 'react-router-dom';
 
 const cx = classnames.bind(styles);
-function Menu({ text_1, text_2, text_3, text_4, icon, toggle, link_1, link_2, link_3, link_4, handleLoading }) {
+function Menu({
+    text_1,
+    text_2,
+    text_3,
+    text_4,
+    icon,
+    toggle,
+    link_1,
+    link_2,
+    link_3,
+    link_4,
+    handleLoading,
+    setIsLoggedIn,
+}) {
     const [hoveredMenu, setHoveredMenu] = useState(null);
     const visibleValue = toggle ? false : undefined;
 
@@ -25,6 +38,7 @@ function Menu({ text_1, text_2, text_3, text_4, icon, toggle, link_1, link_2, li
     const handleLogout = () => {
         if (text_4 === 'Đăng xuất') {
             localStorage.clear();
+            setIsLoggedIn(false);
         }
     };
     return (

@@ -12,7 +12,10 @@ export const post = async (path, data = {}) => {
     const response = await httpRequest.post(path, data);
     return response;
 };
-
+export const deleteUser = async (path, data = {}) => {
+    const response = await httpRequest.delete(path, data);
+    return response;
+};
 // Call Address
 export const httpRequestAddress = axios.create({
     baseURL: `https://provinces.open-api.vn/api/?depth=3`,

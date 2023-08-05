@@ -12,7 +12,7 @@ import { AppContext } from '~/hook/context';
 import IsLoading from '../IsLoading/IsLoading';
 const cx = classnames.bind(styles);
 
-function Header() {
+function Header({ setIsLoggedIn }) {
     // 1. State
     const [icon, setIcon] = useState(false);
     const { setToggleCart, productDataCart, isLoading, handleIsLoading, setIsLoading } = useContext(AppContext);
@@ -84,6 +84,7 @@ function Header() {
                                                     link_2="compare"
                                                     link_3="like"
                                                     toggle
+                                                    setIsLoggedIn={setIsLoggedIn}
                                                 />
                                             )}
                                         </Modal>

@@ -28,3 +28,30 @@ export const getProductDetails = async (id) => {
         console.log(error);
     }
 };
+export const deleteProduct = async (id) => {
+    try {
+        const results = await httpRequest.deleteUser(`products/${id}`, {
+            id,
+        });
+        return results.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const postProduct = async (name, size, type, color, cost, price, topic, img) => {
+    try {
+        const results = await httpRequest.post(`products`, {
+            name,
+            size,
+            type,
+            color,
+            cost,
+            price,
+            topic,
+            img,
+        });
+        return results.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
