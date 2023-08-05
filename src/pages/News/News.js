@@ -3,6 +3,8 @@ import styles from './News.module.scss';
 import classnames from 'classnames/bind';
 import SideBar from '../Product/SideBar/SideBar';
 import Banner from '~/component/Banner/Banner';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 const cx = classnames.bind(styles);
 function News() {
     return (
@@ -12,7 +14,8 @@ function News() {
                 <div className={cx('Hop')}>
                     <div className={cx('news-left')}>
                             <SideBar title="Thanh tìm kiếm " className={cx('wrapper')} >
-                                <input classname={cx('box')} type ="text" placeholder="Nhập từ khóa"></input>
+                                <input className={cx('box_search')} type ="text" placeholder="Nhập từ khóa"></input>
+                                <input className={cx('search')} type="submit"></input>
                             </SideBar>
                             {' '}
                             <SideBar title="Danh mục Tin tức" className={cx('wrapper')}>
@@ -20,7 +23,35 @@ function News() {
                                 <input className={cx('box')} type ="button" Value="Tin Vắn"></input> <br/>
                             </SideBar>
                             {' '}
-                            <SideBar title="BÀI VIẾT MỚI NHẤT" className={cx('wrapper')} ></SideBar>
+                            <SideBar title="BÀI VIẾT MỚI NHẤT" className={cx('wrapper')} >
+                                <form className={cx('newst')}>
+                                    <div className={cx('sidebar_div')}>
+                                    <img className={cx('sidebar_img')}></img>
+                                    <a className={cx('sidebar_text')} href="https://demo037126.web30s.vn/biet-ban-than-thich-don-gian-khong-mau-me-ca-nhom-hua-nhau-tang-cai-banh-kem-lam-kho-chu-mo-ra-xiu-lien-tai-cho" >
+                                    Biết bạn thân thích "đơn giản không màu mè", cả nhóm hùa nhau tặng cái bánh kem làm khổ
+                                chủ mở ra "xỉu liền tại chỗ"
+                               </a>
+                               </div>
+                               <div className={cx('sidebar_div')}>
+                               <img className={cx('sidebar_img')}></img>
+                                    <a className={cx('sidebar_text')} href="https://demo037126.web30s.vn/biet-ban-than-thich-don-gian-khong-mau-me-ca-nhom-hua-nhau-tang-cai-banh-kem-lam-kho-chu-mo-ra-xiu-lien-tai-cho" >
+                                    Độc đáo bánh kem điêu khắc của cô gái 9X quê Cà Mau
+                               </a>
+                               </div>
+                               <div className={cx('sidebar_div')}>
+                               <img className={cx('sidebar_img')}></img>
+                                    <a className={cx('sidebar_text')} href="https://demo037126.web30s.vn/biet-ban-than-thich-don-gian-khong-mau-me-ca-nhom-hua-nhau-tang-cai-banh-kem-lam-kho-chu-mo-ra-xiu-lien-tai-cho" >
+                                    Chiếc bánh sinh nhật hot nhất hiện nay: Mở ra biết ngay tình bạn
+                               </a>
+                               </div>
+                               <div className={cx('sidebar_div')}>
+                               <img className={cx('sidebar_img')}></img>
+                                    <a className={cx('sidebar_text')} href="https://demo037126.web30s.vn/biet-ban-than-thich-don-gian-khong-mau-me-ca-nhom-hua-nhau-tang-cai-banh-kem-lam-kho-chu-mo-ra-xiu-lien-tai-cho" >
+                                    Bị người thân úp mặt vào bánh sinh nhật, cậu bé có hành động khiến tất cả sững sờ, dân mạng lại nhiệt tình ủng hộ
+                               </a>
+                               </div>
+                                </form>
+                            </SideBar>
                             <SideBar title="TAG" className={cx('wrapper')} >
                             <input className={cx('box_tag')} type ="button" Value="Bánh"></input>
                             <input className={cx('box_tag')} type ="button" Value="Trà sữa"></input>
@@ -37,30 +68,30 @@ function News() {
                     <div className={cx('news-right')}>
                         <form>
                             <img className={cx('New_img')}></img>
-                            <a className="New_text" href="https://demo037126.web30s.vn/biet-ban-than-thich-don-gian-khong-mau-me-ca-nhom-hua-nhau-tang-cai-banh-kem-lam-kho-chu-mo-ra-xiu-lien-tai-cho" > 
+                            <a className={cx('new_text')} href="https://demo037126.web30s.vn/biet-ban-than-thich-don-gian-khong-mau-me-ca-nhom-hua-nhau-tang-cai-banh-kem-lam-kho-chu-mo-ra-xiu-lien-tai-cho" > 
                                 Biết bạn thân thích "đơn giản không màu mè", cả nhóm hùa nhau tặng cái bánh kem làm khổ
                                 chủ mở ra "xỉu liền tại chỗ"
                             </a>
                         </form>
                         <form>
                             <img className={cx('New_img2')}></img>
-                            <p className="New_text">Độc đáo bánh kem điêu khắc của cô gái 9X quê Cà Mau</p>
+                            <a className={cx('new_text')}>Độc đáo bánh kem điêu khắc của cô gái 9X quê Cà Mau</a>
                         </form>
                         <form>
                             <img className={cx('New_img3')}></img>
-                            <p className="New_text">Chiếc bánh sinh nhật hot nhất hiện nay: Mở ra biết ngay tình bạn</p>
+                            <a className={cx('new_text')}>Chiếc bánh sinh nhật hot nhất hiện nay: Mở ra biết ngay tình bạn</a>
                         </form>
                         <form>
                             <img className={cx('New_img4')}></img>
-                            <p className="New_text">Bị người thân úp mặt vào bánh sinh nhật, cậu bé có hành động khiến tất cả sững sờ, dân mạng lại nhiệt tình ủng hộ</p>
+                            <a className={cx('new_text')}>Bị người thân úp mặt vào bánh sinh nhật, cậu bé có hành động khiến tất cả sững sờ, dân mạng lại nhiệt tình ủng hộ</a>
                         </form>
                         <form>
                             <img className={cx('New_img5')}></img>
-                            <p className="New_text">Ngã ngửa khi mua bánh sinh nhật online</p>
+                            <a className={cx('new_text')}>Ngã ngửa khi mua bánh sinh nhật online</a>
                             </form>
                                 <form>
                             <img className={cx('New_img6')}></img>
-                            <p className="New_text">Chiếc bánh sinh nhật của Gen Z "điềm tĩnh và không thích màu mè" gây bất ngờ vì cách trang trí, nhận được lời khen không ngớt từ dân mạng</p>
+                            <a className={cx('new_text')}>Chiếc bánh sinh nhật của Gen Z "điềm tĩnh và không thích màu mè" gây bất ngờ vì cách trang trí, nhận được lời khen không ngớt từ dân mạng</a>
                         </form>
                       
                     </div>
