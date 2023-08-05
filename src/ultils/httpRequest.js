@@ -1,19 +1,21 @@
 import axios from 'axios';
 
 // Call Product
-export const httpRequestProduct = axios.create({
+export const httpRequest = axios.create({
     baseURL: `http://localhost:3000/`,
 });
-
-export const getProduct = async (path, options = {}) => {
-    const response = await httpRequestProduct.get(path, options);
-    return response.data;
+export const get = async (path, options = {}) => {
+    const response = await httpRequest.get(path, options);
+    return response;
 };
 export const post = async (path, data = {}) => {
-    const response = await httpRequestProduct.post(path, data);
-    return response.data;
+    const response = await httpRequest.post(path, data);
+    return response;
 };
-
+export const deleteUser = async (path, data = {}) => {
+    const response = await httpRequest.delete(path, data);
+    return response;
+};
 // Call Address
 export const httpRequestAddress = axios.create({
     baseURL: `https://provinces.open-api.vn/api/?depth=3`,

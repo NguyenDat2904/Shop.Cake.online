@@ -5,16 +5,18 @@
     width: var(--width-container);
     max-width: 100%;
     background-image: url('https://demo037126.web30s.vn/datafiles/web30s/upload/images/7101-7200/30S-03-7126/bg-banner-01.jpg');
-    height: 800px;
-    position: relative;
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    background-size: cover;
+    height: 730px;
     .brithday {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
+        display: flex;
+        width: 100%;
+        align-items: center;
         .discount {
-            padding: 10px;
+            width: 44%;
+            height: auto;
             h3 {
-                margin-top: 200px;
                 font-size: 30px;
                 color: var(--c-1668480487215, #2b4174);
                 font-weight: 600;
@@ -29,7 +31,7 @@
                 font-weight: 600;
             }
             .although {
-                margin-top: 82px;
+                margin-top: 40px;
                 display: flex;
                 gap: 30px;
                 button {
@@ -67,31 +69,23 @@
             }
         }
         .img {
-            width: 100%;
+            width: 56%;
+            height: auto;
             .brithdayCakeImg {
-                margin-top: 70px;
+                background-image: url(https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/slide-2.png?t=1677033386);
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
+                background-size: contain;
+                top: 0;
+                left: 0;
                 width: 100%;
-                height: auto;
-                align-self: flex-start;
+                padding: 0 0 75% 0;
                 position: relative;
                 animation-name: example;
-                animation-duration: 3s;
+                animation-duration: 4s;
                 animation-iteration-count: infinite;
-
-                @keyframes example {
-                    0% {
-                        left: 0px;
-                        top: 0px;
-                    }
-                    75% {
-                        left: 0px;
-                        top: 30px;
-                    }
-                    100% {
-                        left: 0px;
-                        top: 0px;
-                    }
-                }
+                animation-timing-function: ease;
+                animation-fill-mode: both;
             }
         }
     }
@@ -177,5 +171,18 @@
                 }
             }
         }
+    }
+}
+@keyframes example {
+    0% {
+        top: 0px;
+    }
+
+    50% {
+        top: 30px;
+    }
+
+    100% {
+        top: 0px;
     }
 }
