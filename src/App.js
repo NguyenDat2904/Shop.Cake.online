@@ -47,7 +47,7 @@ function App() {
                 <ModalNotion isShowing={isShowingNotion} hide={toggle} />
                 <div className="App">
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Home toggle={toggle} />} />
                         <Route path="/introduce" element={<Introduce />} />
                         <Route path="/library" element={<Library />} />
                         <Route path="/news" element={<News />} />
