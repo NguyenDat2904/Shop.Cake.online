@@ -16,6 +16,10 @@ export const deleteUser = async (path, data = {}) => {
     const response = await httpRequest.delete(path, data);
     return response;
 };
+export const patch = async (patch, data = {}) => {
+    const reponse = await httpRequest.patch(patch, data);
+    return reponse;
+};
 // Call Address
 export const httpRequestAddress = axios.create({
     baseURL: `https://provinces.open-api.vn/api/?depth=3`,

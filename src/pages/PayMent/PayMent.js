@@ -8,8 +8,11 @@ import { NavLink } from 'react-router-dom';
 import { AppContext } from '~/hook/context';
 import { formatCurrencyVND } from '~/component/NumberToPrice/currency';
 import * as address from '~/services/addressSerce';
+import { useNavigate } from 'react-router-dom';
+import * as pay from '~/services/registerService';
 const cx = classnames.bind(styles);
 function PayMent() {
+    const navigate = useNavigate();
     // 1. useState
     const [toggleTransport, setToggleTransport] = useState(false);
     const [toggleShip, setToggleShip] = useState(true);
@@ -18,18 +21,74 @@ function PayMent() {
     const [currentShip, setCurrentShip] = useState(50000);
     // Value Input
     const [valueNameBuy, setValueNamBuy] = useState('');
-    const [valueEmail, setValueEmail] = useState('');
-    const [valuePhoneBuy, setValuePhoneBuy] = useState('');
-    const [valueNameReceive, setValueNamReceive] = useState('');
-    const [valuePhoneReceive, setValuePhoneReceive] = useState('');
+    const [valueNameBuyE, setValueNamBuyE] = useState('');
 
+    const [valueEmail, setValueEmail] = useState('');
+    const [valueEmailE, setValueEmailE] = useState('');
+
+    const [valuePhoneBuy, setValuePhoneBuy] = useState('');
+    const [valuePhoneBuyE, setValuePhoneBuyE] = useState('');
+
+    const [valueNameReceive, setValueNamReceive] = useState('');
+    const [valueNameReceiveE, setValueNamReceiveE] = useState('');
+
+    const [valuePhoneReceive, setValuePhoneReceive] = useState('');
+    const [valuePhoneReceiveE, setValuePhoneReceiveE] = useState('');
+    //value pay
+    const [paymentOnDelivery, setPaymentOnDelivery] = useState('');
+    const [paymentAtTheCompany, setPaymentAtTheCompany] = useState('');
+    const [transferPayments, setTransferPayments] = useState('');
+    const [cashPayment, setCashPayment] = useState('');
+    const [payPayPal, setPayPayPal] = useState('');
+    const [vnpay, setVnpay] = useState('');
+    const [payNaPas, setPayNaPas] = useState('');
+    const [payZaloPay, setPayZaloPay] = useState('');
+    const [payMoMo, setPayMoMo] = useState('');
+
+    const [payIn, setPayIn] = useState('');
+
+    const hendlePaymentOnDelivery = (e) => {
+        setPaymentOnDelivery(e.target.value);
+    };
+    const hendlePaymentAtTheCompany = (e) => {
+        setPaymentAtTheCompany(e.target.value);
+    };
+    const hendlePaytransferPayments = (e) => {
+        setTransferPayments(e.target.value);
+    };
+    const hendlecashPayment = (e) => {
+        setCashPayment(e.target.value);
+    };
+    const hendlepayPayPal = (e) => {
+        setPayPayPal(e.target.value);
+    };
+    const hendlepayvnpay = (e) => {
+        setVnpay(e.target.value);
+    };
+    const hendlepayNaPas = (e) => {
+        setPayNaPas(e.target.value);
+    };
+    const hendlepayZaloPay = (e) => {
+        setPayZaloPay(e.target.value);
+    };
+    const hendlepayMoMo = (e) => {
+        setPayMoMo(e.target.value);
+    };
     // Value Select
     const [valueProvince, setValueProvince] = useState('--Chọn tỉnh thành--');
-    const [valueDistrict, setValueDistrict] = useState('--Chọn quận/huyện--');
-    const [dataDistrict, setDataDistrict] = useState([]);
-    const [valueWard, setValueWard] = useState('--Chọn phường/xã--');
-    const [dataWard, setDataWard] = useState([]);
+    const [valueProvinceE, setValueProvinceE] = useState('');
 
+    const [valueDistrict, setValueDistrict] = useState('--Chọn quận/huyện--');
+    const [valueDistrictE, setValueDistrictE] = useState('');
+
+    const [dataDistrict, setDataDistrict] = useState([]);
+
+    const [valueWard, setValueWard] = useState('--Chọn phường/xã--');
+    const [valueWardE, setValueWardE] = useState('');
+
+    const [dataWard, setDataWard] = useState([]);
+    //delivery method
+    const [deliveryMethod, setDeliveryMethod] = useState('');
     // 2. useEffects
     const totalNotShip = productDataCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
@@ -74,6 +133,7 @@ function PayMent() {
         }
         setToggleTransport(!toggleTransport);
     };
+
     const handleChangeProvinces = (e) => {
         const value = e.target.value;
         setValueProvince(value);
@@ -106,12 +166,168 @@ function PayMent() {
         setValueNamReceive(e.target.value);
     };
     const handlePhoneReceive = (e) => {
-        setValuePhoneReceive(e.target.target);
+        setValuePhoneReceive(e.target.value);
     };
+    const onSubmitPayMent = async (e) => {
+        e.preventDefault();
+        const regexName = /^[a-zA-Z ]+$/;
+        const regexPhone = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+        const regexPhoneE = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regexName.test(valueNameBuy) || valueNameBuy === '') {
+            setValueNamBuyE('Bạn vui lòng nhập đúng họ và tên không dấu');
+        } else {
+            setValueNamBuyE('');
+        }
+        if (!regexName.test(valueNameReceive) || valueNameReceive === '') {
+            setValueNamReceiveE('Bạn vui lòng nhập đúng họ và tên không dấu');
+        } else {
+            setValueNamReceiveE('');
+        }
+        if (!regexPhone.test(valuePhoneBuy) || valuePhoneBuy === '') {
+            setValuePhoneBuyE('Bạn vui lòng nhập số điện thoại người mua');
+        } else {
+            setValuePhoneBuyE('');
+        }
+        if (!regexPhoneE.test(valuePhoneReceive) || valuePhoneReceive === '') {
+            setValuePhoneReceiveE('Bạn vui lòng nhập số điện thoại người nhận');
+        } else {
+            setValuePhoneReceiveE('');
+        }
+        if (!regexEmail.test(valueEmail) || valueEmail === '') {
+            setValueEmailE('Bạn vui lòng nhập đúng Email');
+        } else {
+            setValueEmailE('');
+        }
+        if (valueProvince === '--Chọn tỉnh thành--') {
+            setValueProvinceE('Bạn vui lòng chọn Tỉnh Thành');
+        } else {
+            setValueProvinceE('');
+        }
+        if (valueDistrict === '--Chọn quận/huyện--') {
+            setValueDistrictE('Bạn vui lòng chọn Quận/Huyện');
+        } else {
+            setValueDistrictE('');
+        }
+        if (valueWard === '--Chọn phường/xã--') {
+            setValueWardE('Bạn vui lòng chọn Phường/Xã');
+        } else {
+            setValueWardE('');
+        }
+        if (toggleTransport) {
+            setDeliveryMethod('Nhận hàng trực tiếp tại công ty');
+        }
+        if (!toggleTransport) {
+            setDeliveryMethod(`Ship tại ${valueProvince}-${valueDistrict}-${valueWard}`);
+        }
+        if (
+            regexName.test(valueNameBuy) &&
+            valueNameBuy !== '' &&
+            regexName.test(valueNameReceive) &&
+            valueNameReceive !== '' &&
+            !regexPhone.test(valuePhoneBuy) &&
+            valuePhoneBuy !== '' &&
+            !regexPhoneE.test(valuePhoneReceive) &&
+            valuePhoneReceive !== '' &&
+            regexEmail.test(valueEmail) &&
+            valueEmail !== '' &&
+            valueProvince !== '--Chọn tỉnh thành--' &&
+            valueDistrict !== '--Chọn quận/huyện--' &&
+            valueWard !== '--Chọn phường/xã--' &&
+            toggleTransport === false
+        ) {
+            const resultPay = await pay.postPay(
+                valueNameBuy,
+                valueEmail,
+                valuePhoneBuy,
+                valueNameReceive,
+                valuePhoneReceive,
+                valueProvince,
+                valueDistrict,
+                valueWard,
+                productDataCart,
+                formatted,
+                payIn,
+                deliveryMethod,
+            );
+            if (resultPay) {
+                navigate('/');
+            }
+        } else {
+            console.log('error1');
+        }
 
+        if (
+            regexName.test(valueNameBuy) &&
+            valueNameBuy !== '' &&
+            regexName.test(valueNameReceive) &&
+            valueNameReceive !== '' &&
+            regexPhone.test(valuePhoneBuy) &&
+            valuePhoneBuy !== '' &&
+            regexPhoneE.test(valuePhoneReceive) &&
+            valuePhoneReceive !== '' &&
+            regexEmail.test(valueEmail) &&
+            valueEmail !== '' &&
+            toggleTransport
+        ) {
+            const rusult2 = pay.postPay2(
+                valueNameBuy,
+                valueEmail,
+                valuePhoneBuy,
+                valueNameReceive,
+                valuePhoneReceive,
+                productDataCart,
+                formatted,
+                payIn,
+                deliveryMethod,
+            );
+            if (rusult2) {
+                navigate('/');
+            }
+        } else {
+            console.log('error2');
+        }
+        if (paymentOnDelivery !== '') {
+            setPayIn(paymentOnDelivery);
+        }
+        if (paymentAtTheCompany !== '') {
+            setPayIn(paymentAtTheCompany);
+        }
+        if (transferPayments !== '') {
+            setPayIn(transferPayments);
+        }
+        if (cashPayment !== '') {
+            setPayIn(cashPayment);
+        }
+        if (payPayPal !== '') {
+            setPayIn(payPayPal);
+        }
+        if (vnpay !== '') {
+            setPayIn(vnpay);
+        }
+        if (payNaPas !== '') {
+            setPayIn(payNaPas);
+        }
+        if (payZaloPay !== '') {
+            setPayIn(payZaloPay);
+        }
+        if (payMoMo !== '') {
+            setPayIn(payMoMo);
+        }
+    };
+    {
+        console.log(toggleTransport);
+    }
+    {
+        console.log(!toggleTransport);
+    }
+    {
+        console.log(deliveryMethod);
+    }
     const formattedTotalNotShip = formatCurrencyVND(totalNotShip);
     const formattedShip = formatCurrencyVND(currentShip);
     const formattedTotal = formatCurrencyVND(totalNotShip + currentShip);
+    const formatted = totalNotShip + currentShip;
     // 4.Render
     // list Provinces
     const renderListProvinces = addressData?.map((address) => {
@@ -171,7 +387,7 @@ function PayMent() {
                     <div className={cx('payment')}>
                         <h3 className={cx('payment-title')}>Thanh Toán</h3>
                         <div className={cx('content')}>
-                            <form action="">
+                            <form action="" onSubmit={onSubmitPayMent}>
                                 <div className={cx('content-left')}>
                                     <h3 className={cx('payment-title-left', 'customer')}> Thông tin khách hàng</h3>
                                     <div className={cx('customer-info')}>
@@ -181,6 +397,7 @@ function PayMent() {
                                                 <div className={cx('row')}>
                                                     <div className={cx('col-12')}>
                                                         <div className={cx('form-group')}>
+                                                            <span className={cx('errorMessage')}>{valueNameBuyE}</span>
                                                             <input
                                                                 type="text"
                                                                 placeholder="Họ và tên"
@@ -191,6 +408,7 @@ function PayMent() {
                                                     </div>
                                                     <div className={cx('col-12')}>
                                                         <div className={cx('form-group')}>
+                                                            <span className={cx('errorMessage')}>{valueEmailE}</span>
                                                             <input
                                                                 type="text"
                                                                 placeholder="Email"
@@ -201,6 +419,7 @@ function PayMent() {
                                                     </div>
                                                     <div className={cx('col-12')}>
                                                         <div className={cx('form-group')}>
+                                                            <span className={cx('errorMessage')}>{valuePhoneBuyE}</span>
                                                             <input
                                                                 type="text"
                                                                 placeholder="Điện thoại"
@@ -216,6 +435,9 @@ function PayMent() {
                                                 <div className={cx('row')}>
                                                     <div className={cx('col-12')}>
                                                         <div className={cx('form-group')}>
+                                                            <span className={cx('errorMessage')}>
+                                                                {valueNameReceiveE}
+                                                            </span>
                                                             <input
                                                                 type="text"
                                                                 placeholder="Họ và tên"
@@ -226,6 +448,9 @@ function PayMent() {
                                                     </div>
                                                     <div className={cx('col-12')}>
                                                         <div className={cx('form-group')}>
+                                                            <span className={cx('errorMessage')}>
+                                                                {valuePhoneReceiveE}
+                                                            </span>
                                                             <input
                                                                 type="text"
                                                                 placeholder="Điện thoại"
@@ -273,6 +498,7 @@ function PayMent() {
                                                     </div>
                                                     <div className={cx('col-12')}>
                                                         <div className={cx('form-group')}>
+                                                            <span className={cx('errorMessage')}>{valueProvinceE}</span>
                                                             <select
                                                                 value={valueProvince}
                                                                 onChange={handleChangeProvinces}
@@ -284,6 +510,7 @@ function PayMent() {
                                                             </select>
                                                         </div>
                                                         <div className={cx('form-group')}>
+                                                            <span className={cx('errorMessage')}>{valueDistrictE}</span>
                                                             <select
                                                                 value={valueDistrict}
                                                                 onChange={handleChangeDistrict}
@@ -295,6 +522,7 @@ function PayMent() {
                                                             </select>
                                                         </div>
                                                         <div className={cx('form-group')}>
+                                                            <span className={cx('errorMessage')}>{valueWardE}</span>
                                                             <select
                                                                 value={valueWard}
                                                                 name=""
@@ -352,7 +580,13 @@ function PayMent() {
                                             <div className={cx('col')}>
                                                 <div className={cx('check-line')}>
                                                     <div className={cx('check-blue')}>
-                                                        <input type="radio" name="payment-method" id="" />
+                                                        <input
+                                                            type="radio"
+                                                            name="payment-method"
+                                                            id=""
+                                                            value={'Thanh toán khi nhận hàng'}
+                                                            onChange={(e) => hendlePaymentOnDelivery(e)}
+                                                        />
                                                         <label htmlFor="">
                                                             <h4 className={cx('payment-method', 'cod')}>
                                                                 Thanh toán khi nhận hàng{' '}
@@ -362,7 +596,13 @@ function PayMent() {
                                                 </div>
                                                 <div className={cx('check-line')}>
                                                     <div className={cx('check-blue')}>
-                                                        <input type="radio" name="payment-method" id="" />
+                                                        <input
+                                                            type="radio"
+                                                            name="payment-method"
+                                                            id=""
+                                                            value={' Thanh toán tại công ty'}
+                                                            onChange={(e) => hendlePaymentAtTheCompany(e)}
+                                                        />
                                                         <label htmlFor="">
                                                             <h4 className={cx('payment-method', 'home')}>
                                                                 Thanh toán tại công ty
@@ -383,7 +623,12 @@ function PayMent() {
                                                 <div className={cx('payment-online')}>
                                                     <div className={cx('payment-online-item')}>
                                                         <div className={cx('check-blue', 'check-radio')}>
-                                                            <input type="radio" name="pay-online" />
+                                                            <input
+                                                                type="radio"
+                                                                name="pay-online"
+                                                                value={'Thanh toán chuyển khoản'}
+                                                                onChange={(e) => hendlePaytransferPayments(e)}
+                                                            />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>
                                                                     <img
@@ -397,7 +642,12 @@ function PayMent() {
                                                     </div>
                                                     <div className={cx('payment-online-item')}>
                                                         <div className={cx('check-blue', 'check-radio')}>
-                                                            <input type="radio" name="pay-online" />
+                                                            <input
+                                                                type="radio"
+                                                                name="pay-online"
+                                                                value={'Thanh toán NganLuong.vn'}
+                                                                onChange={(e) => hendlecashPayment(e)}
+                                                            />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>
                                                                     <img
@@ -411,7 +661,12 @@ function PayMent() {
                                                     </div>
                                                     <div className={cx('payment-online-item')}>
                                                         <div className={cx('check-blue', 'check-radio')}>
-                                                            <input type="radio" name="pay-online" />
+                                                            <input
+                                                                type="radio"
+                                                                name="pay-online"
+                                                                value={'Thanh toán PayPal'}
+                                                                onChange={(e) => hendlepayPayPal(e)}
+                                                            />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>
                                                                     <img
@@ -425,7 +680,12 @@ function PayMent() {
                                                     </div>
                                                     <div className={cx('payment-online-item')}>
                                                         <div className={cx('check-blue', 'check-radio')}>
-                                                            <input type="radio" name="pay-online" />
+                                                            <input
+                                                                type="radio"
+                                                                name="pay-online"
+                                                                value={'Thanh toán VNPAY'}
+                                                                onChange={(e) => hendlepayvnpay(e)}
+                                                            />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>
                                                                     <img
@@ -439,7 +699,12 @@ function PayMent() {
                                                     </div>
                                                     <div className={cx('payment-online-item')}>
                                                         <div className={cx('check-blue', 'check-radio')}>
-                                                            <input type="radio" name="pay-online" />
+                                                            <input
+                                                                type="radio"
+                                                                name="pay-online"
+                                                                value={'Thanh toán NaPas'}
+                                                                onChange={(e) => hendlepayNaPas(e)}
+                                                            />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>
                                                                     <img
@@ -453,7 +718,12 @@ function PayMent() {
                                                     </div>
                                                     <div className={cx('payment-online-item')}>
                                                         <div className={cx('check-blue', 'check-radio')}>
-                                                            <input type="radio" name="pay-online" />
+                                                            <input
+                                                                type="radio"
+                                                                name="pay-online"
+                                                                value={'Thanh toán ZaloPay'}
+                                                                onChange={(e) => hendlepayZaloPay(e)}
+                                                            />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>
                                                                     <img
@@ -467,7 +737,12 @@ function PayMent() {
                                                     </div>
                                                     <div className={cx('payment-online-item')}>
                                                         <div className={cx('check-blue', 'check-radio')}>
-                                                            <input type="radio" name="pay-online" />
+                                                            <input
+                                                                type="radio"
+                                                                name="pay-online"
+                                                                value={'Thanh toán qua ví MoMo'}
+                                                                onChange={(e) => hendlepayMoMo(e)}
+                                                            />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>
                                                                     <img
@@ -514,9 +789,9 @@ function PayMent() {
                                                 <div className={cx('price-first', 'price-total')}>{formattedTotal}</div>
                                             </div>
                                         </div>
-                                        <form action="" className={cx('form-group')}>
+                                        <div className={cx('form-group')}>
                                             <textarea name="" id="" rows="3" placeholder="Ghi chú"></textarea>
-                                        </form>
+                                        </div>
                                         <button className={cx('btn-payment')}>Thanh Toán</button>
                                     </div>
                                 </div>
