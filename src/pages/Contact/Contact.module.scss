@@ -1,8 +1,3 @@
-.contact {
-    font-size: 14px;
-    min-height: 40px;
-    padding: 20px 20px;
-}
 .Hop {
     width: 80%;
     margin: 50px auto;
@@ -11,13 +6,13 @@
     display: flex;
 }
 .contact-left {
-    flex-basis: 60%;
+    flex: 60%;
     padding-left:60px;
     padding-right:60px;
     padding-bottom:40px;
 }
 .contact-right {
-    flex-basis: 40%;
+    flex: 40%;
 }
 .contact-right form {   
     margin: 20px 0px 20px 0px;
@@ -67,5 +62,40 @@
     padding: 20px 0px 20px 0px;
 }
 .line {
-    border-top: 3px dashed black;
+    border-top: 3px dashed black;   
+}
+@media screen and  (max-width:768px ) {
+    .Hop {
+        margin:auto;
+
+    }
+.contact-box{
+    flex-direction: column;
+}
+.contact-right{
+    flex:100%;
+}
+.contact-left{
+    flex:100%;
+    padding-left:0px;
+    padding-right:0px;
+    padding-bottom:0px;
+}
+.contact-right form {   
+    margin: auto;
+    width:100%;
+}
+.button {
+    width:100%;
+}}
+@media screen and  (max-width:1078px )and (min-width:768px ){
+    .button {
+        width:60%;
+
+}}
+
+@media screen and  (min-width:1078px){
+    .button {
+        width:70%;
+    }
 }

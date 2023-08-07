@@ -122,10 +122,10 @@
     height: auto;
     background-color: var(--c-1668480311287, #fff);
     padding: 35px 25px;
-    overflow: visible;
     display: block;
     position: relative;
-    overflow:hidden;    
+    overflow:hidden;
+    text-overflow:ellipsis;   
     font-size:20px;
     color: #007bff;
     &:hover {
@@ -227,4 +227,63 @@
     display:flex;
     max-height: 100px;
     gap:10px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.news-right-div{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+@media screen and  (max-width:768px ) {
+    .news-left {
+        flex-basis: 100%;
+    }
+    .Hop {
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .news-right {
+        flex-basis: 100%;
+        margin:0 auto;
+
+    }
+    .sidebar_img{
+        padding: 20% 0 0 0;
+        margin:0 auto;
+    }
+    .News {
+        font-size: 14px;
+        padding: 0px;
+    }
+    .news-right-div{
+        max-height:500px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+    }
+}
+@media screen and  (max-width:1078px )and (min-width:768px ){
+    .search{
+        width: 30%;
+    }
+    .box_search{
+        width:70%;
+    }
+    .news-right-div{
+        max-height:200px;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+    }
+}
+
+@media screen and  (min-width:1078px){
+
 }
