@@ -1,16 +1,16 @@
 import React, { useContext, useEffect } from 'react';
-import styles from './ItemCart.module.scss';
+import styles from './cart.module.scss';
 import classnames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBagShopping, faEye, faHeart, faRotate } from '@fortawesome/free-solid-svg-icons';
-import { formatCurrencyVND } from '../NumberToPrice/currency';
+import { faBagShopping, faEye, faHeart, faRotate, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { formatCurrencyVND } from '~/component/NumberToPrice/currency';
 import { NavLink } from 'react-router-dom';
 import { AppContext } from '~/hook/context';
 import * as favour from '~/services/registerService';
 import * as seList from '~/services/loginService';
 import { useNavigate } from 'react-router-dom';
 const cx = classnames.bind(styles);
-function ItemCart({ data, toggle }) {
+function Cart({ data, toggle, hendleDeleteLook }) {
     const navigate = useNavigate();
     // 1. State
     const { productDataCart, setProductDataCart, arrayCompare, setArrayCompare, handleIsLoading, userName } =
@@ -105,6 +105,11 @@ function ItemCart({ data, toggle }) {
                             </div>
                         </div>
                     </div>
+                    <FontAwesomeIcon
+                        icon={faTrash}
+                        className={cx('iconss')}
+                        onClick={() => hendleDeleteLook(data.id)}
+                    />
                     <div className={cx('infor')}>
                         <div className="childrens">
                             <h3>{data.name}</h3>
@@ -122,4 +127,4 @@ function ItemCart({ data, toggle }) {
     );
 }
 
-export default ItemCart;
+export default Cart;

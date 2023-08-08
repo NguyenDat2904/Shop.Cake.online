@@ -17,7 +17,7 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
 
     const [password, setPassword] = useState('');
     const [passwordE, setPasswordE] = useState('');
-    const { handleIsLoading } = useContext(AppContext);
+    const { handleIsLoading, setUserData, setUserName, setUserOder, setGetLook, setGetLikes } = useContext(AppContext);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -46,6 +46,20 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
                 setIsAdmin(false);
             }
         }
+        const tomasterList = result.data.filter((item) => item.user === user);
+        setUserData([...tomasterList]);
+        const tomasterProduct = result.data.map((product) => product.user);
+        const usermalist = tomasterProduct.toString();
+        setUserName(tomasterProduct.toString());
+        const order = await login.getOrder();
+        const OrderUse = order.data.filter((item) => item.userName == usermalist);
+        setUserOder([...OrderUse]);
+        const getLook = await login.getSee();
+        const OrderUseSee = getLook.filter((item) => item.userName == usermalist);
+        setGetLook([...OrderUseSee]);
+        const getLikes = await login.getFavourite();
+        const OrderUseFavourite = getLikes.filter((item) => item.userName == usermalist);
+        setGetLikes([...OrderUseFavourite]);
     };
 
     const handleUser = (e) => {

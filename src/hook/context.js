@@ -2,7 +2,6 @@ import React, { createContext, useState } from 'react';
 import { generateRandomCode } from '~/pages/Register/CapCha/CapCha';
 import * as getUser from '~/services/userService';
 import * as getProduct from '~/services/productService';
-
 const AppContext = createContext();
 const AppProvider = (props) => {
     const [selectIcon, setSelectIcon] = useState(true);
@@ -25,6 +24,13 @@ const AppProvider = (props) => {
     const [dataUser, setDataUser] = useState([]);
     const [dataProduct, setDataProduct] = useState([]);
 
+    const [filterData, setUserData] = useState([]);
+    const [userName, setUserName] = useState('');
+    const [userOrder, setUserOder] = useState([]);
+    const [getLook, setGetLook] = useState([]);
+    const [getLikes, setGetLikes] = useState([]);
+    const [getlookAcc, setGetlookAcc] = useState(null);
+    const [getLikesAcc, setGetLinksAcc] = useState(null);
     const [acceptUser, setAcceptUser] = useState(null);
     const [acceptProductAdmin, setAcceptProductAdmin] = useState(null);
 
@@ -36,6 +42,14 @@ const AppProvider = (props) => {
     const handleAcptRemoveUser = async () => {
         await getUser.deleteUser(acceptUser);
         setDataUser((prevData) => prevData.filter((user) => user.id !== acceptUser));
+    };
+    const handleAcptRemoveUserSee = async () => {
+        await getProduct.deleteSee(getlookAcc);
+        setGetLook((prevData) => prevData.filter((user) => user.id !== getlookAcc));
+    };
+    const handleAcptRemoveUserFavourite = async () => {
+        await getProduct.deleteSee(getLikesAcc);
+        setGetLikes((prevData) => prevData.filter((user) => user.id !== getLikesAcc));
     };
 
     const handleAcptRemoveProduct = async () => {
@@ -50,6 +64,12 @@ const AppProvider = (props) => {
         e.preventDefault();
         setCapCha(generateRandomCode(5));
     };
+    {
+        console.log(getLikes);
+    }
+    {
+        console.log(getLook);
+    }
     const value = {
         selectIcon,
         setSelectIcon,
@@ -96,6 +116,18 @@ const AppProvider = (props) => {
         dataProduct,
         setDataProduct,
         setAcceptProductAdmin,
+        setUserData,
+        filterData,
+        setUserName,
+        userName,
+        setUserOder,
+        userOrder,
+        setGetLook,
+        setGetLikes,
+        getLook,
+        getLikes,
+        setGetlookAcc,
+        setGetLinksAcc,
     };
 
     return (

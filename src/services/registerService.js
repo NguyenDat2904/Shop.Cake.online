@@ -39,6 +39,8 @@ export const postPay = async (
     formatted,
     payIn,
     deliveryMethod,
+    userName,
+    payMiss,
 ) => {
     try {
         const results = await httpRequest.post(`orders`, {
@@ -54,6 +56,8 @@ export const postPay = async (
             formattedTotal: formatted,
             payIn: payIn,
             deliveryMethod: deliveryMethod,
+            userName: userName,
+            payMiss: payMiss,
         });
         return results;
     } catch (error) {
@@ -70,6 +74,8 @@ export const postPay2 = async (
     formattedTotal,
     payIn,
     deliveryMethod,
+    userName,
+    payMiss,
 ) => {
     try {
         const results = await httpRequest.post(`orders`, {
@@ -82,7 +88,25 @@ export const postPay2 = async (
             formattedTotal: formattedTotal,
             payIn: payIn,
             deliveryMethod: deliveryMethod,
+            userName: userName,
+            payMiss: payMiss,
         });
+        return results;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const postSee = async (data, userName) => {
+    try {
+        const results = await httpRequest.post(`sees`, { dataSee: data, userName: userName });
+        return results;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const postFavourite = async (data, userName) => {
+    try {
+        const results = await httpRequest.post(`favourite`, { favouriteData: data, userName: userName });
         return results;
     } catch (error) {
         console.log(error);
