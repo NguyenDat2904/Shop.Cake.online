@@ -16,7 +16,7 @@ function PayMent() {
     // 1. useState
     const [toggleTransport, setToggleTransport] = useState(false);
     const [toggleShip, setToggleShip] = useState(true);
-    const { productDataCart, addressData, setAddressData, handleIsLoading } = useContext(AppContext);
+    const { productDataCart, addressData, setAddressData, handleIsLoading, userName } = useContext(AppContext);
     const [priceShip, setPriceShip] = useState(false);
     const [currentShip, setCurrentShip] = useState(50000);
     // Value Input
@@ -46,6 +46,7 @@ function PayMent() {
     const [payMoMo, setPayMoMo] = useState('');
 
     const [payIn, setPayIn] = useState('');
+    const [payMiss, setPayMiss] = useState('');
 
     const hendlePaymentOnDelivery = (e) => {
         setPaymentOnDelivery(e.target.value);
@@ -74,6 +75,7 @@ function PayMent() {
     const hendlepayMoMo = (e) => {
         setPayMoMo(e.target.value);
     };
+
     // Value Select
     const [valueProvince, setValueProvince] = useState('--Chọn tỉnh thành--');
     const [valueProvinceE, setValueProvinceE] = useState('');
@@ -89,6 +91,9 @@ function PayMent() {
     const [dataWard, setDataWard] = useState([]);
     //delivery method
     const [deliveryMethod, setDeliveryMethod] = useState('');
+    {
+        console.log(deliveryMethod);
+    }
     // 2. useEffects
     const totalNotShip = productDataCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
@@ -218,7 +223,12 @@ function PayMent() {
             setDeliveryMethod('Nhận hàng trực tiếp tại công ty');
         }
         if (!toggleTransport) {
-            setDeliveryMethod(`Ship tại ${valueProvince}-${valueDistrict}-${valueWard}`);
+            setDeliveryMethod(` ${valueProvince}-${valueDistrict}-${valueWard}`);
+        }
+        if (payIn !== '') {
+            setPayMiss('Đã thanh toán');
+        } else {
+            setPayMiss('Chưa thanh toán');
         }
         if (
             regexName.test(valueNameBuy) &&
@@ -249,6 +259,8 @@ function PayMent() {
                 formatted,
                 payIn,
                 deliveryMethod,
+                userName,
+                payMiss,
             );
             if (resultPay) {
                 navigate('/');
@@ -280,6 +292,8 @@ function PayMent() {
                 formatted,
                 payIn,
                 deliveryMethod,
+                userName,
+                payMiss,
             );
             if (rusult2) {
                 navigate('/');
@@ -316,18 +330,15 @@ function PayMent() {
         }
     };
     {
-        console.log(toggleTransport);
-    }
-    {
-        console.log(!toggleTransport);
-    }
-    {
-        console.log(deliveryMethod);
+        console.log(payIn);
     }
     const formattedTotalNotShip = formatCurrencyVND(totalNotShip);
     const formattedShip = formatCurrencyVND(currentShip);
     const formattedTotal = formatCurrencyVND(totalNotShip + currentShip);
     const formatted = totalNotShip + currentShip;
+    {
+        console.log(formatted);
+    }
     // 4.Render
     // list Provinces
     const renderListProvinces = addressData?.map((address) => {
@@ -585,7 +596,7 @@ function PayMent() {
                                                             name="payment-method"
                                                             id=""
                                                             value={'Thanh toán khi nhận hàng'}
-                                                            onChange={(e) => hendlePaymentOnDelivery(e)}
+                                                            onChange={hendlePaymentOnDelivery}
                                                         />
                                                         <label htmlFor="">
                                                             <h4 className={cx('payment-method', 'cod')}>
@@ -601,7 +612,7 @@ function PayMent() {
                                                             name="payment-method"
                                                             id=""
                                                             value={' Thanh toán tại công ty'}
-                                                            onChange={(e) => hendlePaymentAtTheCompany(e)}
+                                                            onChange={hendlePaymentAtTheCompany}
                                                         />
                                                         <label htmlFor="">
                                                             <h4 className={cx('payment-method', 'home')}>
@@ -627,7 +638,7 @@ function PayMent() {
                                                                 type="radio"
                                                                 name="pay-online"
                                                                 value={'Thanh toán chuyển khoản'}
-                                                                onChange={(e) => hendlePaytransferPayments(e)}
+                                                                onChange={hendlePaytransferPayments}
                                                             />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>
@@ -646,7 +657,7 @@ function PayMent() {
                                                                 type="radio"
                                                                 name="pay-online"
                                                                 value={'Thanh toán NganLuong.vn'}
-                                                                onChange={(e) => hendlecashPayment(e)}
+                                                                onChange={hendlecashPayment}
                                                             />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>
@@ -665,7 +676,7 @@ function PayMent() {
                                                                 type="radio"
                                                                 name="pay-online"
                                                                 value={'Thanh toán PayPal'}
-                                                                onChange={(e) => hendlepayPayPal(e)}
+                                                                onChange={hendlepayPayPal}
                                                             />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>
@@ -684,7 +695,7 @@ function PayMent() {
                                                                 type="radio"
                                                                 name="pay-online"
                                                                 value={'Thanh toán VNPAY'}
-                                                                onChange={(e) => hendlepayvnpay(e)}
+                                                                onChange={hendlepayvnpay}
                                                             />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>
@@ -703,7 +714,7 @@ function PayMent() {
                                                                 type="radio"
                                                                 name="pay-online"
                                                                 value={'Thanh toán NaPas'}
-                                                                onChange={(e) => hendlepayNaPas(e)}
+                                                                onChange={hendlepayNaPas}
                                                             />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>
@@ -722,7 +733,7 @@ function PayMent() {
                                                                 type="radio"
                                                                 name="pay-online"
                                                                 value={'Thanh toán ZaloPay'}
-                                                                onChange={(e) => hendlepayZaloPay(e)}
+                                                                onChange={hendlepayZaloPay}
                                                             />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>
@@ -741,7 +752,7 @@ function PayMent() {
                                                                 type="radio"
                                                                 name="pay-online"
                                                                 value={'Thanh toán qua ví MoMo'}
-                                                                onChange={(e) => hendlepayMoMo(e)}
+                                                                onChange={hendlepayMoMo}
                                                             />
                                                             <label htmlFor="">
                                                                 <div className={cx('img-paayment')}>

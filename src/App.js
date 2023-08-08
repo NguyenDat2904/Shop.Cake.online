@@ -22,7 +22,7 @@ import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import { useEffect, useState } from 'react';
 import Admin from './pages/Admin/Admin';
-
+import AccountManagement from './pages/accountManagement/accountManagement';
 function App() {
     const { isShowing, isShowingNotion, toggle } = useModal();
     const [isAdmin, setIsAdmin] = useState(null);
@@ -75,6 +75,7 @@ function App() {
                                 element={<Admin setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />}
                             ></Route>
                         )}
+                        <Route path="/profile/*" element={<AccountManagement />} />
                         <Route path="/*" element={<h2>404</h2>} />
                     </Routes>
                 </div>

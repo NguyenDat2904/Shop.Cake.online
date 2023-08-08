@@ -1,0 +1,30 @@
+.accountManagement {
+    background-image: url('https://demo037126.web30s.vn/datafiles/web30s/upload/images/7101-7200/30S-03-7126/breadcrumbs-bg.png');
+    background-size: cover;
+    background-position: 50% 50%;
+    padding: 180px 10px;
+    z-index: 7;
+    height: auto;
+    display: block;
+    .textAccountManagement {
+        margin: 0 auto;
+        --widthcontainer: 1200px;
+        width: var(--widthcontainer);
+        max-width: 100%;
+    }
+    .linkAccountManagement {
+        margin-top: 15px;
+        display: flex;
+        h4 {
+            color: var(--c-1668480455247, #282828);
+            margin: auto 5px;
+            font-weight: 500;
+            font-size: 18px;
+        }
+        h5 {
+            color: #fc7c7c;
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}
