@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
-import styles from './ProductManager.module.scss';
+import React, { useContext, useState } from 'react';
+import styles from './OrderManager.module.scss';
 import classnames from 'classnames/bind';
-import TableCustomer from '../Component/TableCustomer/TableCustomer';
 import { AppContext } from '~/hook/context';
-import * as getProduct from '~/services/productService';
+import Table from '../Component/Table/Table';
 const cx = classnames.bind(styles);
-function ProductManager({ toggle }) {
-    const { toggleNavigation, dataProduct, setDataProduct, originalDataUser, setAcceptProductAdmin } =
-        useContext(AppContext);
+function OrderManager({ toggle }) {
+    const { toggleNavigation, dataOrders, setAcceptProductAdmin } = useContext(AppContext);
     const [isSorted, setIsSorted] = useState(false);
+    const [originalDataUser, setOriginalDataUser] = useState([]);
     const [toggleForm, setToggleForm] = useState(false);
     const [name, setName] = useState('');
     const [nameE, setNameE] = useState('');
@@ -79,7 +78,6 @@ function ProductManager({ toggle }) {
         setAcceptProductAdmin(id);
         toggle(4);
     };
-
     // AddData
     const handleAddProduct = (e) => {
         e.preventDefault();
@@ -135,7 +133,6 @@ function ProductManager({ toggle }) {
                 const reader = new FileReader();
                 reader.onload = async () => {
                     const base64Data = reader.result;
-                    await getProduct.postProduct(name, size, type, color, discount, price, topic, base64Data);
                 };
                 reader.readAsDataURL(code);
                 handleResetValue(e);
@@ -147,54 +144,54 @@ function ProductManager({ toggle }) {
     };
 
     const handleSortName = (e) => {
-        if (isSorted) {
-            setDataProduct(originalDataUser);
-            setIsSorted(false);
-        } else {
-            const sortedData = [...dataProduct].sort((a, b) => a.name.localeCompare(b.name));
-            setDataProduct(sortedData);
-            setIsSorted(true);
-        }
+        // if (isSorted) {
+        //     setDataProduct(originalDataUser);
+        //     setIsSorted(false);
+        // } else {
+        //     const sortedData = [...dataProduct].sort((a, b) => a.name.localeCompare(b.name));
+        //     setDataProduct(sortedData);
+        //     setIsSorted(true);
+        // }
     };
     const handleSortSize = () => {
-        if (isSorted) {
-            const sortedData = [...dataProduct].sort((a, b) => b.size - a.size);
-            setDataProduct(sortedData);
-            setIsSorted(false);
-        } else {
-            const sortedData = [...dataProduct].sort((a, b) => a.size - b.size);
-            setDataProduct(sortedData);
-            setIsSorted(true);
-        }
+        // if (isSorted) {
+        //     const sortedData = [...dataProduct].sort((a, b) => b.size - a.size);
+        //     setDataProduct(sortedData);
+        //     setIsSorted(false);
+        // } else {
+        //     const sortedData = [...dataProduct].sort((a, b) => a.size - b.size);
+        //     setDataProduct(sortedData);
+        //     setIsSorted(true);
+        // }
     };
     const handleSortDiscount = () => {
-        if (isSorted) {
-            const sortedData = [...dataProduct].sort((a, b) => a.cost - b.cost);
-            setDataProduct(sortedData);
-            setIsSorted(false);
-        } else {
-            const sortedData = [...dataProduct].sort((a, b) => b.cost - a.cost);
-            setDataProduct(sortedData);
-            setIsSorted(true);
-        }
+        // if (isSorted) {
+        //     const sortedData = [...dataProduct].sort((a, b) => a.cost - b.cost);
+        //     setDataProduct(sortedData);
+        //     setIsSorted(false);
+        // } else {
+        //     const sortedData = [...dataProduct].sort((a, b) => b.cost - a.cost);
+        //     setDataProduct(sortedData);
+        //     setIsSorted(true);
+        // }
     };
     const handleSortPrice = () => {
-        if (isSorted) {
-            const sortedData = [...dataProduct].sort((a, b) => a.price - b.price);
-            setDataProduct(sortedData);
-            setIsSorted(false);
-        } else {
-            const sortedData = [...dataProduct].sort((a, b) => b.price - a.price);
-            setDataProduct(sortedData);
-            setIsSorted(true);
-        }
+        // if (isSorted) {
+        //     const sortedData = [...dataProduct].sort((a, b) => a.price - b.price);
+        //     setDataProduct(sortedData);
+        //     setIsSorted(false);
+        // } else {
+        //     const sortedData = [...dataProduct].sort((a, b) => b.price - a.price);
+        //     setDataProduct(sortedData);
+        //     setIsSorted(true);
+        // }
     };
 
     return (
         <div className={cx('main', toggleNavigation ? 'active' : '')}>
             <div className={cx('wrapper-form')}>
                 <button className={cx('icon-add')} onClick={() => setToggleForm(!toggleForm)}>
-                    Thêm người dùng mới
+                    Thêm đơn hàng mới
                 </button>
                 <form action="" className={cx('form-customer', toggleForm ? 'active' : '')} onSubmit={handleAddProduct}>
                     <div className={cx('block')}>
@@ -297,19 +294,21 @@ function ProductManager({ toggle }) {
                 </form>
             </div>
             <div className={cx('wrapper')}>
-                <TableCustomer
+                <Table
                     header={[
                         { title: 'STT' },
+                        { title: 'Người nhận', sort: true, handleSort: handleSortName },
                         { title: 'Ảnh' },
-                        { title: 'Tên', sort: true, handleSort: handleSortName },
-                        { title: 'Kích thước', sort: true, handleSort: handleSortSize },
-                        { title: 'Loại' },
-                        { title: 'Màu' },
-                        { title: 'Giảm giá', sort: true, handleSort: handleSortDiscount },
-                        { title: 'Giá bán', sort: true, handleSort: handleSortPrice },
+                        { title: 'Sản phẩm' },
+                        { title: 'Số lượng' },
+                        { title: 'Phương thức' },
+                        { title: 'Trạng thái' },
+                        { title: 'Số điện thoại' },
+                        { title: 'Địa chỉ' },
+                        { title: 'Thanh toán' },
                     ]}
-                    product
-                    dataUser={dataProduct}
+                    orders
+                    dataOrders={dataOrders}
                     handleRemoveProduct={handleRemoveProduct}
                 />
             </div>
@@ -317,4 +316,4 @@ function ProductManager({ toggle }) {
     );
 }
 
-export default ProductManager;
+export default OrderManager;

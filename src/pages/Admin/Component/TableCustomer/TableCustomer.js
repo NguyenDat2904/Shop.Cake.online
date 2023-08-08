@@ -58,12 +58,12 @@ function TableCustomer({ header, customer, product, dashboard, dataUser, handleR
                         <h4 className={cx('address', 'price')}>{totalPrice}</h4>
                     </td>
                 )}
-                {customer && (
-                    <td>
-                        <h4 className={cx('email')}>{user.email}</h4>
-                    </td>
-                )}
                 {(customer || dashboard) && (
+                        <td className={cx('email-customer')}>
+                            <h4 className={cx('email')}>{user.email}</h4>
+                        </td>
+                    )}
+                {customer && (
                     <td className={cx('address-text')}>
                         <h4 className={cx('address')}>{user.address}</h4>
                     </td>
@@ -96,7 +96,7 @@ function TableCustomer({ header, customer, product, dashboard, dataUser, handleR
         );
     });
     return (
-        <table>
+        <table className={cx('wrapper')}>
             <thead>
                 <tr>{renderHeader}</tr>
             </thead>

@@ -29,6 +29,7 @@
     justify-content: space-between;
     cursor: pointer;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.5s ease;
 }
 
 .cardBox .card .numbers {
@@ -36,28 +37,45 @@
     font-weight: 500;
     font-size: 2.5rem;
     color: var(--blue);
+    transition: all 0.5s ease;
 }
 
 .cardBox .card .cardName {
     color: var(--black2);
     font-size: 1.1rem;
     margin-top: 5px;
+    transition: all 0.5s ease;
 }
 
 .cardBox .card .iconBx {
-    font-size: 3.5rem;
+    font-size: 40px;
     color: var(--black2);
+    transition: all 0.5s ease;
 }
 
 .cardBox .card:hover {
     background: var(--blue);
+}
+.cardBox .cart-total:hover {
+    background: var(--white);
 }
 .cardBox .card:hover .numbers,
 .cardBox .card:hover .cardName,
 .cardBox .card:hover .iconBx {
     color: var(--white);
 }
-
+.cardBox .cart-total {
+    cursor: default;
+}
+.cardBox .cart-total:hover .iconBx {
+    color: var(--black2);
+}
+.cardBox .cart-total:hover .numbers {
+    color: var(--blue);
+}
+.cardBox .cart-total:hover .cardName {
+    color: var(--black2);
+}
 /* ================== Order Details List ============== */
 .details {
     position: relative;
@@ -71,7 +89,6 @@
 
 .details .recentOrders {
     position: relative;
-    display: grid;
     min-height: 500px;
     background: var(--white);
     padding: 20px;
@@ -97,7 +114,7 @@
     border-radius: 6px;
 }
 
-.status.delivered {
+.delivered {
     padding: 2px 4px;
     background: #8de02c;
     color: var(--white);
@@ -105,7 +122,7 @@
     font-size: 14px;
     font-weight: 500;
 }
-.status.pending {
+.pending {
     padding: 2px 4px;
     background: #e9b10a;
     color: var(--white);
@@ -113,7 +130,7 @@
     font-size: 14px;
     font-weight: 500;
 }
-.status.return {
+.return {
     padding: 2px 4px;
     background: #f00;
     color: var(--white);
@@ -121,7 +138,7 @@
     font-size: 14px;
     font-weight: 500;
 }
-.status.inProgress {
+.inProgress {
     padding: 2px 4px;
     background: #1795ce;
     color: var(--white);
@@ -132,7 +149,6 @@
 
 .recentCustomers {
     position: relative;
-    display: grid;
     min-height: 500px;
     padding: 20px;
     background: var(--white);

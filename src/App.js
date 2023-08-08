@@ -25,7 +25,7 @@ import Admin from './pages/Admin/Admin';
 
 function App() {
     const { isShowing, isShowingNotion, toggle } = useModal();
-    const [isAdmin, setIsAdmin] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(true);
     const [isLogin, setIsLoggedIn] = useState(false);
 
     const checkAdmin = () => {
@@ -38,6 +38,7 @@ function App() {
     useEffect(() => {
         checkAdmin();
     }, []);
+    console.log(isLogin);
     return (
         <Router>
             <AppProvider>
@@ -47,7 +48,10 @@ function App() {
                 <ModalNotion isShowing={isShowingNotion} hide={toggle} />
                 <div className="App">
                     <Routes>
-                        <Route path="/" element={<Home toggle={toggle} />} />
+                        <Route
+                            path="/"
+                            element={!isAdmin ? <Navigate to={'/admin/dashboard'} /> : <Home toggle={toggle} />}
+                        />
                         <Route path="/introduce" element={<Introduce />} />
                         <Route path="/library" element={<Library />} />
                         <Route path="/news" element={<News />} />
@@ -67,14 +71,20 @@ function App() {
                         />
                         <Route path="/product/:id" element={<ProductDetail toggle={toggle} />} />
                         <Route path="/cart" element={<Cart toggle={toggle} />} />
-                        <Route path="/pay" element={<PayMent />} />
+                        <Route path="/pay" element={isLogin ? <PayMent /> : <Navigate to="/login" />} />
                         <Route path="/compare" element={<Compare toggle={toggle} />} />
-                        {!isAdmin && (
+                        {
                             <Route
                                 path="/admin/*"
-                                element={<Admin setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />}
+                                element={
+                                    isLogin ? (
+                                        <Admin setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
+                                    ) : (
+                                        <Navigate to={'/login'} />
+                                    )
+                                }
                             ></Route>
-                        )}
+                        }
                         <Route path="/*" element={<h2>404</h2>} />
                     </Routes>
                 </div>

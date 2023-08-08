@@ -175,12 +175,12 @@ function PayMent() {
         const regexPhoneE = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
         const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!regexName.test(valueNameBuy) || valueNameBuy === '') {
-            setValueNamBuyE('Bạn vui lòng nhập đúng họ và tên không dấu');
+            setValueNamBuyE('Bạn vui lòng nhập đúng họ và tên');
         } else {
             setValueNamBuyE('');
         }
         if (!regexName.test(valueNameReceive) || valueNameReceive === '') {
-            setValueNamReceiveE('Bạn vui lòng nhập đúng họ và tên không dấu');
+            setValueNamReceiveE('Bạn vui lòng nhập đúng họ và tên');
         } else {
             setValueNamReceiveE('');
         }
@@ -218,7 +218,7 @@ function PayMent() {
             setDeliveryMethod('Nhận hàng trực tiếp tại công ty');
         }
         if (!toggleTransport) {
-            setDeliveryMethod(`Ship tại ${valueProvince}-${valueDistrict}-${valueWard}`);
+            setDeliveryMethod(`Địa chỉ ${valueProvince}-${valueDistrict}-${valueWard}`);
         }
         if (
             regexName.test(valueNameBuy) &&
@@ -315,15 +315,7 @@ function PayMent() {
             setPayIn(payMoMo);
         }
     };
-    {
-        console.log(toggleTransport);
-    }
-    {
-        console.log(!toggleTransport);
-    }
-    {
-        console.log(deliveryMethod);
-    }
+
     const formattedTotalNotShip = formatCurrencyVND(totalNotShip);
     const formattedShip = formatCurrencyVND(currentShip);
     const formattedTotal = formatCurrencyVND(totalNotShip + currentShip);

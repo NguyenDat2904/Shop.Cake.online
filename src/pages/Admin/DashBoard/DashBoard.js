@@ -6,11 +6,15 @@ import TableCustomer from '../Component/TableCustomer/TableCustomer';
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '~/hook/context';
 import * as getUser from '~/services/userService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBoxOpen, faCartShopping, faMoneyBills, faUserGroup } from '@fortawesome/free-solid-svg-icons';
+import { formatCurrencyVND } from '~/component/NumberToPrice/currency';
+import { convertNumberToShortText } from '~/component/NumberToText/NumberToText';
 
 const cx = classnames.bind(styles);
 
 function DashBoard() {
-    const { toggleNavigation } = useContext(AppContext);
+    const { toggleNavigation, dataOrders, dataProduct } = useContext(AppContext);
     const [dataUser, setDataUser] = useState([]);
     const [isSorted, setIsSorted] = useState(false);
     const [originalDataUser, setOriginalDataUser] = useState([]);
@@ -33,44 +37,56 @@ function DashBoard() {
             setIsSorted(true);
         }
     };
+    var totalAmount = dataOrders.reduce(function (total, order) {
+        if (order.payment === 'Đã thanh toán') {
+            return +total + +order.formattedTotal;
+        }
+        return total;
+    }, 0);
     return (
         <div className={cx('main', toggleNavigation ? 'active' : '')}>
             {/* {/* ======================= Cards ================== */}
             <div className={cx('cardBox')}>
-                <div className={cx('card')}>
+                <NavLink to={'/admin/customer'}>
+                    <div className={cx('card')}>
+                        <div>
+                            <div className={cx('numbers')}>{dataUser.length}</div>
+                            <div className={cx('cardName')}>Khách hàng</div>
+                        </div>
+                        <div className={cx('iconBx')}>
+                            <FontAwesomeIcon icon={faUserGroup} />
+                        </div>
+                    </div>
+                </NavLink>
+                <NavLink to={'/admin/product'}>
+                    <div className={cx('card')}>
+                        <div>
+                            <div className={cx('numbers')}>{dataProduct.length}</div>
+                            <div className={cx('cardName')}>Đơn hàng</div>
+                        </div>
+                        <div className={cx('iconBx')}>
+                            <FontAwesomeIcon icon={faBoxOpen} />
+                        </div>
+                    </div>
+                </NavLink>
+                <NavLink to={'/admin/order'}>
+                    <div className={cx('card')}>
+                        <div>
+                            <div className={cx('numbers')}>{dataOrders.length}</div>
+                            <div className={cx('cardName')}>Đơn hàng</div>
+                        </div>
+                        <div className={cx('iconBx')}>
+                            <FontAwesomeIcon icon={faCartShopping} />
+                        </div>
+                    </div>
+                </NavLink>
+                <div className={cx('card', 'cart-total')}>
                     <div>
-                        <div className={cx('numbers')}>1,504</div>
-                        <div className={cx('cardName')}>Daily Views</div>
+                        <div className={cx('numbers')}>{convertNumberToShortText(totalAmount)}</div>
+                        <div className={cx('cardName')}>Doanh thu</div>
                     </div>
                     <div className={cx('iconBx')}>
-                        <ion-icon name="eye-outline" />
-                    </div>
-                </div>
-                <div className={cx('card')}>
-                    <div>
-                        <div className={cx('numbers')}>80</div>
-                        <div className={cx('cardName')}>Sales</div>
-                    </div>
-                    <div className={cx('iconBx')}>
-                        <ion-icon name="cart-outline" />
-                    </div>
-                </div>
-                <div className={cx('card')}>
-                    <div>
-                        <div className={cx('numbers')}>284</div>
-                        <div className={cx('cardName')}>Comments</div>
-                    </div>
-                    <div className={cx('iconBx')}>
-                        <ion-icon name="chatbubbles-outline" />
-                    </div>
-                </div>
-                <div className={cx('card')}>
-                    <div>
-                        <div className={cx('numbers')}>$7,842</div>
-                        <div className={cx('cardName')}>Earning</div>
-                    </div>
-                    <div className={cx('iconBx')}>
-                        <ion-icon name="cash-outline" />
+                        <FontAwesomeIcon icon={faMoneyBills} />
                     </div>
                 </div>
             </div>
@@ -79,16 +95,28 @@ function DashBoard() {
                 <div className={cx('recentOrders')}>
                     <div className={cx('cardHeader')}>
                         <h2>Những đơn đặt hàng</h2>
-                        <NavLink href="#" lassName={cx('btn')}>
+                        <NavLink to="/admin/order" className={cx('btn')}>
                             Xem tất cả
                         </NavLink>
                     </div>
-                    <Table />
+                    <Table
+                        header={[
+                            { title: 'Người nhận', sort: true, handleSort: handleSortName },
+                            { title: 'Ảnh' },
+                            { title: 'Sản phẩm' },
+                            { title: 'Số lượng' },
+                            { title: 'Thanh toán' },
+                        ]}
+                        dataOrders={dataOrders}
+                    />
                 </div>
                 {/* ================= New Customers ================ */}
                 <div className={cx('recentCustomers')}>
                     <div className={cx('cardHeader')}>
                         <h2>Khách hàng gần đây</h2>
+                        <NavLink to="/admin/customer" className={cx('btn')}>
+                            Xem tất cả
+                        </NavLink>
                     </div>
                     <TableCustomer
                         header={[
