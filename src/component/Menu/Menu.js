@@ -19,6 +19,8 @@ function Menu({
     link_2,
     link_3,
     link_4,
+    link_5,
+    link_6,
     handleLoading,
     setIsLoggedIn,
 }) {
@@ -83,7 +85,9 @@ function Menu({
                             ) : (
                                 ''
                             )}
-                            <span className={cx('text')}>{text_1}</span>
+                            <NavLink to={link_5}>
+                                <span className={cx('text')}>{text_1}</span>
+                            </NavLink>
                         </li>
                     </Tippy>
                 </NavLink>
@@ -123,7 +127,9 @@ function Menu({
                             ) : (
                                 ''
                             )}
-                            <span className={cx('text')}>{text_2}</span>
+                            <NavLink to={link_6}>
+                                <span className={cx('text')}>{text_2}</span>
+                            </NavLink>
                         </li>
                     </Tippy>
                 </NavLink>

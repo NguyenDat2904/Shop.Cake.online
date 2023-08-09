@@ -23,6 +23,7 @@ import Login from './pages/Login/Login';
 import { useEffect, useState } from 'react';
 import Admin from './pages/Admin/Admin';
 import AccountManagement from './pages/accountManagement/accountManagement';
+
 function App() {
     const { isShowing, isShowingNotion, toggle } = useModal();
     const [isAdmin, setIsAdmin] = useState(null);
@@ -49,10 +50,10 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home toggle={toggle} />} />
                         <Route path="/introduce" element={<Introduce />} />
-                        <Route path="/library" element={<Library />} />
+                        <Route path="/library/*" element={<Library />} />
                         <Route path="/news" element={<News />} />
                         <Route path="/product" element={<Product />} />
-                        <Route path="/support" element={<Support />} />
+                        <Route path="/support/*" element={<Support />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/register" element={isLogin ? <Navigate to="/" /> : <Register />} />
                         <Route
