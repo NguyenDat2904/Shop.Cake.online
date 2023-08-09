@@ -23,6 +23,14 @@ const AppProvider = (props) => {
     const [toggleNavigation, setToggleNavigation] = useState(false);
     const [dataUser, setDataUser] = useState([]);
     const [dataProduct, setDataProduct] = useState([]);
+    const [curLibrary, setCurLibrary] = useState(1);
+    const [perLibrary, setPerLibrary] = useState(6);
+    const [libraryProduct, setLibraryProduct] = useState([]);
+    const [libraryProductVideo, setLibraryProductvideo] = useState([]);
+    const [curLibraryVideo, setCurLibraryVideo] = useState(3);
+    const [perLibraryVideo, setPerLibraryVideo] = useState(6);
+
+    const [activeLibrary, setActiveLibrary] = useState(1);
 
     const [filterData, setUserData] = useState([]);
     const [userName, setUserName] = useState('');
@@ -70,6 +78,10 @@ const AppProvider = (props) => {
     {
         console.log(getLook);
     }
+    {
+        console.log(libraryProductVideo);
+    }
+
     const value = {
         selectIcon,
         setSelectIcon,
@@ -128,6 +140,20 @@ const AppProvider = (props) => {
         getLikes,
         setGetlookAcc,
         setGetLinksAcc,
+        curLibrary,
+        perLibrary,
+        libraryProduct,
+        setLibraryProduct,
+        setCurLibrary,
+        setPerLibrary,
+        activeLibrary,
+        setActiveLibrary,
+        libraryProductVideo,
+        curLibraryVideo,
+        setCurLibraryVideo,
+        setLibraryProductvideo,
+        perLibraryVideo,
+        setPerLibraryVideo,
     };
 
     return (

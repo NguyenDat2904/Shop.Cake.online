@@ -18,6 +18,17 @@ export const getProductPerPage = async (currentPage, perPage) => {
         console.log(error);
     }
 };
+export const getProductLibrary = async (curLibrary, perLibrary) => {
+    try {
+        const results = await httpRequest.get(`libraryData?_page=${curLibrary}&_limit=${perLibrary}`, {
+            curLibrary,
+            perLibrary,
+        });
+        return results.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
 export const getProductDetails = async (id) => {
     try {
         const results = await httpRequest.get(`products/${id}`, {

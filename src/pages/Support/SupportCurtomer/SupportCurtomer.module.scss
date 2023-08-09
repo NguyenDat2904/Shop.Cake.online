@@ -1,0 +1,177 @@
+.support {
+    .accountManagement {
+        background-image: url('https://demo037126.web30s.vn/datafiles/web30s/upload/images/7101-7200/30S-03-7126/breadcrumbs-bg.png');
+        background-size: cover;
+        background-position: 50% 50%;
+        padding: 180px 10px;
+        z-index: 7;
+        height: auto;
+        display: block;
+        .textAccountManagement {
+            margin: 0 auto;
+            --widthcontainer: 1200px;
+            width: var(--widthcontainer);
+            max-width: 100%;
+            h2 {
+                color: var(--c-1668480455247, #282828);
+                font-size: 32px;
+                padding: 0;
+
+                font-family: Playfair Display;
+                line-height: 60px;
+                font-weight: 600;
+            }
+            .linkAccountManagement {
+                margin-top: 15px;
+                display: flex;
+                h4 {
+                    color: var(--c-1668480455247, #282828);
+                    margin: auto 5px;
+                    font-weight: 500;
+                    font-size: 18px;
+                    font-family: Playfair Display;
+                    &:hover {
+                        color: #fc7c7c;
+                    }
+                }
+
+                h5 {
+                    color: #fc7c7c;
+                    font-size: 18px;
+                    font-weight: 500;
+                    font-family: Playfair Display;
+                }
+            }
+        }
+    }
+    .productSupport {
+        margin: 0 auto;
+        padding: 0 40px;
+        --widthcontainer: 1200px;
+        width: var(--widthcontainer);
+        max-width: 100%;
+        height: auto;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 30px;
+        .animation {
+            width: 100%;
+            height: 40%;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto;
+            flex-wrap: wrap;
+            gap: 20px;
+            .video {
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                border-radius: 15px;
+                .img {
+                    width: 100%;
+                    height: 70%;
+                    overflow: hidden;
+                    border-radius: 15px;
+
+                    img {
+                        border-radius: 15px;
+                        width: 100%;
+                        height: 100%;
+                        transition: 0.5s ease;
+                        cursor: pointer;
+                    }
+                }
+
+                p {
+                    margin: 50px 0 0 30px;
+                    color: var(--c-1668480487215, #2b4174);
+                    font-size: 20px;
+                    font-family: Playfair Display;
+                    font-weight: 600;
+                    line-height: 30px;
+                    transition: all 300ms ease;
+                    &:hover {
+                        color: #fc7c7c;
+                    }
+                }
+                &:hover {
+                    .img {
+                        img {
+                            transform: scale(1.2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.sidebar-wrapper {
+    padding: 30px;
+    margin: 0px 0px 30px;
+}
+.check-wrapper {
+    margin-bottom: 14px;
+}
+.oneSupport {
+    color: #282828;
+    font-size: 24px;
+    top: 0;
+    left: 0px;
+    font-family: Playfair Display;
+    font-weight: 600;
+    line-height: 40px;
+    text-transform: uppercase;
+}
+.sidebar-wrapper-one {
+    margin-bottom: 30px;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+    padding: 30px;
+    .service {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        p {
+            border: 1px solid #d9d9d9;
+            border-radius: 15px;
+
+            width: 100%;
+            padding: 10px;
+
+            font-size: 16px;
+            font-weight: 500;
+            color: #282828;
+            transition: all 300ms ease;
+            cursor: pointer;
+            &:hover {
+                background-color: #fc7c7c;
+                color: #f6f6f6;
+            }
+        }
+    }
+}
+@media (max-width: 1025px) and (min-width: 640px) {
+    .support {
+        .productSupport {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+@media (max-width: 640px) {
+    .support {
+        .productSupport {
+            display: flex;
+            flex-direction: column;
+            .animation {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+        }
+    }
+}
