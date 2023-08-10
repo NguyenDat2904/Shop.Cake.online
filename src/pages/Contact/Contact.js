@@ -5,7 +5,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 import Banner from '~/component/Banner/Banner';
 import { useState, useContext } from 'react';
-import { AppContext } from '~/hook/context';
+
 import { useNavigate } from 'react-router-dom';
 import * as cTact from '~/services/registerService';
 import styles from './Contact.module.scss';
@@ -14,12 +14,6 @@ import classnames from 'classnames/bind';
 const cx = classnames.bind(styles);
 function Contact() {
     const navigate = useNavigate();
-    const { filterData } = useContext(AppContext);
-    const ciphermap = filterData.map((product) => product.password);
-    const cipher = ciphermap.toString();
-    {
-        console.log(cipher);
-    }
     //State
     const [nameContact, SetNameContact] = useState('');
     const [nameContactE, SetNameContactE] = useState('');
