@@ -5,7 +5,7 @@ import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 import Modal from '../Header/Modal/Modal';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const cx = classnames.bind(styles);
 function Menu({
@@ -83,9 +83,7 @@ function Menu({
                             ) : (
                                 ''
                             )}
-                            <NavLink to={link_5}>
-                                <span className={cx('text')}>{text_1}</span>
-                            </NavLink>
+                            <span className={cx('text')}>{text_1}</span>
                         </li>
                     </Tippy>
                 </NavLink>
@@ -125,9 +123,8 @@ function Menu({
                             ) : (
                                 ''
                             )}
-                            <NavLink to={link_6}>
-                                <span className={cx('text')}>{text_2}</span>
-                            </NavLink>
+
+                            <span className={cx('text')}>{text_2}</span>
                         </li>
                     </Tippy>
                 </NavLink>
