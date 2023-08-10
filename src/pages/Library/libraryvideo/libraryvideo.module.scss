@@ -1,0 +1,132 @@
+.librarypicture {
+    .accountManagement {
+        background-image: url('https://demo037126.web30s.vn/datafiles/web30s/upload/images/7101-7200/30S-03-7126/breadcrumbs-bg.png');
+        background-size: cover;
+        background-position: 50% 50%;
+        padding: 180px 10px;
+        z-index: 7;
+        height: auto;
+        display: block;
+        .textAccountManagement {
+            margin: 0 auto;
+            --widthcontainer: 1200px;
+            width: var(--widthcontainer);
+            max-width: 100%;
+            h2 {
+                color: var(--c-1668480455247, #282828);
+                font-size: 32px;
+                padding: 0;
+
+                font-family: Playfair Display;
+                line-height: 60px;
+                font-weight: 600;
+            }
+            .linkAccountManagement {
+                margin-top: 15px;
+                display: flex;
+                h4 {
+                    color: var(--c-1668480455247, #282828);
+                    margin: auto 5px;
+                    font-weight: 500;
+                    font-size: 18px;
+                    font-family: Playfair Display;
+                    &:hover {
+                        color: #fc7c7c;
+                    }
+                }
+                h5 {
+                    color: #fc7c7c;
+                    font-size: 18px;
+                    font-weight: 500;
+                    font-family: Playfair Display;
+                }
+            }
+        }
+    }
+    .nextPage {
+        margin: 0 auto;
+        padding: 0 40px;
+        --widthcontainer: 1200px;
+        width: var(--widthcontainer);
+        max-width: 100%;
+        height: auto;
+        .listCartLibrary {
+            margin: 0 auto;
+            margin-top: 150px;
+            margin-bottom: 100px;
+            --widthcontainer: 1200px;
+            width: var(--widthcontainer);
+            max-width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 35px;
+        }
+        .icon {
+            margin-bottom: 150px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            .active {
+                background-color: var(--c-1668480339968, #fc7c7c);
+                color: var(--c-1668480534016, #fff);
+                border-style: solid;
+                border-color: var(--c-1668480339968, #fc7c7c);
+                border-width: 1px;
+            }
+            .p {
+                border-radius: 50%;
+                border: 1px solid rgba(43, 65, 116, 0.74);
+                width: 40px;
+                height: 40px;
+                background-color: rgb(250, 250, 250);
+                color: rgba(43, 65, 116, 0.74);
+                position: relative;
+                p {
+                    font-size: 20px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+                &:hover {
+                    background-color: #fc7c7c;
+                    color: #fff;
+                }
+            }
+            .active {
+                background-color: var(--c-1668480339968, #fc7c7c);
+                color: var(--c-1668480534016, #fff);
+                border-style: solid;
+                border-color: var(--c-1668480339968, #fc7c7c);
+                border-width: 1px;
+            }
+            .disable {
+                pointer-events: none;
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+@media (max-width: 1025px) and (min-width: 640px) {
+    .librarypicture {
+        .nextPage {
+            .listCartLibrary {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+        }
+    }
+}
+@media (max-width: 640px) {
+    .librarypicture {
+        .nextPage {
+            .listCartLibrary {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+        }
+    }
+}

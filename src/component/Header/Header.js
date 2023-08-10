@@ -155,6 +155,8 @@ function Header({ setIsLoggedIn }) {
                                                     <Menu
                                                         text_1="CHĂM SÓC KHÁCH HÀNG"
                                                         text_2="VẬN CHUYỂN HÀNG HÓA"
+                                                        link_5="support/customerCare"
+                                                        link_6="support/freight"
                                                         toggle
                                                     />
                                                 </Modal>
@@ -162,7 +164,11 @@ function Header({ setIsLoggedIn }) {
                                         )}
                                     >
                                         <div>
-                                            <NavLink to="support" className={activeClass} onClick={handleIsLoading}>
+                                            <NavLink
+                                                to="support/support-customerCare"
+                                                className={activeClass}
+                                                onClick={handleIsLoading}
+                                            >
                                                 <span>Dịch vụ</span>
                                                 {icon ? (
                                                     <FontAwesomeIcon className={cx('down-icon')} icon={faAngleDown} />
@@ -181,13 +187,23 @@ function Header({ setIsLoggedIn }) {
                                         render={(attrs) => (
                                             <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                                                 <Modal>
-                                                    <Menu text_1="HÌNH ẢNH" text_2="VIDEO" icon />
+                                                    <Menu
+                                                        link_5="library/libraryimg"
+                                                        link_6="library/libraryvideo"
+                                                        text_1="HÌNH ẢNH"
+                                                        text_2="VIDEO"
+                                                        icon
+                                                    />
                                                 </Modal>
                                             </div>
                                         )}
                                     >
                                         <div>
-                                            <NavLink to="library" className={activeClass} onClick={handleIsLoading}>
+                                            <NavLink
+                                                to="library/libraryimg"
+                                                className={activeClass}
+                                                onClick={handleIsLoading}
+                                            >
                                                 <span>Thư viện</span>
                                                 {icon ? (
                                                     <FontAwesomeIcon className={cx('down-icon')} icon={faAngleDown} />

@@ -4,6 +4,9 @@ import { faLocationDot, faRepeat } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faMobile } from '@fortawesome/free-solid-svg-icons';
 import Banner from '~/component/Banner/Banner';
+
+import { useNavigate } from 'react-router-dom';
+import * as cTact from '~/services/registerService';
 import styles from './Contact.module.scss';
 import classnames from 'classnames/bind';
 import { AppContext } from '~/hook/context';

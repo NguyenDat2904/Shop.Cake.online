@@ -69,10 +69,10 @@ function App() {
                             element={!isAdmin ? <Navigate to={'/admin/dashboard'} /> : <Home toggle={toggle} />}
                         />
                         <Route path="/introduce" element={<Introduce />} />
-                        <Route path="/library" element={<Library />} />
-                        <Route path="/news" element={<News />} />
+                        <Route path="/library/*" element={<Library />} />
+                        <Route path="/news/" element={<News />} />
                         <Route path="/product" element={<Product toggle={toggle} />} />
-                        <Route path="/support" element={<Support />} />
+                        <Route path="/support/*" element={<Support />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/register" element={isLogin ? <Navigate to="/" /> : <Register />} />
                         <Route

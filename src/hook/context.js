@@ -37,6 +37,14 @@ const AppProvider = (props) => {
     const [dataOrders, setDataOrders] = useState([]);
     const [originalDataUser, setOriginalDataUser] = useState([]);
     const [dataSortSave, setDataSortSave] = useState([]);
+    const [curLibrary, setCurLibrary] = useState(1);
+    const [perLibrary, setPerLibrary] = useState(6);
+    const [libraryProduct, setLibraryProduct] = useState([]);
+    const [libraryProductVideo, setLibraryProductvideo] = useState([]);
+    const [curLibraryVideo, setCurLibraryVideo] = useState(3);
+    const [perLibraryVideo, setPerLibraryVideo] = useState(6);
+
+    const [activeLibrary, setActiveLibrary] = useState(1);
 
     const [filterData, setUserData] = useState(() => {
         const storedData = JSON.parse(localStorage.getItem('profile'));
@@ -219,6 +227,20 @@ const AppProvider = (props) => {
         handleConfirmRemoveHeart,
         arrayHeart,
         setArrayHeart,
+        curLibrary,
+        perLibrary,
+        libraryProduct,
+        setLibraryProduct,
+        setCurLibrary,
+        setPerLibrary,
+        activeLibrary,
+        setActiveLibrary,
+        libraryProductVideo,
+        curLibraryVideo,
+        setCurLibraryVideo,
+        setLibraryProductvideo,
+        perLibraryVideo,
+        setPerLibraryVideo,
     };
 
     return (

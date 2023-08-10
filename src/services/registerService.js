@@ -83,3 +83,16 @@ export const postFavourite = async (data, userName) => {
         console.log(error);
     }
 };
+export const postContact = async (nameContact, emailContact, phoneContact, contenContact) => {
+    try {
+        const results = await httpRequest.post(`dataContact`, {
+            nameContact: nameContact,
+            emailContact: emailContact,
+            phoneContact: phoneContact,
+            contenContact: contenContact,
+        });
+        return results;
+    } catch (error) {
+        console.log(error);
+    }
+};
