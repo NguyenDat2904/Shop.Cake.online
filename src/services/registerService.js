@@ -35,10 +35,13 @@ export const postPay = async (
     valueProvince,
     valueDistrict,
     valueWard,
+    valueAddress,
     productDataCart,
     formatted,
     payIn,
     deliveryMethod,
+    status = 'Chưa nhận hàng',
+    userName,
 ) => {
     try {
         const results = await httpRequest.post(`orders`, {
@@ -50,39 +53,31 @@ export const postPay = async (
             province: valueProvince,
             district: valueDistrict,
             ward: valueWard,
+            address: valueAddress,
             product: productDataCart,
             formattedTotal: formatted,
             payIn: payIn,
-            deliveryMethod: deliveryMethod,
+            deliveryMethod: 'Đang đóng hàng',
+            status: 'Chưa nhận hàng',
+            userName: userName,
         });
         return results;
     } catch (error) {
         console.log(error);
     }
 };
-export const postPay2 = async (
-    valueNameBuy,
-    valueEmail,
-    valuePhoneBuy,
-    valueNameReceive,
-    valuePhoneReceive,
-    productDataCart,
-    formattedTotal,
-    payIn,
-    deliveryMethod,
-) => {
+
+export const postSee = async (data, userName) => {
     try {
-        const results = await httpRequest.post(`orders`, {
-            nameBuy: valueNameBuy,
-            email: valueEmail,
-            phoneBuy: valuePhoneBuy,
-            nameReceive: valueNameReceive,
-            phoneReceive: valuePhoneReceive,
-            product: productDataCart,
-            formattedTotal: formattedTotal,
-            payIn: payIn,
-            deliveryMethod: deliveryMethod,
-        });
+        const results = await httpRequest.post(`sees`, { dataSee: data, userName: userName });
+        return results;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const postFavourite = async (data, userName) => {
+    try {
+        const results = await httpRequest.post(`favourite`, { favouriteData: data, userName: userName });
         return results;
     } catch (error) {
         console.log(error);

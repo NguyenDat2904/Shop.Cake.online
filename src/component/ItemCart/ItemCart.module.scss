@@ -61,7 +61,7 @@ article {
         position: relative;
         h3 {
             height: 30px;
-            width: 200px;
+            max-width: 200px;
             color: var(--c-1668480455247, #282828);
             font-size: 16px;
             top: 0;
@@ -71,7 +71,7 @@ article {
             font-weight: 500;
             transition: all 300ms ease;
             line-height: 30px;
-            margin: 0px 0px 5px;
+            margin: 0px auto 5px;
             position: relative;
             white-space: nowrap;
             overflow: hidden;

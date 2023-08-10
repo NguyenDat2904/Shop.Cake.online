@@ -1,0 +1,108 @@
+.profile {
+    margin: 0 auto;
+    --widthcontainer: 1200px;
+    width: var(--widthcontainer);
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto;
+    gap: 10px;
+    .leftProfile {
+        border-style: solid;
+        border-color: var(--c-1663296120155, #ededed);
+        border-width: 0px 1px 0px 0px;
+        .nameProfile {
+            margin-left: 10px;
+            h4 {
+                height: auto;
+                width: 100%;
+                top: 0;
+                left: 0;
+                font-size: 16px;
+                color: var(--c-1663296496419, #4c4c4c);
+                line-height: 25px;
+                font-weight: 500;
+                text-transform: uppercase;
+            }
+            p {
+                height: auto;
+                width: 100%;
+                color: #999;
+                font-size: 15px;
+                top: 0;
+                left: 0;
+                line-height: 20px;
+                font-weight: 400;
+            }
+        }
+        h3 {
+            padding: 10px;
+            color: var(--c-1663296496419, #4c4c4c);
+            font-size: 16px;
+            font-weight: 600;
+            border-style: solid;
+            border-color: var(--c-1668480339968, #fc7c7c);
+            border-width: 0px 0px 0px 3px;
+            background-color: var(--c-1668650473184, #f6f6f6);
+            text-transform: uppercase;
+        }
+        .profileIcon {
+            padding: 11.5px;
+            display: flex;
+            gap: 10px;
+            cursor: pointer;
+            border-color: #dee2e6;
+            border-width: 0px;
+            border-style: solid;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 20px;
+            align-items: center;
+            transition: all 0.3s ease;
+            &:hover {
+                color: #fc7c7c;
+            }
+        }
+    }
+    .rightProfile {
+        width: 100%;
+        height: 100%;
+        margin-left: 10px;
+        h6 {
+            margin-top: 25px;
+            font-family: Roboto, sans-serif;
+            color: #282828;
+            font-size: 16px;
+            font-weight: 400;
+        }
+        h5 {
+            color: var(--c-1666852208660, #2f2f2f);
+            font-size: 20px;
+            font-weight: 500;
+            padding: 10px 0px 10px 0px; 
+            border-style: solid;
+            border-color: #ededed;
+            border-width: 0px 0px 1px 0px;
+            background-color: #fff;
+        }
+    }
+}
+.infor-user {
+    display: flex;
+    align-items: center;
+    padding: 10px 0px 10px 0px;
+    margin: 0px 0px 15px;
+    .img {
+        width: 80px;
+        height: 80px;
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+}
+.profile-active {
+    color: #fc7c7c;
+}

@@ -3,7 +3,7 @@ import styles from './newCake.module.scss';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 const cx = classNames.bind(styles);
 const NewCake = (prop) => {
     const { hendless, select } = prop;
@@ -11,6 +11,29 @@ const NewCake = (prop) => {
     useEffect(() => {
         AOS.init();
     }, []);
+
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    const imageUrls = [
+        'https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/hero-banner-shape.png',
+        'https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/slide-2.png?t=1677033386',
+    ];
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imageUrls.length);
+        }, 5000);
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []);
+    useEffect(() => {
+        const imgElement = document.querySelector('#banner');
+        imgElement.classList.remove(cx('show'));
+        setTimeout(() => {
+            imgElement.classList.add(cx('show'));
+        }, 100);
+    }, [currentImageIndex]);
     return (
         <div className={cx('birthdayCake')}>
             <div className="container">
@@ -26,13 +49,10 @@ const NewCake = (prop) => {
                             <Link to={'/product'}>
                                 <button>SẢN PHẨM</button>
                             </Link>
-                            <button className={cx('button')} onClick={() => hendless(!select)}>
-                                Bánh sinh nhật
-                            </button>
                         </div>
                     </div>
                     <div className={cx('img')}>
-                        <div className={cx('brithdayCakeImg')}></div>
+                        <img id="banner" src={imageUrls[currentImageIndex]} alt="" className={cx('brithdayCakeImg')} />
                     </div>
                 </div>
             </div>

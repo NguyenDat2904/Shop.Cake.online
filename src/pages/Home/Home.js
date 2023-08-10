@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import classnames from 'classnames/bind';
 import styles from './Home.module.scss';
-import OneCake from './oneCake';
 import NewCake from './newCake';
 import { Link, NavLink } from 'react-router-dom';
 import { Slick } from './slick';
@@ -78,11 +77,7 @@ function Home({ toggle }) {
     return (
         <div className={cx('wrapper')}>
             <div>
-                {select ? (
-                    <OneCake hendless={hendless} select={!select} />
-                ) : (
-                    <NewCake hendless={hendless} select={select} />
-                )}
+                <NewCake hendless={hendless} select={select} />
             </div>
             <div
                 className={cx('select')}
@@ -329,7 +324,6 @@ function Home({ toggle }) {
                                 <FontAwesomeIcon icon={faArrowRight} className={cx('arrow')} />
                             </div>
                         </Link>
-
                         <div className={cx('drama')}>
                             <h5>Độc đáo bánh kem điêu khắc của cô gái 9X quê Cà Mau</h5>
                             <div className="childrens flex-start">

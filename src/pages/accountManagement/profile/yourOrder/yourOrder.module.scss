@@ -1,0 +1,11 @@
+.useorder { 
+    max-height: 500px;
+    overflow: auto;
+}
+.useorder::-webkit-scrollbar {
+    width: 6px;
+}
+.useorder::-webkit-scrollbar-thumb {
+    background-color: var(--blue);
+    border-radius: 8px;
+}

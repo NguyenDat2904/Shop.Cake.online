@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
-import { RingLoader } from 'react-spinners';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import classnames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,31 +9,15 @@ import Modal from './Modal/Modal';
 import Menu from '../Menu/Menu';
 import { AppContext } from '~/hook/context';
 import IsLoading from '../IsLoading/IsLoading';
+import NavBarProduct from './NavBarProduct/NavBarProduct';
 const cx = classnames.bind(styles);
 
 function Header({ setIsLoggedIn }) {
     // 1. State
-    const [icon, setIcon] = useState(false);
-    const { setToggleCart, productDataCart, isLoading, handleIsLoading, setIsLoading } = useContext(AppContext);
+    const [icon] = useState(false);
+    const { setToggleCart, productDataCart, isLoading, handleIsLoading } = useContext(AppContext);
     const email = localStorage.getItem('email');
     const img = localStorage.getItem('img');
-    const location = useLocation();
-    useEffect(() => {
-        if (location.pathname === window.location.pathname) {
-            setIsLoading(true);
-            const timer = setTimeout(() => {
-                setIsLoading(false);
-            }, 2000);
-            return () => clearTimeout(timer);
-        } else {
-            setIsLoading(false);
-        }
-    }, []);
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 2000);
-    }, [location]);
     // 3. Functions
     const activeClass = (params) => {
         return params.isActive ? cx('active') : '';
@@ -42,6 +25,7 @@ function Header({ setIsLoggedIn }) {
     // 4. Render
     return (
         <header>
+            <IsLoading isLoading={isLoading} />
             <section className={cx('header', 'top')} id="smooth">
                 <div className={cx('container')}>
                     <div className={cx('col', 'col-left')}>
@@ -139,10 +123,13 @@ function Header({ setIsLoggedIn }) {
                                 </li>
                                 <li className={cx('item', activeClass)}>
                                     <Tippy
-                                        placement="bottom-start"
+                                        interactive
+                                        placement="bottom"
                                         render={(attrs) => (
                                             <div className="box" tabIndex="-1" {...attrs}>
-                                                <Modal>Hello</Modal>
+                                                <Modal>
+                                                    <NavBarProduct />
+                                                </Modal>
                                             </div>
                                         )}
                                     >
@@ -258,7 +245,6 @@ function Header({ setIsLoggedIn }) {
                     </div>
                 </div>
             </section>
-            <IsLoading isLoading={isLoading} />
         </header>
     );
 }

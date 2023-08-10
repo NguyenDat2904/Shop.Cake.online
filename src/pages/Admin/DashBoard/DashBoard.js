@@ -14,7 +14,7 @@ import { convertNumberToShortText } from '~/component/NumberToText/NumberToText'
 const cx = classnames.bind(styles);
 
 function DashBoard() {
-    const { toggleNavigation, dataOrders, dataProduct } = useContext(AppContext);
+    const { toggleNavigation, dataOrders, dataProduct, setIsLoading } = useContext(AppContext);
     const [dataUser, setDataUser] = useState([]);
     const [isSorted, setIsSorted] = useState(false);
     const [originalDataUser, setOriginalDataUser] = useState([]);
@@ -47,7 +47,7 @@ function DashBoard() {
         <div className={cx('main', toggleNavigation ? 'active' : '')}>
             {/* {/* ======================= Cards ================== */}
             <div className={cx('cardBox')}>
-                <NavLink to={'/admin/customer'}>
+                <NavLink to={'/admin/customer'} onClick={() => setIsLoading(true)}>
                     <div className={cx('card')}>
                         <div>
                             <div className={cx('numbers')}>{dataUser.length}</div>
@@ -58,7 +58,7 @@ function DashBoard() {
                         </div>
                     </div>
                 </NavLink>
-                <NavLink to={'/admin/product'}>
+                <NavLink to={'/admin/product'} onClick={() => setIsLoading(true)}>
                     <div className={cx('card')}>
                         <div>
                             <div className={cx('numbers')}>{dataProduct.length}</div>
@@ -69,7 +69,7 @@ function DashBoard() {
                         </div>
                     </div>
                 </NavLink>
-                <NavLink to={'/admin/order'}>
+                <NavLink to={'/admin/order'} onClick={() => setIsLoading(true)}>
                     <div className={cx('card')}>
                         <div>
                             <div className={cx('numbers')}>{dataOrders.length}</div>
@@ -95,7 +95,7 @@ function DashBoard() {
                 <div className={cx('recentOrders')}>
                     <div className={cx('cardHeader')}>
                         <h2>Những đơn đặt hàng</h2>
-                        <NavLink to="/admin/order" className={cx('btn')}>
+                        <NavLink to="/admin/order" className={cx('btn')} onClick={() => setIsLoading(true)}>
                             Xem tất cả
                         </NavLink>
                     </div>
@@ -114,7 +114,7 @@ function DashBoard() {
                 <div className={cx('recentCustomers')}>
                     <div className={cx('cardHeader')}>
                         <h2>Khách hàng gần đây</h2>
-                        <NavLink to="/admin/customer" className={cx('btn')}>
+                        <NavLink to="/admin/customer" className={cx('btn')} onClick={() => setIsLoading(true)}>
                             Xem tất cả
                         </NavLink>
                     </div>

@@ -2,8 +2,12 @@ import React from 'react';
 import styles from './ModalNotion.module.scss';
 import classnames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { AppContext } from '~/hook/context';
 const cx = classnames.bind(styles);
 const ModalNotion = ({ isShowing, hide }) => {
+    const { handleIsLoading } = useContext(AppContext);
+
     return isShowing ? (
         <React.Fragment>
             <div className={cx('modal-overlay')} />
@@ -32,7 +36,10 @@ const ModalNotion = ({ isShowing, hide }) => {
                                 className={cx('modal-close-button', 'cancel')}
                                 data-dismiss="modal"
                                 aria-label="Close"
-                                onClick={() => hide(2)}
+                                onClick={() => {
+                                    handleIsLoading();
+                                    hide(2);
+                                }}
                             >
                                 <span aria-hidden="true">Giỏ hàng</span>
                             </button>

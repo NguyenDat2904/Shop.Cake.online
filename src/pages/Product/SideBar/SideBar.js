@@ -8,7 +8,7 @@ function SideBar({ children, title, className }) {
         <div className={cx('group', className)}>
             <div className="children">
                 <h2 className={cx('title')}>
-                    <span>{title}</span>
+                    {title}
                 </h2>
                 {children}
             </div>

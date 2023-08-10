@@ -1,16 +1,13 @@
 .productList {
     margin: 0 auto;
-    margin-left: 10%;
     --widthcontainer: 1200px;
     width: var(--widthcontainer);
     max-width: 100%;
     display: flex;
-    gap: 20px;
     flex-wrap: wrap;
-
     .arrayCompare {
         border: 1px solid rgb(177, 172, 172);
-        width: 300px;
+        width: 33.33333%;
         height: auto;
         position: relative;
         .detail {
@@ -27,7 +24,6 @@
         }
         .pass {
             border: 1px solid rgb(177, 172, 172);
-
             width: 100%;
             height: 60px;
             position: relative;
@@ -42,7 +38,6 @@
         }
         .button {
             border: 1px solid rgb(177, 172, 172);
-
             width: 100%;
             height: 60px;
             position: relative;
@@ -54,13 +49,16 @@
                 text-align: center;
                 background-color: var(--c-1668480339968, #fc7c7c);
                 padding: 8px 15px 8px;
-                font-weight: 400;
+                font-weight: 500;
                 position: absolute;
-
+                color: #fff;
                 left: 50%;
+                border: none;
                 transform: translate(-50%, -40%);
+                transition: background-color 0.3s ease;
                 &:hover {
                     background-color: #2b4174;
+                    cursor: pointer;
                 }
             }
         }
@@ -70,7 +68,9 @@
             top: 15px;
             left: 90%;
             color: #fc7c7c;
+            transition: all 0.3s ease;
             &:hover {
+                cursor: pointer;
                 color: #2b4174;
             }
         }

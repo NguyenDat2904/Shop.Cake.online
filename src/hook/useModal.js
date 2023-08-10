@@ -7,6 +7,11 @@ const useModal = () => {
     const [isShowingProduct, setIsShowingProduct] = useState(false);
     const [isShowingAddCustomer, setIsShowingAddCustomer] = useState(false);
     const [isShowingAddProduct, setIsShowingAddProduct] = useState(false);
+    const [isShowingPayment, setIsShowingPayment] = useState(false);
+    const [isShowingCompare, setIsShowingCompare] = useState(false);
+    const [isShowingNotionCompare, setIsShowingNotionCompare] = useState(false);
+    const [isShowingHeart, setIsShowingHeart] = useState(false);
+    const [isShowingNotionHeart, setIsShowingNotionHeart] = useState(false);
 
     function toggle(number) {
         if (number === 1) {
@@ -51,6 +56,41 @@ const useModal = () => {
             } else {
                 document.body.style.overflowY = 'auto';
             }
+        } else if (number === 7) {
+            setIsShowingPayment(!isShowingPayment);
+            if (!isShowingPayment) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflowY = 'auto';
+            }
+        } else if (number === 8) {
+            setIsShowingCompare(!isShowingCompare);
+            if (!isShowingCompare) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflowY = 'auto';
+            }
+        } else if (number === 9) {
+            setIsShowingNotionCompare(!isShowingNotionCompare);
+            if (!isShowingNotionCompare) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflowY = 'auto';
+            }
+        } else if (number === 10) {
+            setIsShowingHeart(!isShowingHeart);
+            if (!isShowingHeart) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflowY = 'auto';
+            }
+        } else if (number === 11) {
+            setIsShowingNotionHeart(!isShowingNotionHeart);
+            if (!isShowingNotionHeart) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflowY = 'auto';
+            }
         }
     }
     return {
@@ -60,6 +100,11 @@ const useModal = () => {
         isShowingProduct,
         isShowingAddCustomer,
         isShowingAddProduct,
+        isShowingPayment,
+        isShowingCompare,
+        isShowingNotionCompare,
+        isShowingHeart,
+        isShowingNotionHeart,
         toggle,
     };
 };

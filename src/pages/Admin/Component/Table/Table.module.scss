@@ -56,6 +56,7 @@ table tr td:first-child {
 }
 .address {
     max-width: 200px;
+    vertical-align: baseline;
 }
 .delivered {
     padding: 2px 4px;
@@ -93,4 +94,7 @@ table tr td:first-child {
     color: #fc7c7c;
     font-size: 16px;
     font-weight: 500;
+}
+.text-start {
+    vertical-align: baseline;
 }

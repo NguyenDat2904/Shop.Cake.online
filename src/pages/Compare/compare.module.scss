@@ -1,16 +1,5 @@
 .compare {
-    background-image: url('https://demo037126.web30s.vn/datafiles/web30s/upload/images/7101-7200/30S-03-7126/breadcrumbs-bg.png');
-    background-size: cover;
-    background-position: 50% 50%;
-    padding: 180px 10px;
-    z-index: 7;
-    height: auto;
-    display: block;
     .textCompare {
-        margin: 0 auto;
-        --widthcontainer: 1200px;
-        width: var(--widthcontainer);
-        max-width: 100%;
         h2 {
             padding: 0;
             color: var(--c-1668480455247, #282828);
@@ -39,11 +28,13 @@
 }
 .test {
     margin: 0 auto;
-    --widthcontainer: 1200px;
-    width: var(--widthcontainer);
     max-width: 100%;
     padding: 100px 10px;
-    p {
+    .no-data {
+        margin: 0 auto;
+        --widthcontainer: 1200px;
+        width: var(--widthcontainer);
+        max-width: 100%;
         overflow: inherit;
         font-family: Roboto, sans-serif;
         color: #282828;

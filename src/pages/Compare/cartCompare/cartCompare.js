@@ -8,15 +8,14 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 export const CartCompare = (prop) => {
     const { toggle } = prop;
-    const { arrayCompare, setArrayCompare, productDataCart, setProductDataCart } = useContext(AppContext);
+    const { arrayCompare, productDataCart, setProductDataCart, setAcceptCompare } = useContext(AppContext);
 
     return (
         <div className={cx('productList')}>
-            {' '}
             {arrayCompare?.map((product, index) => {
-                const removeCompare = () => {
-                    const remove = arrayCompare.filter((item) => item.id !== product.id);
-                    setArrayCompare(remove);
+                const removeCompare = (product) => {
+                    setAcceptCompare(product);
+                    toggle(8);
                 };
                 const handleClickCartCompare = (e) => {
                     e.preventDefault();
@@ -42,8 +41,12 @@ export const CartCompare = (prop) => {
                 };
                 return (
                     <div key={index} className={cx('arrayCompare')}>
-                        <ItemCart data={product} />
-                        <FontAwesomeIcon icon={faTrashCan} className={cx('icon')} onClick={removeCompare} />
+                        <ItemCart data={product} toggle={toggle} />
+                        <FontAwesomeIcon
+                            icon={faTrashCan}
+                            className={cx('icon')}
+                            onClick={() => removeCompare(product)}
+                        />
                         <div className={cx('pass')}>
                             <h4>SKU0{product.id}</h4>
                         </div>

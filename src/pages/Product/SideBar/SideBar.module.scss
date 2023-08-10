@@ -23,4 +23,7 @@
     margin: 0px 0px 25px;
     display: block;
     position: relative;
+    &:empty {
+        margin: 0;
+    }
 }

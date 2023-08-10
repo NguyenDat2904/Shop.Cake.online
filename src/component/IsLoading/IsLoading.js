@@ -19,7 +19,7 @@ function IsLoading({ isLoading }) {
                         zIndex: 999,
                     }}
                 >
-                    <RingLoader color="#243a6e" size="80" />
+                    <RingLoader color="#243a6e" size="80px" speedMultiplier={0.7} />
                 </div>
             )}
         </>

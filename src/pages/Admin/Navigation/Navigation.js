@@ -16,9 +16,9 @@ import { AppContext } from '~/hook/context';
 
 const cx = classnames.bind(styles);
 function Navigation({ setIsLoggedIn, setIsAdmin }) {
-    const { toggleNavigation } = useContext(AppContext);
-
+    const { toggleNavigation, setIsLoading } = useContext(AppContext);
     const handleLogout = () => {
+        setIsLoading(true);
         setIsLoggedIn(false);
         setIsAdmin(true);
         localStorage.clear();
@@ -30,7 +30,7 @@ function Navigation({ setIsLoggedIn, setIsAdmin }) {
         <div className={cx('navigation', toggleNavigation ? 'active' : '')}>
             <ul>
                 <li>
-                    <NavLink to="/admin/dashboard" className={cx('link-logo')}>
+                    <NavLink to="/admin/dashboard" className={cx('link-logo')} onClick={() => setIsLoading(true)}>
                         <div className={cx('a-logo', toggleNavigation ? 'active' : '')}>
                             <img
                                 src={'https://demo037126.web30s.vn/datafiles/38469/upload/files/logo.png?t=1668483951'}
@@ -40,7 +40,7 @@ function Navigation({ setIsLoggedIn, setIsAdmin }) {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/dashboard" className={activeClass}>
+                    <NavLink to="/admin/dashboard" className={activeClass} onClick={() => setIsLoading(true)}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faHouse} />
                         </span>
@@ -48,7 +48,7 @@ function Navigation({ setIsLoggedIn, setIsAdmin }) {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/customer" className={activeClass}>
+                    <NavLink to="/admin/customer" className={activeClass} onClick={() => setIsLoading(true)}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faUserGroup} />
                         </span>
@@ -56,7 +56,7 @@ function Navigation({ setIsLoggedIn, setIsAdmin }) {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/product" className={activeClass}>
+                    <NavLink to="/admin/product" className={activeClass} onClick={() => setIsLoading(true)}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faCartShopping} />
                         </span>
@@ -64,7 +64,7 @@ function Navigation({ setIsLoggedIn, setIsAdmin }) {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/order" className={activeClass}>
+                    <NavLink to="/admin/order" className={activeClass} onClick={() => setIsLoading(true)}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faCartPlus} />
                         </span>
@@ -72,7 +72,7 @@ function Navigation({ setIsLoggedIn, setIsAdmin }) {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/setting" className={activeClass}>
+                    <NavLink to="/admin/setting" className={activeClass} onClick={() => setIsLoading(true)}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faGear} />
                         </span>
@@ -80,7 +80,7 @@ function Navigation({ setIsLoggedIn, setIsAdmin }) {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/password" className={activeClass}>
+                    <NavLink to="/admin/password" className={activeClass} onClick={() => setIsLoading(true)}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faLock} />
                         </span>
@@ -88,12 +88,12 @@ function Navigation({ setIsLoggedIn, setIsAdmin }) {
                     </NavLink>
                 </li>
                 <li>
-                    <Link onClick={handleLogout} to="/login">
+                    <NavLink onClick={handleLogout} to="/login">
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faRightToBracket} />
                         </span>
                         <span className={cx('title')}>Đăng xuất</span>
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
         </div>

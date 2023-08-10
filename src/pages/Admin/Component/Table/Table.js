@@ -24,7 +24,6 @@ function Table({ header, dataOrders, orders }) {
         );
     });
     const renderListOrder = dataOrders?.map((order, index) => {
-        console.log(order.deliveryMethod);
         const formatPrice = formatCurrencyVND(order.formattedTotal);
         let classStatus;
         if (order.deliveryMethod === 'Đã nhận hàng') {
@@ -38,8 +37,8 @@ function Table({ header, dataOrders, orders }) {
         }
         return (
             <tr key={index}>
-                {orders && <td>{index + 1}</td>}
-                <td className={cx('name-receive')}>{order.nameReceive}</td>
+                {orders && <td className={cx('text-center', 'text-start')}>{index + 1}</td>}
+                <td className={cx('name-receive', 'text-start')}>{order.nameReceive}</td>
                 {
                     <td width="60px">
                         {order.product.map((product, index) => (
@@ -65,19 +64,19 @@ function Table({ header, dataOrders, orders }) {
                         </div>
                     ))}
                 </td>
-                {orders && <td className={cx('text-center')}>{order.payIn}</td>}
+                {orders && <td className={cx('text-center', 'text-start')}>{order.payIn}</td>}
                 {orders && (
-                    <td className={cx('text-center')}>
+                    <td className={cx('text-center', 'text-start')}>
                         <span className={cx(classStatus)}>{order.deliveryMethod}</span>
                     </td>
                 )}
-                {orders && <td className={cx('text-center')}>{order.phoneReceive}</td>}
+                {orders && <td className={cx('text-center', 'text-start')}>{order.phoneReceive}</td>}
                 {orders && (
                     <td className={cx('text-center', 'address')}>
                         {order.ward} - {order.district} - {order.province}
                     </td>
                 )}
-                <td className={cx('money')}>{formatPrice}</td>
+                <td className={cx('money', 'text-start')}>{formatPrice}</td>
             </tr>
         );
     });

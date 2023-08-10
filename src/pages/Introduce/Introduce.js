@@ -2,17 +2,32 @@ import React, { useEffect } from 'react';
 import styles from './Introduce.module.scss';
 import classnames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faXmark } from '@fortawesome/free-solid-svg-icons';
+
 import Banner from '~/component/Banner/Banner';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { useState } from 'react';
+
 const cx = classnames.bind(styles);
 
 function Introduce() {
+    const [view, setView] = useState(false);
+
     useEffect(() => {
         AOS.init();
     }, []);
+
+    const handleYoutobe = () => {
+        document.body.style.overflow = 'hidden';
+        setView(true);
+    };
+    const handleRemoveYoutobe = () => {
+        document.body.style.overflow = 'auto';
+        setView(false);
+    };
     return (
         <>
             <Banner page="Giới thiệu" title="Giới thiệu" />
@@ -20,15 +35,35 @@ function Introduce() {
                 <div className={cx('video')}>
                     <div className={cx('videoimg')}>
                         <img
-                            className={cx('img')}
+                            className={cx('thumbnail')}
                             src="https://demo037126.web30s.vn/image-process/get-image-v3?path=/datafiles/web30s/upload/images/7101-7200/30S-03-7126/about-bg.png&width=0"
                             alt=""
                         />
+                        <video
+                            className={cx('img')}
+                            src="https://media.istockphoto.com/id/679378260/vi/video/b%C3%A1nh-sinh-nh%E1%BA%ADt-vui-v%E1%BA%BB.mp4?s=mp4-640x640-is&k=20&c=Cnr2oeU2kJ2lt-jTDpfej7pE8E1DVNM2ODwrk8nw_yk="
+                        ></video>
+                        {view && (
+                            <div className={cx('overlay')}>
+                                <div className={cx('modal-video')}>
+                                    <div className={cx('icon-delete')} onClick={handleRemoveYoutobe}>
+                                        <FontAwesomeIcon icon={faXmark} />
+                                    </div>
+                                    <video
+                                        className={cx('modal-youtobe')}
+                                        src="https://media.istockphoto.com/id/679378260/vi/video/b%C3%A1nh-sinh-nh%E1%BA%ADt-vui-v%E1%BA%BB.mp4?s=mp4-640x640-is&k=20&c=Cnr2oeU2kJ2lt-jTDpfej7pE8E1DVNM2ODwrk8nw_yk="
+                                        autoPlay
+                                        controls
+                                    ></video>
+                                </div>
+                            </div>
+                        )}
                         <div className={cx('intro-icon')}>
-                            <FontAwesomeIcon className={cx('icon')} icon={faPlay} />
+                            <div className={cx('icon')} onClick={handleYoutobe}>
+                                <FontAwesomeIcon icon={faYoutube} />
+                            </div>
                         </div>
                     </div>
-                    <video src="https://www.youtube.com/watch?v=wLtVgLt7dBA&list=TLGG4j29mU-H5_MyNDA3MjAyMw"></video>
                 </div>
             </div>
             <section className="container">

@@ -6,17 +6,26 @@ import { faBagShopping, faEye, faHeart, faRotate } from '@fortawesome/free-solid
 import { formatCurrencyVND } from '../NumberToPrice/currency';
 import { NavLink } from 'react-router-dom';
 import { AppContext } from '~/hook/context';
-
+import * as favour from '~/services/registerService';
+import * as seList from '~/services/loginService';
+import { useNavigate } from 'react-router-dom';
 const cx = classnames.bind(styles);
 function ItemCart({ data, toggle }) {
+    const navigate = useNavigate();
     // 1. State
-    const { productDataCart, setProductDataCart, arrayCompare, setArrayCompare, handleIsLoading } =
+    const { productDataCart, setProductDataCart, arrayCompare, setArrayCompare, arrayHeart, setArrayHeart, userName } =
         useContext(AppContext);
 
     // 2. UseEffect
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(productDataCart));
     }, [productDataCart]);
+    useEffect(() => {
+        localStorage.setItem('compare', JSON.stringify(arrayCompare));
+    }, [arrayCompare]);
+    useEffect(() => {
+        localStorage.setItem('heart', JSON.stringify(arrayHeart));
+    }, [arrayHeart]);
     // 3. Function
     const formattedPrice = formatCurrencyVND(data.price);
     const formattedCost = formatCurrencyVND(data.cost);
@@ -43,8 +52,10 @@ function ItemCart({ data, toggle }) {
             setProductDataCart([...productDataCart, product]);
         }
     };
+    // só sánh
     const hendleCompare = (e) => {
         e.preventDefault();
+        toggle(9);
         const existingItemIndex = arrayCompare?.findIndex((item) => item.id === data.id);
         if (existingItemIndex < 0) {
             const product = {
@@ -55,13 +66,44 @@ function ItemCart({ data, toggle }) {
                 color: data.color,
                 type: data.type,
                 size: data.size,
+                cost: data.cost,
                 quantity: 1,
             };
             setArrayCompare([...arrayCompare, product]);
         }
     };
+    // Yeu thich
+    const hendleFavourite = async (e) => {
+        e.preventDefault();
+        toggle(11);
+        const existingItemIndex = arrayHeart?.findIndex((item) => item.id === data.id);
+        if (existingItemIndex < 0) {
+            const product = {
+                id: data.id,
+                name: data.name,
+                price: data.price,
+                img: data.img,
+                color: data.color,
+                type: data.type,
+                size: data.size,
+                cost: data.cost,
+                quantity: 1,
+            };
+            setArrayHeart([...arrayHeart, product]);
+        }
+    };
+    const hendleSee = async (e) => {
+        e.preventDefault();
+        const toGetSees = await seList.getSee();
+        const listtoget = toGetSees?.findIndex((item) => item.id === data.id);
+        if (listtoget < 0) {
+            const see = await favour.postSee(data, userName);
+            if (see) navigate(`product/${data.id}`);
+        }
+    };
+
     return (
-        <NavLink to={`/product/${data.id}`} onClick={handleIsLoading}>
+        <NavLink to={`/product/${data.id}`}>
             <article>
                 <div className="childrens flex-column">
                     <div className={cx('img', 'flex-center')}>
@@ -69,12 +111,12 @@ function ItemCart({ data, toggle }) {
                         <div className={cx('group')}>
                             <div className="childrens flex-center">
                                 <div className={cx('btn', 'flex-center')}>
-                                    <FontAwesomeIcon icon={faEye} />
+                                    <FontAwesomeIcon icon={faEye} onClick={hendleSee} />
                                 </div>
                                 <div className={cx('btn', 'flex-center')} onClick={handleClickCart}>
                                     <FontAwesomeIcon icon={faBagShopping} />
                                 </div>
-                                <div className={cx('btn', 'flex-center')}>
+                                <div className={cx('btn', 'flex-center')} onClick={hendleFavourite}>
                                     <FontAwesomeIcon icon={faHeart} />
                                 </div>
 

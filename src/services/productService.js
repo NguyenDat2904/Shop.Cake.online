@@ -38,6 +38,26 @@ export const deleteProduct = async (id) => {
         console.log(error);
     }
 };
+export const deleteSee = async (id) => {
+    try {
+        const results = await httpRequest.deleteUser(`products/${id}`, {
+            id,
+        });
+        return results.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const deleteFavourite = async (id) => {
+    try {
+        const results = await httpRequest.deleteUser(`products/${id}`, {
+            id,
+        });
+        return results.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
 export const postProduct = async (name, size, type, color, cost, price, topic, img) => {
     try {
         const results = await httpRequest.post(`products`, {

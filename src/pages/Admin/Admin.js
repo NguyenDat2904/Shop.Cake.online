@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './Admin.module.scss';
 import classnames from 'classnames/bind';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import DashBoard from './DashBoard/DashBoard';
 import Navigation from './Navigation/Navigation';
@@ -14,11 +14,15 @@ import ModalProduct from '~/component/ModalProduct/ModalProduct';
 import ModalAddCustomer from '~/component/ModalAddCustomer/ModalAddCustomer';
 import ModalAddProduct from '~/component/ModalAddProduct/ModalAddProduct';
 import OrderManager from './OrderManager/OrderManager';
+import IsLoading from '~/component/IsLoading/IsLoading';
+import { AppContext } from '~/hook/context';
 const cx = classnames.bind(styles);
-function Admin({ setIsLoggedIn, setIsAdmin }) {
+function Admin({ setIsLoggedIn, setIsAdmin, isLogin }) {
     const { isShowingUser, isShowingProduct, isShowingAddCustomer, isShowingAddProduct, toggle } = useModal();
+    const { isLoading } = useContext(AppContext);
     return (
         <div className={cx('wrapper')}>
+            <IsLoading isLoading={isLoading} />
             <Navigation setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
             <HeaderOnly />
             <ModalUser isShowing={isShowingUser} hide={toggle} />

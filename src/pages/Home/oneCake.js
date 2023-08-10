@@ -1,17 +1,18 @@
 import classnames from 'classnames/bind';
 import styles from './onCake.module.scss';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 const cx = classnames.bind(styles);
 const OneCake = (prop) => {
     const { hendless, select } = prop;
 
-     useEffect(() => {
-         AOS.init();
-     }, []);
+    useEffect(() => {
+        AOS.init();
+    }, []);
 
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
     return (
         <div className={cx('birthdayCake')}>
             <div className={cx('brithday')}>
@@ -29,11 +30,7 @@ const OneCake = (prop) => {
                     </div>
                 </div>
                 <div className={cx('img')}>
-                    <img
-                        src="https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/hero-banner-shape.png"
-                        alt=""
-                        className={cx('brithdayCakeImg')}
-                    />
+                    <img alt="" className={cx('brithdayCakeImg')} />
                 </div>
             </div>
         </div>

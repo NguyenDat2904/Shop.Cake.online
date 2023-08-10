@@ -5,7 +5,7 @@ import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 import Modal from '../Header/Modal/Modal';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const cx = classnames.bind(styles);
 function Menu({
@@ -24,14 +24,12 @@ function Menu({
 }) {
     const [hoveredMenu, setHoveredMenu] = useState(null);
     const visibleValue = toggle ? false : undefined;
-
     const tippyProps = {
         visible: visibleValue,
     };
     const handleMenuMouseOver = (index) => {
         setHoveredMenu(index);
     };
-
     const handleMenuMouseOut = () => {
         setHoveredMenu(null);
     };

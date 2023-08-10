@@ -1,0 +1,23 @@
+.yourFavourite {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    flex-wrap: wrap;
+}
+.iconss-dele {
+    position: relative;
+}
+.iconss {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 15px;
+    right: 10px;
+    font-size: 15px;
+    color: #fc7c7c;
+    transition: all 0.5s ease;
+    &:hover {
+        color: var(--c-1668480369240, #2b4174);
+        cursor: pointer;
+    }
+}

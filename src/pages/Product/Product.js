@@ -30,7 +30,6 @@ function Product({ toggle }) {
     const [active, setActive] = useState(1);
     const [loading, setLoading] = useState(false);
     const [sortOrder, setSortOrder] = useState(null);
-    const [sortedProductData, setSortedProductData] = useState(null);
 
     const {
         productDataTrends,
@@ -41,6 +40,9 @@ function Product({ toggle }) {
         setPerPage,
         limit,
         setLimit,
+        sortedProductData,
+        setSortedProductData,
+        dataSortSave,
     } = useContext(AppContext);
 
     // 2. useEffects
@@ -175,6 +177,7 @@ function Product({ toggle }) {
     // 4. Render sản phẩm trend và list sản phẩm
     const trendProduct = productDataTrends?.map((data) => <ProductItem data={data} key={data.id} />);
     const productList = sortedProductData?.map((data) => <ItemCart toggle={toggle} data={data} key={data.id} />);
+    const productSort = dataSortSave?.map((data) => <ItemCart toggle={toggle} data={data} key={data.id} />);
     return (
         <>
             <Banner page="Sản phẩm" title="Sản phẩm" />
@@ -211,7 +214,7 @@ function Product({ toggle }) {
                                         check
                                         data={[
                                             {
-                                                color: 'Xanh lá',
+                                                color: 'Xanh Lá',
                                                 background: 'rgba(76, 175, 80.00000000000007, 0.8)',
                                                 number: 1,
                                             },
@@ -221,7 +224,7 @@ function Product({ toggle }) {
                                                 number: 2,
                                             },
                                             {
-                                                color: 'Xanh dương',
+                                                color: 'Xanh Dương',
                                                 background:
                                                     'rgba(32.99999999999998, 149.99999999999994, 242.99999999999997, 0.75)',
                                             },
@@ -253,18 +256,13 @@ function Product({ toggle }) {
                                 <SideBar title={'LOẠI BÁNH'} className={cx('check-wrapper')}>
                                     <FilterProduct
                                         type="cake"
-                                        data={[{ color: 'Bánh kem' }, { color: 'Bánh tráng miệng' }]}
+                                        data={[{ color: 'bánh kem' }, { color: 'bánh tráng miệng' }]}
                                     />
                                 </SideBar>
-                                <SideBar title={'KICH THƯỚC'} className={cx('check-wrapper')}>
+                                <SideBar title={'KÍCH THƯỚC'} className={cx('check-wrapper')}>
                                     <FilterProduct
                                         type="size"
-                                        data={[
-                                            { color: '17 "' },
-                                            { color: '15 "' },
-                                            { color: '12 "' },
-                                            { color: '10 "' },
-                                        ]}
+                                        data={[{ color: '17' }, { color: '15' }, { color: '12' }, { color: '10' }]}
                                     />
                                 </SideBar>
                             </SideBar>
@@ -316,7 +314,7 @@ function Product({ toggle }) {
                             </div>
                         ) : (
                             <>
-                                <div className={cx('repeat-box')}>{productList}</div>
+                                <div className={cx('repeat-box')}>{dataSortSave.length > 0 ? productSort : productList}</div>
                                 <ul className={cx('paggin', 'flex-item')}>
                                     <li
                                         className={cx('paggin-item', active === 1 && 'disable', 'flex-center')}

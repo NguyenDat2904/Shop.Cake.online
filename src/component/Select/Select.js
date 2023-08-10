@@ -9,9 +9,7 @@ import { AppContext } from '~/hook/context';
 const cx = classnames.bind(styles);
 function Select({ title, contexts = [], number }) {
     const [activeMenu, setActiveMenu] = useState(null);
-
     const { selectIcon, setSelectIcon } = useContext(AppContext);
-
     const handleClickMenu = (menuId) => {
         if (activeMenu === menuId) {
             setActiveMenu(null);
@@ -32,10 +30,10 @@ function Select({ title, contexts = [], number }) {
     return (
         <div className={cx('box-wrapper')}>
             <div className={cx('wrapper')} onClick={() => handleClickMenu(number)}>
-                <NavLink className={cx('link')}>
+                <div className={cx('link')}>
                     <span>{title}</span>
                     {selectIcon ? <FontAwesomeIcon icon={faCaretDown} /> : <FontAwesomeIcon icon={faCaretUp} />}
-                </NavLink>
+                </div>
             </div>
             {activeMenu === number && (
                 <div className={cx('box-menu')}>

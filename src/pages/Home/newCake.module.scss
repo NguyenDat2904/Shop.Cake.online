@@ -45,6 +45,8 @@
                     border: none;
                     height: auto;
                     font-weight: 600;
+                    transition: 1s;
+
                     &:hover {
                         background-color: #2b4174;
                         transition: 1s;
@@ -72,20 +74,23 @@
             width: 56%;
             height: auto;
             .brithdayCakeImg {
-                background-image: url(https://demo037126.web30s.vn/datafiles/38469/upload/images/banner/slide-2.png?t=1677033386);
                 background-repeat: no-repeat;
                 background-position: 50% 50%;
                 background-size: contain;
                 top: 0;
                 left: 0;
                 width: 100%;
-                padding: 0 0 75% 0;
                 position: relative;
+                opacity: 0;
+                transition: opacity 2s ease;
                 animation-name: example;
                 animation-duration: 4s;
                 animation-iteration-count: infinite;
                 animation-timing-function: ease;
                 animation-fill-mode: both;
+            }
+            .show {
+                opacity: 1;
             }
         }
     }
