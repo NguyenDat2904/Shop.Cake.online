@@ -1,101 +1,126 @@
 .Hop {
-    width: 80%;
-    margin: 50px auto;
+    margin: 0 auto;
+    --widthcontainer: 1200px;
+    width: var(--widthcontainer);
+    max-width: 100%;
 }
 .contact-box {
+    padding: 40px;
     display: flex;
+    gap: 40px;
 }
 .contact-left {
     flex: 60%;
-    padding-left:60px;
-    padding-right:60px;
-    padding-bottom:40px;
 }
 .contact-right {
     flex: 40%;
 }
-.contact-right form {   
+.contact-right form {
     margin: 20px 0px 20px 0px;
     font-size: 16px;
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
-.contact-right input[type=text]{
-    width: 100%;
-    padding:20px
-}
-.contact-right textarea {
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-}
-.button {
-    border-radius: 25px;
-    background-color: var(--c-1668480339968, #fc7c7c);
-    border-color: var(--c-1668480339968, #fc7c7c);
-    font-size:18px;
-    text-align: center;
-    text-transform: uppercase;
-    width:40%;
-    padding:20px; 
-    color:white;   
-    &:hover {
-        background-color: var(--c-1668480339968, #007bff);
-        color: var(--c-1668480534016, #fff);
-        border-style: solid;
-        border-color: var(--c-1668480339968, #007bff);
-        border-width: 1px;
+.contact-right {
+    .contactInput {
+        .input {
+            margin-bottom: 20px;
+            width: 100%;
+            height: auto;
+            position: relative;
+            .errorMessage {
+                width: auto;
+                background-color: white;
+                padding: 0 5px 10px;
+                font-size: 14px;
+                color: #dd4b39;
+                margin-top: 3px;
+                font-weight: 400;
+                position: absolute;
+                top: -25%;
+                left: 5%;
+            }
+            .errorMessage2 {
+                width: auto;
+                background-color: white;
+                padding: 0 5px 10px;
+                font-size: 14px;
+                color: #dd4b39;
+                margin-top: 3px;
+                font-weight: 400;
+                position: absolute;
+                top: -8%;
+                left: 5%;
+            }
+            input {
+                border: 1px solid #d8d7d7;
+                border-radius: 5px;
+                width: 100%;
+                padding: 20px;
+                outline: none;
+            }
+            textarea {
+                border: 1px solid #d8d7d7;
+                width: 100%;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                padding: 20px;
+                font-size: 16px;
+                outline: none;
+            }
+        }
+        .button {
+            border-radius: 25px;
+            background-color: var(--c-1668480339968, #fc7c7c);
+            border-color: var(--c-1668480339968, #fc7c7c);
+            font-size: 18px;
+            text-align: center;
+            text-transform: uppercase;
+            width: 40%;
+            padding: 20px;
+            color: white;
+            &:hover {
+                background-color: var(--c-1668480339968, #007bff);
+                color: var(--c-1668480534016, #fff);
+                border-style: solid;
+                border-color: var(--c-1668480339968, #007bff);
+                border-width: 1px;
+                transition: 1s;
+            }
+        }
     }
 }
-.icon{
+
+.icon {
     color: #fc7c7c;
 }
 .contact-left {
     p {
-    font-size: 16px;
-    padding: 20px 0px 20px 0px;
-}
+        font-size: 16px;
+        padding: 20px 0px 20px 0px;
+    }
 }
 .contact-left h3 {
     font-size: 32px;
     padding: 20px 0px 20px 0px;
 }
 .line {
-    border-top: 3px dashed black;   
+    border-top: 3px dashed black;
 }
-@media screen and  (max-width:768px ) {
-    .Hop {
-        margin:auto;
-
+@media (max-width: 1025px) and (min-width: 470px) {
+    .contact-box {
+        display: block;
     }
-.contact-box{
-    flex-direction: column;
 }
-.contact-right{
-    flex:100%;
-}
-.contact-left{
-    flex:100%;
-    padding-left:0px;
-    padding-right:0px;
-    padding-bottom:0px;
-}
-.contact-right form {   
-    margin: auto;
-    width:100%;
-}
-.button {
-    width:100%;
-}}
-@media screen and  (max-width:1078px )and (min-width:768px ){
-    .button {
-        width:60%;
-
-}}
-
-@media screen and  (min-width:1078px){
-    .button {
-        width:70%;
+@media (max-width: 470px) {
+    .contact-box {
+        display: block;
+    }
+    .contact-right {
+        .contactInput {
+            .button {
+                font-size: 14px;
+            }
+        }
     }
 }
