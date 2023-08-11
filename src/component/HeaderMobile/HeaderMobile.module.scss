@@ -1,7 +1,7 @@
 .wrapper {
     width: 300px;
     left: 0px;
-    transform: translateX(0px) translateY(0px);
+    transform: translateX(-100%);
     background-color: var(--c-1668480311287, #fff);
     height: 100vh;
     padding: 20px 0px 0px;
@@ -11,7 +11,7 @@
     position: fixed;
 }
 .active {
-    transform: translateX(-100%);
+    transform: translateX(0px) translateY(0px);
 }
 .delete {
     width: 40px;

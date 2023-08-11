@@ -17,12 +17,24 @@ function HeaderMobile() {
                 </div>
                 <div className={cx('list-menu')}>
                     <ul className={cx('list')}>
-                        <NavLink to={'/'} onClick={handleIsLoading}>
+                        <NavLink
+                            to={'/'}
+                            onClick={() => {
+                                handleIsLoading();
+                                setToggleMobile(!toggleMobile);
+                            }}
+                        >
                             <li className={cx('item')}>
                                 <span>Trang chủ</span>
                             </li>
                         </NavLink>
-                        <NavLink to="/introduce" onClick={handleIsLoading}>
+                        <NavLink
+                            to="/introduce"
+                            onClick={() => {
+                                handleIsLoading();
+                                setToggleMobile(!toggleMobile);
+                            }}
+                        >
                             <li className={cx('item')}>
                                 <span>Giới thiệu</span>
                             </li>
@@ -32,22 +44,46 @@ function HeaderMobile() {
                                 <span>Sản phẩm</span>
                             </li>
                         </NavLink>
-                        <NavLink to="/support/support-customerCare" onClick={handleIsLoading}>
+                        <NavLink
+                            to="/support/support-customerCare"
+                            onClick={() => {
+                                handleIsLoading();
+                                setToggleMobile(!toggleMobile);
+                            }}
+                        >
                             <li className={cx('item')}>
                                 <span>Dịch vụ</span>
                             </li>
                         </NavLink>
-                        <NavLink to="/library/libraryimg" onClick={handleIsLoading}>
+                        <NavLink
+                            to="/library/libraryimg"
+                            onClick={() => {
+                                handleIsLoading();
+                                setToggleMobile(!toggleMobile);
+                            }}
+                        >
                             <li className={cx('item')}>
                                 <span>Thư viện</span>
                             </li>
                         </NavLink>
-                        <NavLink to="/news" onClick={handleIsLoading}>
+                        <NavLink
+                            to="/news"
+                            onClick={() => {
+                                handleIsLoading();
+                                setToggleMobile(!toggleMobile);
+                            }}
+                        >
                             <li className={cx('item')}>
                                 <span>Tin tức</span>
                             </li>
                         </NavLink>
-                        <NavLink to="/contact" onClick={handleIsLoading}>
+                        <NavLink
+                            to="/contact"
+                            onClick={() => {
+                                handleIsLoading();
+                                setToggleMobile(!toggleMobile);
+                            }}
+                        >
                             <li className={cx('item')}>
                                 <span>Liên hệ</span>
                             </li>
