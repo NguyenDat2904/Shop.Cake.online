@@ -1,0 +1,100 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+table thead td {
+    font-weight: 600;
+}
+table tr {
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+table tr:last-child {
+    border-bottom: none;
+}
+.wrapper tr td {
+    padding: 12px 10px;
+    user-select: none;
+    .name {
+        max-width: 300px;
+        font-weight: 400;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .phone {
+        width: 100px;
+        font-weight: 400;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: end;
+    }
+    .address {
+        right: 0;
+        width: 100%;
+        font-weight: 400;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: end;
+    }
+    .price {
+        color: #fc7c7c;
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .email {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+.delete-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    padding-left: 20px;
+    color: var(--blue);
+}
+.sort-icon {
+    display: inline-block;
+    padding-left: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+table tr td:last-child {
+    text-align: end;
+}
+.imgBx {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+table tbody tr:hover {
+    background: var(--blue);
+    color: var(--white);
+}
+table tr:hover td h4 span {
+    color: var(--white);
+}
+table tr:hover .delete-icon {
+    color: var(--white);
+    &:hover {
+        cursor: pointer;
+        color: #fc7c7c;
+        transition: all 0.4s ease;
+    }
+}
+.email-customer {
+    max-width: 200px;
+}

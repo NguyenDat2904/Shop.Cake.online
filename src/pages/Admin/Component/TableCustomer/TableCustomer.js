@@ -59,10 +59,10 @@ function TableCustomer({ header, customer, product, dashboard, dataUser, handleR
                     </td>
                 )}
                 {(customer || dashboard) && (
-                        <td className={cx('email-customer')}>
-                            <h4 className={cx('email')}>{user.email}</h4>
-                        </td>
-                    )}
+                    <td className={cx('email-customer')}>
+                        <h4 className={cx('email')}>{user.email}</h4>
+                    </td>
+                )}
                 {customer && (
                     <td className={cx('address-text')}>
                         <h4 className={cx('address')}>{user.address}</h4>

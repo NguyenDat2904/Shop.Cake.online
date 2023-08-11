@@ -21,7 +21,7 @@ function DashBoard() {
     useEffect(() => {
         const fetchAPI = async () => {
             const result = await getUser.getUserAll();
-            const filteredUsers = result.data.filter((user) => user.hasOwnProperty('role') && user.role !== 'admin');
+            const filteredUsers = result.data?.filter((user) => user.hasOwnProperty('role') && user.role !== 'admin');
             setDataUser(filteredUsers);
             setOriginalDataUser(filteredUsers);
         };
@@ -37,8 +37,8 @@ function DashBoard() {
             setIsSorted(true);
         }
     };
-    var totalAmount = dataOrders.reduce(function (total, order) {
-        if (order.payment === 'Đã thanh toán') {
+    var totalAmount = dataOrders?.reduce(function (total, order) {
+        if (order.payIn === 'Đã thanh toán') {
             return +total + +order.formattedTotal;
         }
         return total;

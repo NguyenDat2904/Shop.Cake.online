@@ -2,11 +2,14 @@ import React, { useContext, useState } from 'react';
 import styles from './Login.module.scss';
 import classnames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faG, faF, faZ } from '@fortawesome/free-solid-svg-icons';
+import { faZ } from '@fortawesome/free-solid-svg-icons';
 import Banner from '~/component/Banner/Banner';
 import * as login from '~/services/loginService';
+import * as getOrder from '~/services/ordersService';
+
 import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '~/hook/context';
+import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 const cx = classnames.bind(styles);
 
@@ -51,7 +54,7 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
         const tomasterProduct = result.data.map((product) => product.user);
         const usermalist = tomasterProduct.toString();
         setUserName(tomasterProduct.toString());
-        const order = await login.getOrder();
+        const order = await getOrder.getOrder();
         const OrderUse = order.data.filter((item) => item.userName == usermalist);
         const OrderUseLocal = localStorage.setItem('orders', JSON.stringify(OrderUse));
         setUserOder(OrderUseLocal);
@@ -119,13 +122,13 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
                                 <div className={cx('connective1')}>
                                     <a href="https://www.facebook.com/" title="Facebook"></a>
                                     <a href="#" className={cx('FB')}>
-                                        <FontAwesomeIcon icon={faF} /> Đăng nhập bằng Facebook
+                                        <FontAwesomeIcon icon={faFacebookF} /> Đăng nhập bằng Facebook
                                     </a>
                                 </div>
                                 <div className={cx('connective')}>
                                     <a href="https://www.facebook.com/" title="Google"></a>
                                     <a href="#" className={cx('GG')}>
-                                        <FontAwesomeIcon icon={faG} /> Đăng nhập bằng Google
+                                        <FontAwesomeIcon icon={faGoogle} /> Đăng nhập bằng Google
                                     </a>
                                 </div>
                                 <div className={cx('connective2')}>

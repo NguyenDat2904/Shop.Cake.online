@@ -72,11 +72,11 @@ function Navigation({ setIsLoggedIn, setIsAdmin }) {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/admin/setting" className={activeClass} onClick={() => setIsLoading(true)}>
+                    <NavLink to="/admin/contact" className={activeClass} onClick={() => setIsLoading(true)}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faGear} />
                         </span>
-                        <span className={cx('title')}>Cài đặt</span>
+                        <span className={cx('title')}>Phản hồi</span>
                     </NavLink>
                 </li>
                 <li>

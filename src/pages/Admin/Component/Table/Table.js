@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort } from '@fortawesome/free-solid-svg-icons';
 import { formatCurrencyVND } from '~/component/NumberToPrice/currency';
 import { AppContext } from '~/hook/context';
-const cx = classnames.bind(styles);
-function Table({ header, dataOrders, orders }) {
-    // const { classStatus, setClassStatus } = useContext(AppContext);
 
-    const renderHeader = header.map((item, index) => {
+const cx = classnames.bind(styles);
+function Table({ header, orders }) {
+    const { dataOrders } = useContext(AppContext);
+    const renderHeader = header?.map((item, index) => {
         return (
             <Fragment key={index}>
                 <td className={cx('text-center')}>
@@ -41,7 +41,7 @@ function Table({ header, dataOrders, orders }) {
                 <td className={cx('name-receive', 'text-start')}>{order.nameReceive}</td>
                 {
                     <td width="60px">
-                        {order.product.map((product, index) => (
+                        {order.product?.map((product, index) => (
                             <div key={index} className={cx('imgBx')}>
                                 <img src={product.img} />
                             </div>
@@ -50,7 +50,7 @@ function Table({ header, dataOrders, orders }) {
                 }
                 {
                     <td className={cx('text-center')}>
-                        {order.product.map((product, index) => (
+                        {order.product?.map((product, index) => (
                             <div key={index} className={cx('name-product')}>
                                 {product.name}
                             </div>
@@ -58,7 +58,7 @@ function Table({ header, dataOrders, orders }) {
                     </td>
                 }
                 <td className={cx('quantity-product')}>
-                    {order.product.map((product, index) => (
+                    {order.product?.map((product, index) => (
                         <div key={index} className={cx('name-product')}>
                             {product.quantity}
                         </div>
@@ -73,7 +73,7 @@ function Table({ header, dataOrders, orders }) {
                 {orders && <td className={cx('text-center', 'text-start')}>{order.phoneReceive}</td>}
                 {orders && (
                     <td className={cx('text-center', 'address')}>
-                        {order.ward} - {order.district} - {order.province}
+                        {order.address} {order.ward} - {order.district} - {order.province}
                     </td>
                 )}
                 <td className={cx('money', 'text-start')}>{formatPrice}</td>

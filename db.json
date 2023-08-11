@@ -213,20 +213,14 @@
     ],
     "orders": [
         {
-            "nameBuy": "Nguyen Van Hung",
-            "payment": "Đã thanh toán",
-            "deliveryMethod": "Đang đóng hàng",
-            "id": 6
-        },
-        {
-            "nameBuy": "dat",
+            "nameBuy": "Nguyễn Văn Đạt",
             "email": "dathhcc2@gmail.com",
             "phoneBuy": "0357626978",
-            "nameReceive": "dat",
+            "nameReceive": "Nguyễn Văn Đạt",
             "phoneReceive": "0357626978",
-            "province": "--Chọn tỉnh thành--",
-            "district": "--Chọn quận/huyện--",
-            "ward": "--Chọn phường/xã--",
+            "province": "Nam Định",
+            "district": "Hải Hậu",
+            "ward": "Hải Xuân",
             "address": "",
             "product": [
                 {
@@ -241,21 +235,21 @@
                 }
             ],
             "formattedTotal": 380000,
-            "payIn": "Chưa thanh toán",
-            "deliveryMethod": "",
-            "status": "Chưa nhận hàng",
+            "payIn": "Đã thanh toán",
+            "deliveryMethod": "Đã nhận hàng",
+            "status": "Đã nhận hàng",
             "userName": "thaothao2601",
             "id": 22
         },
         {
-            "nameBuy": "Thao",
+            "nameBuy": "Trần Thị Phương Thảo",
             "email": "dathhcc2@gmail.com",
             "phoneBuy": "0357626978",
-            "nameReceive": "dat",
+            "nameReceive": "Trần Thị Phương Thảo",
             "phoneReceive": "0357626978",
-            "province": "--Chọn tỉnh thành--",
-            "district": "--Chọn quận/huyện--",
-            "ward": "--Chọn phường/xã--",
+            "province": "Hương Yên",
+            "district": "Văn Giang",
+            "ward": "Văn Nghĩa",
             "address": "",
             "product": [
                 {
@@ -280,80 +274,22 @@
                 }
             ],
             "formattedTotal": 730000,
-            "payIn": "",
-            "deliveryMethod": "",
-            "status": "Chưa nhận hàng",
+            "payIn": "Nhận hàng thanh toán",
+            "deliveryMethod": "Hoàn hàng",
+            "status": "",
             "userName": "thaothao2601",
             "id": 23
         },
         {
-            "nameBuy": "dat",
+            "nameBuy": "Nguyễn Văn Hùng",
             "email": "dathhcc2@gmail.com",
             "phoneBuy": "0357626978",
-            "nameReceive": "dat",
+            "nameReceive": "Nguyễn Văn Hùng",
             "phoneReceive": "0357626978",
-            "province": "--Chọn tỉnh thành--",
-            "district": "--Chọn quận/huyện--",
-            "ward": "--Chọn phường/xã--",
+            "province": "Lâm Đồng",
+            "district": "Bảo Lộc",
+            "ward": "Bảo Thanh",
             "address": "",
-            "product": [
-                {
-                    "id": 3,
-                    "name": "TINY PRINCE",
-                    "price": "340000",
-                    "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-hoang-tu-be-removebg-preview.png?t=1668479885",
-                    "color": "Xanh Dương",
-                    "type": "bánh kem",
-                    "size": "17",
-                    "quantity": 1
-                }
-            ],
-            "formattedTotal": 340000,
-            "payIn": "",
-            "deliveryMethod": "Đang đóng hàng",
-            "status": "Chưa nhận hàng",
-            "userName": "thaothao2601",
-            "id": 24
-        },
-        {
-            "nameBuy": "dat",
-            "email": "dathhcc2@gmail.com",
-            "phoneBuy": "0357626978",
-            "nameReceive": "dat",
-            "phoneReceive": "0357626978",
-            "province": "--Chọn tỉnh thành--",
-            "district": "--Chọn quận/huyện--",
-            "ward": "--Chọn phường/xã--",
-            "address": "",
-            "product": [
-                {
-                    "id": 3,
-                    "name": "TINY PRINCE",
-                    "price": "340000",
-                    "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-hoang-tu-be-removebg-preview.png?t=1668479885",
-                    "color": "Xanh Dương",
-                    "type": "bánh kem",
-                    "size": "17",
-                    "quantity": 1
-                }
-            ],
-            "formattedTotal": 340000,
-            "payIn": "",
-            "deliveryMethod": "Đang đóng hàng",
-            "status": "Chưa nhận hàng",
-            "userName": "thaothao2601",
-            "id": 25
-        },
-        {
-            "nameBuy": "dat",
-            "email": "dathhcc2@gmail.com",
-            "phoneBuy": "0357626978",
-            "nameReceive": "dat",
-            "phoneReceive": "0357626978",
-            "province": "--Chọn tỉnh thành--",
-            "district": "--Chọn quận/huyện--",
-            "ward": "--Chọn phường/xã--",
-            "address": "Nhận hàng trực tiếp tại công ty",
             "product": [
                 {
                     "id": 3,
@@ -371,17 +307,114 @@
             "deliveryMethod": "Đang đóng hàng",
             "status": "Chưa nhận hàng",
             "userName": "thaothao2601",
+            "id": 24
+        },
+        {
+            "nameBuy": "Đăng Vũ",
+            "email": "dathhcc2@gmail.com",
+            "phoneBuy": "0357626978",
+            "nameReceive": "Đăng Vũ",
+            "phoneReceive": "0357626978",
+            "province": "Hà Nội",
+            "district": "Hoàng Mai",
+            "ward": "Minh Khai",
+            "address": "",
+            "product": [
+                {
+                    "id": 3,
+                    "name": "TINY PRINCE",
+                    "price": "340000",
+                    "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-hoang-tu-be-removebg-preview.png?t=1668479885",
+                    "color": "Xanh Dương",
+                    "type": "bánh kem",
+                    "size": "17",
+                    "quantity": 1
+                }
+            ],
+            "formattedTotal": 340000,
+            "payIn": "Chưa thanh toán",
+            "deliveryMethod": "Đang vận chuyển",
+            "status": "Chưa nhận hàng",
+            "userName": "thaothao2601",
+            "id": 25
+        },
+        {
+            "nameBuy": "Nguyễn Văn Hùng",
+            "email": "dathhcc2@gmail.com",
+            "phoneBuy": "0357626978",
+            "nameReceive": "Nguyễn Văn Hùng",
+            "phoneReceive": "0357626978",
+            "province": "Lâm Đồng",
+            "district": "Bảo Lộc",
+            "ward": "Bảo Thanh",
+            "address": "",
+            "product": [
+                {
+                    "id": 3,
+                    "name": "TINY PRINCE",
+                    "price": "340000",
+                    "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-hoang-tu-be-removebg-preview.png?t=1668479885",
+                    "color": "Xanh Dương",
+                    "type": "bánh kem",
+                    "size": "17",
+                    "quantity": 1
+                }
+            ],
+            "formattedTotal": 340000,
+            "payIn": "Chưa thanh toán",
+            "deliveryMethod": "Đang đóng hàng",
+            "status": "Chưa nhận hàng",
+            "userName": "thaothao2601",
             "id": 26
         },
         {
-            "nameBuy": "thaot",
+            "nameBuy": "Trần Thị Phương Thảo",
             "email": "dathhcc2@gmail.com",
             "phoneBuy": "0357626978",
-            "nameReceive": "dat",
+            "nameReceive": "Trần Thị Phương Thảo",
             "phoneReceive": "0357626978",
-            "province": "--Chọn tỉnh thành--",
-            "district": "--Chọn quận/huyện--",
-            "ward": "--Chọn phường/xã--",
+            "province": "Hương Yên",
+            "district": "Văn Giang",
+            "ward": "Văn Nghĩa",
+            "address": "",
+            "product": [
+                {
+                    "id": 1,
+                    "name": "THE INCREDIBLE",
+                    "price": "380000",
+                    "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-increable-removebg-preview.png?t=1668479885",
+                    "color": "Đỏ",
+                    "type": "bánh kem",
+                    "size": "17",
+                    "quantity": 1
+                },
+                {
+                    "id": 2,
+                    "name": "SCHOOL BUS",
+                    "price": "350000",
+                    "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-school-bus-removebg-preview.png?t=1668479885",
+                    "color": "Đỏ",
+                    "type": "bánh kem",
+                    "size": "17",
+                    "quantity": 1
+                }
+            ],
+            "formattedTotal": 730000,
+            "payIn": "Nhận hàng thanh toán",
+            "deliveryMethod": "Hoàn hàng",
+            "status": "",
+            "userName": "thaothao2601",
+            "id": 23
+        },
+        {
+            "nameBuy": "Nguyễn Văn Hùng",
+            "email": "dathhcc2@gmail.com",
+            "phoneBuy": "0357626978",
+            "nameReceive": "Nguyễn Văn Hùng",
+            "phoneReceive": "0357626978",
+            "province": "Lâm Đồng",
+            "district": "Bảo Lộc",
+            "ward": "Bảo Thanh",
             "address": "",
             "product": [
                 {
@@ -393,34 +426,53 @@
                     "type": "bánh kem",
                     "size": "17",
                     "quantity": 1
-                },
+                }
+            ],
+            "formattedTotal": 340000,
+            "payIn": "Chưa thanh toán",
+            "deliveryMethod": "Đang đóng hàng",
+            "status": "Chưa nhận hàng",
+            "userName": "thaothao2601",
+            "id": 24
+        },
+        {
+            "nameBuy": "Nguyễn Văn Hùng",
+            "email": "dathhcc2@gmail.com",
+            "phoneBuy": "0357626978",
+            "nameReceive": "Nguyễn Văn Hùng",
+            "phoneReceive": "0357626978",
+            "province": "Lâm Đồng",
+            "district": "Bảo Lộc",
+            "ward": "Bảo Thanh",
+            "address": "",
+            "product": [
                 {
-                    "id": 5,
-                    "name": "SPIDER MAN",
-                    "price": "380000",
-                    "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-nguoi-nhen-removebg-preview.png?t=1668479885",
+                    "id": 3,
+                    "name": "TINY PRINCE",
+                    "price": "340000",
+                    "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-hoang-tu-be-removebg-preview.png?t=1668479885",
                     "color": "Xanh Dương",
                     "type": "bánh kem",
                     "size": "17",
                     "quantity": 1
                 }
             ],
-            "formattedTotal": 720000,
-            "payIn": "",
+            "formattedTotal": 340000,
+            "payIn": "Đã thanh toán",
             "deliveryMethod": "Đang đóng hàng",
             "status": "Chưa nhận hàng",
             "userName": "thaothao2601",
-            "id": 27
+            "id": 24
         },
         {
-            "nameBuy": "dat",
+            "nameBuy": "Nguyễn Văn Hùng",
             "email": "dathhcc2@gmail.com",
             "phoneBuy": "0357626978",
-            "nameReceive": "dat",
+            "nameReceive": "Nguyễn Văn Hùng",
             "phoneReceive": "0357626978",
-            "province": "--Chọn tỉnh thành--",
-            "district": "--Chọn quận/huyện--",
-            "ward": "--Chọn phường/xã--",
+            "province": "Lâm Đồng",
+            "district": "Bảo Lộc",
+            "ward": "Bảo Thanh",
             "address": "",
             "product": [
                 {
@@ -431,35 +483,25 @@
                     "color": "Xanh Dương",
                     "type": "bánh kem",
                     "size": "17",
-                    "quantity": 2
-                },
-                {
-                    "id": 5,
-                    "name": "SPIDER MAN",
-                    "price": "380000",
-                    "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-nguoi-nhen-removebg-preview.png?t=1668479885",
-                    "color": "Xanh Dương",
-                    "type": "bánh kem",
-                    "size": "17",
-                    "quantity": 2
+                    "quantity": 1
                 }
             ],
-            "formattedTotal": 1440000,
-            "payIn": "",
+            "formattedTotal": 340000,
+            "payIn": "Đã thanh toán",
             "deliveryMethod": "Đang đóng hàng",
             "status": "Chưa nhận hàng",
             "userName": "thaothao2601",
-            "id": 28
+            "id": 24
         },
         {
-            "nameBuy": "dat",
-            "email": "dathhcc@gmail.com",
+            "nameBuy": "Nguyễn Văn Hùng",
+            "email": "dathhcc2@gmail.com",
             "phoneBuy": "0357626978",
-            "nameReceive": "dat",
+            "nameReceive": "Nguyễn Văn Hùng",
             "phoneReceive": "0357626978",
-            "province": "--Chọn tỉnh thành--",
-            "district": "--Chọn quận/huyện--",
-            "ward": "--Chọn phường/xã--",
+            "province": "Lâm Đồng",
+            "district": "Bảo Lộc",
+            "ward": "Bảo Thanh",
             "address": "",
             "product": [
                 {
@@ -470,25 +512,15 @@
                     "color": "Xanh Dương",
                     "type": "bánh kem",
                     "size": "17",
-                    "quantity": 2
-                },
-                {
-                    "id": 5,
-                    "name": "SPIDER MAN",
-                    "price": "380000",
-                    "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-nguoi-nhen-removebg-preview.png?t=1668479885",
-                    "color": "Xanh Dương",
-                    "type": "bánh kem",
-                    "size": "17",
-                    "quantity": 2
+                    "quantity": 1
                 }
             ],
-            "formattedTotal": 1440000,
-            "payIn": "",
+            "formattedTotal": 340000,
+            "payIn": "Đã thanh toán",
             "deliveryMethod": "Đang đóng hàng",
             "status": "Chưa nhận hàng",
             "userName": "thaothao2601",
-            "id": 29
+            "id": 24
         }
     ],
     "products": [

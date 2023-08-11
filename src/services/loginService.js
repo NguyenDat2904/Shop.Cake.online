@@ -12,7 +12,7 @@ export const getUser = async (user, password) => {
 };
 export const getOrder = async () => {
     try {
-        const results = await httpRequest.get(`orders`);
+        const results = await httpRequest.get(`orders`, {});
         return results;
     } catch (error) {
         console.log(error);

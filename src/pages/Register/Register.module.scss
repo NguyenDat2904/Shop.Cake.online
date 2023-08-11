@@ -194,3 +194,27 @@
     bottom: -20px;
     font-weight: 400;
 }
+@media (max-width: 576px) {
+    .wrapper {
+        padding: 60px 10px;
+    }
+    .form {
+        padding: 30px 15px;
+        .block {
+            flex-direction: column;
+            .block1 {
+                width: 100%;
+            }
+            .block2 {
+                width: 100%;
+                padding: 0;
+            }
+        }
+        .block4 {
+            display: flex;
+            .button {
+                padding: 10px 15px;
+            }
+        }
+    }
+}

@@ -106,14 +106,6 @@ const AppProvider = (props) => {
         await getUser.deleteUser(acceptUser);
         setDataUser((prevData) => prevData.filter((user) => user.id !== acceptUser));
     };
-    const handleAcptRemoveUserSee = async () => {
-        await getProduct.deleteSee(getlookAcc);
-        setGetLook((prevData) => prevData.filter((user) => user.id !== getlookAcc));
-    };
-    const handleAcptRemoveUserFavourite = async () => {
-        await getProduct.deleteSee(getLikesAcc);
-        setGetLikes((prevData) => prevData.filter((user) => user.id !== getLikesAcc));
-    };
 
     const handleAcptRemoveProduct = async () => {
         await getProduct.deleteProduct(acceptProductAdmin);

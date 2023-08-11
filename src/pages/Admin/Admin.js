@@ -16,6 +16,7 @@ import ModalAddProduct from '~/component/ModalAddProduct/ModalAddProduct';
 import OrderManager from './OrderManager/OrderManager';
 import IsLoading from '~/component/IsLoading/IsLoading';
 import { AppContext } from '~/hook/context';
+import ContactAdmin from './ContactAdmin/ContactAdmin';
 const cx = classnames.bind(styles);
 function Admin({ setIsLoggedIn, setIsAdmin, isLogin }) {
     const { isShowingUser, isShowingProduct, isShowingAddCustomer, isShowingAddProduct, toggle } = useModal();
@@ -35,6 +36,7 @@ function Admin({ setIsLoggedIn, setIsAdmin, isLogin }) {
                 <Route path="/customer" element={<Customer toggle={toggle} />} />
                 <Route path="/product" element={<ProductManager toggle={toggle} />} />
                 <Route path="/order" element={<OrderManager toggle={toggle} />} />
+                <Route path="/contact" element={<ContactAdmin toggle={toggle} />} />
             </Routes>
         </div>
     );

@@ -96,3 +96,11 @@ export const postContact = async (nameContact, emailContact, phoneContact, conte
         console.log(error);
     }
 };
+export const getContact = async () => {
+    try {
+        const results = await httpRequest.get(`dataContact`, {});
+        return results.data;
+    } catch (error) {
+        console.log(error);
+    }
+};

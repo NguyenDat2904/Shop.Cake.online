@@ -349,7 +349,18 @@
     .col-right {
         padding: 0;
     }
-    .flex-block{
+    .flex-block {
         display: block;
+    }
+    .slick {
+        .promotionalProducts {
+            h2 {
+                font-size: 35px;
+                line-height: 50px;
+            }
+            p {
+                width: 100%;
+            }
+        }
     }
 }
