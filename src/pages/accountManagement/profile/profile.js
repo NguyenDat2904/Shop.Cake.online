@@ -50,7 +50,14 @@ const Profile = (prop) => {
             <div className={cx('leftProfile')}>
                 <div className={cx('infor-user')}>
                     <div className={cx('img')}>
-                        <img src={img} alt="" />
+                        <img
+                            src={
+                                img === undefined
+                                    ? 'https://inkythuatso.com/uploads/thumbnails/800/2023/03/9-anh-dai-dien-trang-inkythuatso-03-15-27-03.jpg'
+                                    : img
+                            }
+                            alt=""
+                        />
                     </div>
                     <div className={cx('nameProfile')}>
                         <h4>{fullName}</h4>
