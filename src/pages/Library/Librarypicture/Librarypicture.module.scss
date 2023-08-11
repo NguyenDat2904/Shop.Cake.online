@@ -110,24 +110,29 @@
         }
     }
 }
-@media (max-width: 1025px) and (min-width: 640px) {
-    .librarypicture {
+@media (min-width: 575px) and (max-width: 992px) {    .librarypicture {
         .nextPage {
+            padding: 0 10px;
             .listCartLibrary {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: auto;
+                margin: 60px 0;
             }
         }
     }
 }
-@media (max-width: 640px) {
+@media (max-width: 576px) {
     .librarypicture {
         .nextPage {
+            padding: 0 10px;
+
             .listCartLibrary {
                 display: grid;
                 grid-template-columns: 1fr;
                 grid-template-rows: auto;
+                margin: 60px 0;
+
             }
         }
     }

@@ -25,8 +25,8 @@ function Cart({ toggle }) {
         <>
             <Banner page="Giỏ hàng" />
             <section className={cx('wrapper')}>
-                <div className="container flex-column">
-                    <div className="childrens flex-item">
+                <div className={cx('container ', 'flex-column', 'cart-mobile')}>
+                    <div className={cx('container ', 'header-mobile')}>
                         <div className={cx('table')}>Sản phẩm</div>
                         <div className={cx('table', 'table-small')}>Đơn giá</div>
                         <div className={cx('table', 'table-small')}>Số lượng</div>

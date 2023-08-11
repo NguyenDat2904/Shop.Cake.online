@@ -199,7 +199,7 @@ function Introduce() {
                 </div>
             </section>
             <div className={cx('banner2')}>
-                <section className="container">
+                <section className={cx('container', 'flex-mobile')}>
                     <div className={cx('pic-chef')}>
                         <div className={cx('chef')}></div>
                     </div>

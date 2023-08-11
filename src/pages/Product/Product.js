@@ -182,9 +182,105 @@ function Product({ toggle }) {
         <>
             <Banner page="Sản phẩm" title="Sản phẩm" />
             <section ref={targetElementRef} className={cx('unique')}>
-                <section className="container">
+                <section className={cx('container', 'flex-mobile')}>
+                    <div className={cx('col-right')}>
+                        <div className={cx('repeat-header')}>
+                            <div className={cx('repeat-limit')}>
+                                <label htmlFor="">Hiển thị</label>
+                                <select name="select" onChange={handleSelectChange}>
+                                    <option value="">Mặc định</option>
+                                    <option value="9">9</option>
+                                    <option value="18">18</option>
+                                    <option value="27">27</option>
+                                    <option value="36">36</option>
+                                    <option value="45">45</option>
+                                </select>
+                            </div>
+                            <div className={cx('repeat-sort')}>
+                                <label htmlFor="">Sắp xếp</label>
+                                <select name="select" id="" onChange={handleSelectSort}>
+                                    <option value="">Mặc định</option>
+                                    <option value="1">Sắp xếp theo tên (A-Z)</option>
+                                    <option value="2">Sắp xếp theo tên (Z-A)</option>
+                                    <option value="3">Sắp xếp theo giá (Nhỏ -{'>'} Lớn)</option>
+                                    <option value="4">Sắp xếp theo giá (Lớn -{'>'} Nhỏ)</option>
+                                    <option value="5">Sắp xếp theo khuyến mãi (Có -{'>'} không)</option>
+                                    <option value="6">Sắp xếp theo khuyến mãi (Không -{'>'} Có)</option>
+                                </select>
+                            </div>
+                            <div className={cx('repeat-view')}>
+                                <div className={cx('item-icon')}>
+                                    <FontAwesomeIcon icon={faTableCellsLarge} />
+                                </div>
+                                <div className={cx('item-icon')}>
+                                    <FontAwesomeIcon icon={faList} />
+                                </div>
+                            </div>
+                        </div>
+                        {loading ? (
+                            <div className={cx('loading')}>
+                                <FontAwesomeIcon icon={faSpinner} spin />
+                            </div>
+                        ) : (
+                            <>
+                                <div className={cx('repeat-box')}>
+                                    {dataSortSave.length > 0 ? productSort : productList}
+                                </div>
+                                <ul className={cx('paggin', 'flex-item')}>
+                                    <li
+                                        className={cx('paggin-item', active === 1 && 'disable', 'flex-center')}
+                                        onClick={() => handlePerPage(1)}
+                                    >
+                                        <FontAwesomeIcon icon={faAnglesLeft} />
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 1 && 'disable', 'flex-center')}
+                                        onClick={() => handlePerPage(5)}
+                                    >
+                                        <FontAwesomeIcon icon={faAngleLeft} />
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 1 && 'active', 'flex-center')}
+                                        onClick={() => handlePerPage(1)}
+                                    >
+                                        1
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 2 && 'active', 'flex-center')}
+                                        onClick={() => handlePerPage(2)}
+                                    >
+                                        2
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 3 && 'active', 'flex-center')}
+                                        onClick={() => handlePerPage(3)}
+                                    >
+                                        3
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 4 && 'active', 'flex-center')}
+                                        onClick={() => handlePerPage(4)}
+                                    >
+                                        4
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 4 && 'disable', 'flex-center')}
+                                        onClick={() => handlePerPage(6)}
+                                    >
+                                        <FontAwesomeIcon icon={faAngleRight} />
+                                    </li>
+                                    <li
+                                        className={cx('paggin-item', active === 4 && 'disable', 'flex-center')}
+                                        onClick={() => handlePerPage(4)}
+                                    >
+                                        <FontAwesomeIcon icon={faAnglesRight} />
+                                    </li>
+                                </ul>
+                            </>
+                        )}
+                    </div>
                     <div className={cx('col-left')}>
-                        <div className="childrens">
+                        <div className={cx('childrens', 'grid-mobile')}>
                             <SideBar className={cx('sidebar-wrapper')} title="Danh mục sản phẩm">
                                 <Select
                                     title="Bánh theo chủ đề"
@@ -273,100 +369,6 @@ function Product({ toggle }) {
                                 <NavLink to="product" className={cx('thumnail')}></NavLink>
                             </div>
                         </div>
-                    </div>
-                    <div className={cx('col-right')}>
-                        <div className={cx('repeat-header')}>
-                            <div className={cx('repeat-limit')}>
-                                <label htmlFor="">Hiển thị</label>
-                                <select name="select" onChange={handleSelectChange}>
-                                    <option value="">Mặc định</option>
-                                    <option value="9">9</option>
-                                    <option value="18">18</option>
-                                    <option value="27">27</option>
-                                    <option value="36">36</option>
-                                    <option value="45">45</option>
-                                </select>
-                            </div>
-                            <div className={cx('repeat-sort')}>
-                                <label htmlFor="">Sắp xếp</label>
-                                <select name="select" id="" onChange={handleSelectSort}>
-                                    <option value="">Mặc định</option>
-                                    <option value="1">Sắp xếp theo tên (A-Z)</option>
-                                    <option value="2">Sắp xếp theo tên (Z-A)</option>
-                                    <option value="3">Sắp xếp theo giá (Nhỏ -{'>'} Lớn)</option>
-                                    <option value="4">Sắp xếp theo giá (Lớn -{'>'} Nhỏ)</option>
-                                    <option value="5">Sắp xếp theo khuyến mãi (Có -{'>'} không)</option>
-                                    <option value="6">Sắp xếp theo khuyến mãi (Không -{'>'} Có)</option>
-                                </select>
-                            </div>
-                            <div className={cx('repeat-view')}>
-                                <div className={cx('item-icon')}>
-                                    <FontAwesomeIcon icon={faTableCellsLarge} />
-                                </div>
-                                <div className={cx('item-icon')}>
-                                    <FontAwesomeIcon icon={faList} />
-                                </div>
-                            </div>
-                        </div>
-                        {loading ? (
-                            <div className={cx('loading')}>
-                                <FontAwesomeIcon icon={faSpinner} spin />
-                            </div>
-                        ) : (
-                            <>
-                                <div className={cx('repeat-box')}>{dataSortSave.length > 0 ? productSort : productList}</div>
-                                <ul className={cx('paggin', 'flex-item')}>
-                                    <li
-                                        className={cx('paggin-item', active === 1 && 'disable', 'flex-center')}
-                                        onClick={() => handlePerPage(1)}
-                                    >
-                                        <FontAwesomeIcon icon={faAnglesLeft} />
-                                    </li>
-                                    <li
-                                        className={cx('paggin-item', active === 1 && 'disable', 'flex-center')}
-                                        onClick={() => handlePerPage(5)}
-                                    >
-                                        <FontAwesomeIcon icon={faAngleLeft} />
-                                    </li>
-                                    <li
-                                        className={cx('paggin-item', active === 1 && 'active', 'flex-center')}
-                                        onClick={() => handlePerPage(1)}
-                                    >
-                                        1
-                                    </li>
-                                    <li
-                                        className={cx('paggin-item', active === 2 && 'active', 'flex-center')}
-                                        onClick={() => handlePerPage(2)}
-                                    >
-                                        2
-                                    </li>
-                                    <li
-                                        className={cx('paggin-item', active === 3 && 'active', 'flex-center')}
-                                        onClick={() => handlePerPage(3)}
-                                    >
-                                        3
-                                    </li>
-                                    <li
-                                        className={cx('paggin-item', active === 4 && 'active', 'flex-center')}
-                                        onClick={() => handlePerPage(4)}
-                                    >
-                                        4
-                                    </li>
-                                    <li
-                                        className={cx('paggin-item', active === 4 && 'disable', 'flex-center')}
-                                        onClick={() => handlePerPage(6)}
-                                    >
-                                        <FontAwesomeIcon icon={faAngleRight} />
-                                    </li>
-                                    <li
-                                        className={cx('paggin-item', active === 4 && 'disable', 'flex-center')}
-                                        onClick={() => handlePerPage(4)}
-                                    >
-                                        <FontAwesomeIcon icon={faAnglesRight} />
-                                    </li>
-                                </ul>
-                            </>
-                        )}
                     </div>
                 </section>
             </section>

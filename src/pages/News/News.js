@@ -14,7 +14,7 @@ function News() {
             <div className={cx('News')}>
                 <div className={cx('container', 'Hop')}>
                     <div className={cx('news-left')}>
-                        <SideBar className={cx('wrapper')}>
+                        <SideBar className={cx('wrapper', 'search-mobile')}>
                             <form className={cx('box_search')}>
                                 <div className={cx('input-search')}>
                                     <input type="text" className={cx('input')} placeholder="Nhập từ khóa..."></input>
@@ -28,7 +28,7 @@ function News() {
                             <div className={cx('box')}>Mẫu Bánh Mới</div>
                             <div className={cx('box', 'box-text')}>Tin Vắn</div>
                         </SideBar>
-                        <SideBar title="BÀI VIẾT MỚI NHẤT" className={cx('wrapper')}>
+                        <SideBar title="BÀI VIẾT MỚI NHẤT" className={cx('wrapper', 'wrapper-mobile')}>
                             <div className={cx('newst')}>
                                 <div className={cx('sidebar_div')}>
                                     <div className={cx('img-new')}>
@@ -82,7 +82,7 @@ function News() {
                                 </div>
                             </div>
                         </SideBar>
-                        <SideBar title="TAG" className={cx('wrapper')}>
+                        <SideBar title="TAG" className={cx('wrapper', 'search-mobile')}>
                             <input className={cx('box_tag')} type="button" Value="Bánh"></input>
                             <input className={cx('box_tag')} type="button" Value="Trà sữa"></input>
                             <input className={cx('box_tag')} type="button" Value="Thức uống"></input>

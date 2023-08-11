@@ -33,7 +33,7 @@ function Header({ setIsLoggedIn }) {
                     </div>
                     <div className={cx('col', 'col-right')}>
                         <div className={cx('children')}>
-                            <span className={cx('desc')}>1900 9477</span>
+                            <span className={cx('desc', 'desc-mobile')}>1900 9477</span>
                             <span className={cx('user-email', 'desc')}>
                                 {email ? email : 'Shopcake.online@gmail.com'}
                             </span>

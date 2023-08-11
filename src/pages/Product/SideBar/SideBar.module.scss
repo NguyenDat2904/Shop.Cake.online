@@ -27,3 +27,10 @@
         margin: 0;
     }
 }
+@media (min-width: 575px) and (max-width: 992px) {
+    
+    .group {
+        display: inline-block;
+        vertical-align: top;
+    }
+}

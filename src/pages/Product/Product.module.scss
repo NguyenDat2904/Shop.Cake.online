@@ -1,4 +1,3 @@
-
 .unique {
     height: auto;
     padding: 100px 10px;
@@ -12,7 +11,7 @@
 }
 .col-right {
     width: 66.66666667%;
-    order: 2;
+    order: 12;
     display: block;
 }
 .sidebar-wrapper {
@@ -137,4 +136,72 @@
     height: 20px;
     color: #fc7c7c;
     font-size: 30px;
+}
+@media (min-width: 575px) and (max-width: 992px) {
+    .unique {
+        padding: 60px 10px;
+        .flex-mobile {
+            display: inline-block;
+        }
+    }
+    .col-right {
+        width: 100%;
+        order: 1;
+        padding: 0px 0px 50px;
+    }
+    .repeat-box {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .paggin {
+        justify-content: center;
+    }
+    .col-left {
+        width: 100%;
+        display: inline-block;
+        vertical-align: top;
+        margin: 0px 30px 30px 0px;
+        padding: 0;
+        order: 2;
+        .grid-mobile {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+    }
+    .sidebar-wrapper {
+        margin: 0;
+    }
+}
+@media (max-width: 576px) {
+    .unique {
+        padding: 60px 10px;
+    }
+    .col-right {
+        width: 100%;
+        order: 1;
+        padding: 0px 0px 50px;
+        .repeat-header {
+            .repeat-limit {
+                padding-bottom: 10px;
+            }
+            .repeat-sort {
+                padding-bottom: 10px;
+            }
+            .repeat-view {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    }
+    .col-left {
+        width: 100%;
+        order: 2;
+        padding: 0;
+    }
+    .repeat-box {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .paggin {
+        justify-content: center;
+    }
 }

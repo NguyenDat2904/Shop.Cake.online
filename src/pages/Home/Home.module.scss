@@ -19,15 +19,25 @@
             font-family: Playfair Display;
             font-weight: 600;
             line-height: 42px;
+
+            color: var(--c-1668480455247, #282828);
             &:hover {
                 color: #fc7c7c;
                 transition: 0.5s;
             }
         }
         p {
+            height: auto;
+            width: 100%;
+            top: 0;
+            left: 0px;
             text-align: center;
-            font-family: Roboto, sans-serif;
-            color: rgb(73, 72, 72);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            position: relative;
+            font-weight: 400;
+            overflow: hidden;
         }
         .img {
             width: 100%;
@@ -42,24 +52,28 @@
     max-width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 330px;
     gap: 30px;
     .discount1 {
         background-image: url('https://demo037126.web30s.vn/datafiles/38469/upload/images/home/banner1.png');
         background-repeat: no-repeat;
         background-size: cover;
-        border-radius: 20px;
+        background-position: 50% 50%;
+        border-radius: 25px;
+        width: 100%;
     }
     .discount2 {
         background-image: url('https://demo037126.web30s.vn/datafiles/38469/upload/images/home/banner2.png');
+        background-position: 50% 50%;
+        border-radius: 25px;
         background-repeat: no-repeat;
         background-size: cover;
-        border-radius: 20px;
+        width: 100%;
     }
 }
 .position {
     margin-top: 70px;
-    margin-left: 50px;
+    margin-bottom: 70px;
+    margin-left: 45px;
 }
 h3 {
     font-size: 28px;
@@ -76,7 +90,6 @@ h3 {
     font-size: 36px;
 }
 .btnProduct {
-    margin-top: 25px;
     width: auto;
     color: var(--c-1668480534016, #fff);
     font-size: 14px;
@@ -143,8 +156,7 @@ h3 {
     width: var(--widthcontainer);
     max-width: 100%;
     height: auto;
-    margin-bottom: 100px;
-    margin-top: 30px;
+    padding: 100px 10px;
     h3 {
         color: var(--c-1668480455247, #282828);
         font-size: 42px;
@@ -222,7 +234,6 @@ h3 {
 }
 .allKindsOfBread {
     margin: 0 auto;
-    margin-bottom: 100px;
     height: auto;
     padding: 110px 10px;
     background-image: url('https://demo037126.web30s.vn/datafiles/web30s/upload/images/7101-7200/30S-03-7126/banner-fullwidth1.png');
@@ -251,9 +262,10 @@ h3 {
         text-align: center;
         font-weight: 400;
         font-size: 16px;
+        margin-bottom: 30px;
     }
     button {
-        position: absolute;
+        position: relative;
         left: 50%;
         transform: translateX(-50%);
     }
@@ -264,7 +276,7 @@ h3 {
     width: var(--widthcontainer);
     max-width: 100%;
     height: auto;
-    margin-bottom: 100px;
+    padding: 100px 10px;
     .promotionalProducts {
         h2 {
             padding: 0;
@@ -299,7 +311,8 @@ h3 {
     --widthcontainer: 1200px;
     width: var(--widthcontainer);
     max-width: 100%;
-    margin-bottom: 100px;
+    padding: 100px 0;
+    overflow: hidden;
     .text {
         h2 {
             padding: 0;
@@ -438,187 +451,187 @@ h3 {
         }
     }
 }
-@media (max-width: 1025px) and (min-width: 768px) {
-    .news {
-        .context {
-            padding: 10px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto;
-            .none {
-                display: none;
-            }
-        }
-    }
-}
-@media (max-width: 1025px) {
+@media (min-width: 575px) and (max-width: 992px) {
     .select {
-        padding: 10px;
+        padding: 60px 10px;
         display: grid;
         height: auto;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
-        gap: 20px;
+        grid-template-rows: auto;
+        grid-gap: 30px 30px;
+        .cart {
+            h3 {
+                font-size: 20px;
+                line-height: 30px;
+            }
+        }
     }
-    .news {
-        .text {
-            h2 {
-                font-size: 30px;
-            }
-            p {
-                margin: 0 10px;
-            }
+    .discountGoods {
+        padding: 0px 10px;
+        h3 {
+            font-size: 23px;
+        }
+        h2 {
+            padding: 0px 50px 0px 0px;
+            font-size: 30px;
+            line-height: 38px;
+            margin: 0px 0px 15px;
+        }
+    }
+    .mainDirectory {
+        padding: 60px 10px;
+        h3 {
+            font-size: 35px;
+            line-height: 50px;
+        }
+    }
+    .allKindsOfBread {
+        background-position: 50% 50%;
+        padding: 60px 10px;
+        height: auto;
+        display: block;
+        h3 {
+            font-size: 25px;
+        }
+        h2 {
+            font-size: 35px;
+            line-height: 50px;
         }
     }
     .mainDirectory {
         .productsList {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: auto auto auto;
-            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+    .slick {
+        padding: 60px 10px;
+        .promotionalProducts {
+            .title-h2 {
+                font-size: 35px;
+                line-height: 50px;
+            }
+            p {
+                width: 100%;
+            }
+        }
+    }
+    .news {
+        padding: 100px 0;
+        overflow: hidden;
+        .title-h2 {
+            font-size: 35px;
+            line-height: 50px;
+        }
+        .text {
+            p {
+                width: 100%;
+                left: 0px;
+                padding: 0 10px;
+            }
+        }
+        .context {
+            padding: 0 10px;
+            .cart {
+                width: 358px;
+            }
         }
     }
 }
-@media (max-width: 768px) {
-    .news {
-        .context {
-            width: 80%;
-            margin: 0 auto;
-            padding: 10px;
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: auto;
-            .none {
-                display: none;
+
+@media (max-width: 576px) {
+    .select {
+        padding: 60px 10px;
+        display: grid;
+        height: auto;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: auto;
+        grid-gap: 30px 30px;
+        .cart {
+            h3 {
+                font-size: 20px;
+                line-height: 30px;
             }
-            .toNone {
-                display: none;
+        }
+    }
+    .discountGoods {
+        padding: 0px 10px;
+        grid-template-columns: repeat(1, 1fr);
+        h3 {
+            font-size: 20px;
+        }
+        h2 {
+            padding: 0px 50px 0px 0px;
+            font-size: 23px;
+            line-height: 30px;
+            margin: 0px 0px 15px;
+        }
+    }
+    .position {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        margin-left: 25px;
+    }
+    .mainDirectory {
+        padding: 60px 10px;
+        h3 {
+            font-size: 30px;
+            line-height: 50px;
+        }
+        .cakes {
+            flex-wrap: wrap;
+            .span {
+                font-size: 16px;
             }
         }
     }
     .allKindsOfBread {
-        .allKinds {
-            h3 {
-                font-size: 28px;
-            }
-            h2 {
-                font-size: 34px;
-            }
-        }
-    }
-    .slick {
-        .promotionalProducts {
-            h2 {
-                font-size: 34px;
-            }
-            p {
-                width: 90%;
-            }
-        }
-    }
-    .armorial {
-        margin: 10px;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 300px;
-        .img4None {
-            display: none;
-        }
-    }
-    .discountGoods {
+        background-position: 50% 50%;
+        padding: 60px 10px;
         height: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .productsList {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto;
-        gap: 20px;
-    }
-}
-@media (max-width: 640px) and (min-width: 320px) {
-    .select {
-        padding: 10px;
-        display: grid;
-        height: auto;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        gap: 20px;
+        display: block;
+        h3 {
+            font-size: 25px;
+        }
+        h2 {
+            font-size: 30px;
+            line-height: 40px;
+        }
     }
     .mainDirectory {
         .productsList {
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: auto;
-            gap: 20px;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 10px 10px;
         }
     }
-    .armorial {
-        margin: 10px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 300px;
-        .img4None {
-            display: none;
-        }
-        .img5None {
-            display: none;
-        }
-    }
-    .mainDirectory {
-        h3 {
-            font-size: 26px;
-        }
-        .cakes {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto;
-            flex-wrap: wrap;
-            position: relative;
-            .span {
-                padding: 0;
-                text-align: center;
-                font-size: 16px;
+    .slick {
+        padding: 60px 10px;
+        .promotionalProducts {
+            .title-h2 {
+                font-size: 30px;
+                line-height: 40px;
             }
-            .span3 {
-                position: absolute;
-                top: 30px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            .noSpan {
-                font-size: 16px;
+            p {
+                width: 100%;
             }
         }
     }
-}
-@media (max-width: 320px) {
-    .mainDirectory {
-        h3 {
-            font-size: 26px;
+    .news {
+        padding: 100px 0;
+        overflow: hidden;
+        .title-h2 {
+            font-size: 35px;
+            line-height: 50px;
         }
-        .cakes {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto;
-            flex-wrap: wrap;
-            position: relative;
-            .span {
-                padding: 0;
-                text-align: center;
-                font-size: 12px;
+        .text {
+            p {
+                width: 100%;
+                left: 0px;
             }
-            .span3 {
-                position: absolute;
-                top: 30px;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            .noSpan {
-                font-size: 12px;
+        }
+        .context {
+            padding: 0 10px;
+            .cart {
+                width: 358px;
             }
         }
     }

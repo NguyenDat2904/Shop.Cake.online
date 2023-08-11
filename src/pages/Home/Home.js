@@ -95,8 +95,8 @@ function Home({ toggle }) {
                         />
                         <h3>BÁNH THEO CHỦ ĐỀ</h3>
                         <p>
-                            Với mục tiêu trở thành lựa chọn tin cậy , duy nhất và tốt nhất về dòng bánh kem cao cấp,
-                            chún...
+                            Với mục tiêu trở thành điểm lựa chọn tin cậy, duy nhất và tốt nhất về dòng bánh kem cao cấp,
+                            chúng tôi cam kết...
                         </p>
                     </div>
                 </Link>
@@ -110,7 +110,7 @@ function Home({ toggle }) {
                         <h3>BÁNH SINH NHẬT TẠO HÌNH</h3>
                         <p>
                             Với mục tiêu trở thành điểm lựa chọn tin cậy, duy nhất và tốt nhất về dòng bánh kem cao cấp,
-                            chún...
+                            chúng tôi cam kết...
                         </p>
                     </div>
                 </Link>
@@ -123,7 +123,8 @@ function Home({ toggle }) {
                         />
                         <h3>BÁNH KEM THEO SỰ KIỆN</h3>
                         <p>
-                            Bánh sinh Nhật Đẹp mang nét mộc mạc, đặc trung làm say lòng không biết bao thế hệ người...
+                            Bánh Sinh Nhật Đẹp mang nét mộc mạc, đặc trưng làm say lòng không biết bao thế hệ người
+                            thưởng thức.
                         </p>
                     </div>
                 </Link>
@@ -137,7 +138,7 @@ function Home({ toggle }) {
                         <h3>BÁNH GATO FRESH GARDEN</h3>
                         <p>
                             Trong tiềm thức của nhiều người Việt, bánh sinh nhật không chỉ là một loại quà bình thường
-                            mà nó có mang ý nghĩa cho ...
+                            mà nó còn mang ý nghĩa cho sự đoàn viên; là biểu tượng của sự ấm no, hạnh phúc
                         </p>
                     </div>
                 </Link>
@@ -155,7 +156,7 @@ function Home({ toggle }) {
                             data-aos-easing="ease"
                             className={cx('title-h2')}
                         >
-                            Bánh mì <br /> Baguette
+                            Bánh mì Baguette
                         </h2>
                         <Link to={'/product'}>
                             <button className={cx('btnProduct')}>SẢN PHẨM</button>{' '}
@@ -167,8 +168,14 @@ function Home({ toggle }) {
                         <h3 data-aos="fade-up" data-aos-duration="700" data-aos-offset="300" data-aos-easing="ease">
                             Giảm giá 25%
                         </h3>
-                        <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-offset="300" data-aos-easing="ease">
-                            Bánh mì <br /> cao cấp
+                        <h2
+                            data-aos="fade-up"
+                            data-aos-duration="1000"
+                            data-aos-offset="300"
+                            data-aos-easing="ease"
+                            className={cx('title-h2')}
+                        >
+                            Bánh mì cao cấp
                         </h2>
                         <Link to={'/product'}>
                             <button className={cx('btnProduct')}>SẢN PHẨM</button>{' '}

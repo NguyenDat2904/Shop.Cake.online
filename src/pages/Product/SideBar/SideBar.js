@@ -5,11 +5,9 @@ const cx = classnames.bind(styles);
 
 function SideBar({ children, title, className }) {
     return (
-        <div className={cx('group', className)}>
+        <div className={cx(className, 'group')}>
             <div className="children">
-                <h2 className={cx('title')}>
-                    {title}
-                </h2>
+                <h2 className={cx('title')}>{title}</h2>
                 {children}
             </div>
         </div>

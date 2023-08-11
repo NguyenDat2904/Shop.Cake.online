@@ -35,7 +35,7 @@ export const SupportCurtomer = () => {
             </div>
             <div className={cx('productSupport')}>
                 <div className={cx('col-left')}>
-                    <div className="childrens">
+                    <div className={cx('childrens', 'grid-mobile')}>
                         <div className={cx('sidebar-wrapper-one')}>
                             <h3 className={cx('oneSupport')}>Danh mục dịch vụ</h3>
                             <div className={cx('service')}>

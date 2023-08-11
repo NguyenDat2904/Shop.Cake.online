@@ -127,3 +127,14 @@
     font-weight: 400;
     line-height: 1.5;
 }
+@media (max-width: 576px) {
+    .cart-mobile {
+        max-width: 620px;
+        overflow-x: auto;
+        .header-mobile {
+            width: 620px;
+            max-width: 620px;
+            flex-wrap: nowrap;
+        }
+    }
+}

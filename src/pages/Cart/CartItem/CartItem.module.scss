@@ -146,3 +146,19 @@
         // cursor: pointer;
     }
 }
+@media (max-width: 576px) {
+    .product{
+        .img{
+            width: 90px;
+            height: 90px;
+        }
+    }
+    .wrapper{
+
+        .header-mobile {
+            width: 620px;
+            max-width: 620px;
+            flex-wrap: nowrap;
+        }
+    }
+}

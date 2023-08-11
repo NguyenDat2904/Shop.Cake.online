@@ -475,3 +475,112 @@
     height: auto;
     padding: 100px 0;
 }
+
+@media (min-width: 575px) and (max-width: 992px) {
+    .video {
+        padding: 60px 10px 60px;
+        .videoimg {
+            .overlay {
+                .modal-video {
+                    width: 95%;
+                    top: 30px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+        }
+    }
+    .text {
+        display: block;
+        padding: 0 10px;
+        .lefttext {
+            width: 100%;
+            padding: 0;
+            .header {
+            }
+        }
+        .righttext {
+            width: 100%;
+            padding: 0;
+        }
+    }
+    .staff-text {
+        .text2 {
+            width: 100%;
+        }
+    }
+    .staff-img {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 10px;
+    }
+    .banner2 {
+        padding: 60px 10px;
+    }
+}
+@media (max-width: 576px) {
+    .video {
+        padding: 60px 10px 60px;
+        .videoimg {
+            .intro-icon {
+                .icon {
+                    width: 100px;
+                    height: 100px;
+                    font-size: 40px;
+                }
+            }
+            .overlay {
+                .modal-video {
+                    width: 95%;
+                    top: 30px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    height: 400px;
+                }
+            }
+        }
+    }
+    .text {
+        display: block;
+        padding: 0 10px;
+        .lefttext {
+            width: 100%;
+            padding: 0;
+            .header {
+            }
+        }
+        .righttext {
+            width: 100%;
+            padding: 0;
+        }
+    }
+    .armorial {
+        grid-template-columns: 1fr 1fr;
+    }
+    .staff-text {
+        .text1 {
+            font-size: 35px;
+            line-height: 50px;
+        }
+        .text2 {
+            padding: 0 10px;
+            width: 100%;
+        }
+    }
+    .staff-img {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 0 10px;
+    }
+    .banner2 {
+        padding: 60px 10px;
+        .flex-mobile {
+            display: block;
+        }
+        .review {
+            width: 100%;
+            padding: 30px 0px 0px 50px;
+            .comment {
+                font-size: 18px;
+            }
+        }
+    }
+}

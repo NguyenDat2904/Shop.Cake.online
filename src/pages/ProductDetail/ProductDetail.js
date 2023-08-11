@@ -185,7 +185,7 @@ function ProductDetail({ toggle }) {
                                     </div>
                                 </div>
                                 <div className={cx('control')}>
-                                    <div className="childrens flex-item">
+                                    <div className={cx('childrens', 'flex-item', 'flex-block')}>
                                         <div className={cx('btn-cart')}>
                                             <div className="childrens flex-item">
                                                 <div className={cx('btn-number', 'flex-center')}>

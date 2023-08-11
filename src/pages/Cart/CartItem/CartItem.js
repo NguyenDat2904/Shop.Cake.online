@@ -50,7 +50,7 @@ function CartItem({ product, toggle }) {
     return (
         <>
             <article className={cx('wrapper')}>
-                <div className="childrens flex-start">
+                <div className={cx('container ', 'flex-start', 'header-mobile')}>
                     <div className={cx('product')}>
                         <div className={cx('img')}>
                             <img className="img-full" src={product.img} alt="" />

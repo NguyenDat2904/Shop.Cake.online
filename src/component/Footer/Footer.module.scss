@@ -59,7 +59,6 @@ html {
         --width-container: 1200px;
         width: var(--width-container);
         max-width: 100%;
-        padding: 50px 0 50px 20px;
         border-top: 1px solid rgba(255, 255, 255, 0.2);
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         display: grid;
@@ -67,6 +66,8 @@ html {
         .contactInfo {
             border-right: 1px solid rgba(255, 255, 255, 0.2);
             padding-right: 20px;
+            padding-top: 60px;
+            padding-bottom: 60px;
             display: flex;
             flex-direction: column;
             gap: 25px;
@@ -103,6 +104,8 @@ html {
         }
         .informationProducts {
             padding-left: 30px;
+            padding-top: 60px;
+            padding-bottom: 60px;
             border-right: 1px solid rgba(255, 255, 255, 0.2);
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -135,12 +138,11 @@ html {
             }
         }
         .signUpFor {
-            padding: 0 0 0 40px;
+            padding: 60px 0 60px 40px;
             display: flex;
             flex-direction: column;
             gap: 5px;
             h2 {
-                margin-bottom: 20px;
                 font-size: 22px;
                 color: #e0e0e0;
                 font-weight: 600;
@@ -232,11 +234,10 @@ html {
     }
 
     .providers {
-        margin-top: 25px;
+        padding: 20px 10px;
         display: flex;
         justify-content: center;
         gap: 10px;
-
         p {
             width: auto;
             color: var(--c-1668480565824, #e0e0e0);
@@ -283,13 +284,23 @@ html {
     }
 }
 
-@media (min-width: 640px) and (max-width: 1025px) {
+@media (min-width: 575px) and (max-width: 992px) {
     .footer {
         .Information {
             display: block;
             .informationProducts {
                 border-top: 1px solid rgba(255, 255, 255, 0.2);
                 border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                padding: 30px 20px;
+                gap: 0;
+            }
+            .signUpFor {
+                width: 100%;
+                padding: 30px 20px;
+                gap: 20px;
+                h2 {
+                    font-size: 23px;
+                }
             }
         }
         .foorterService {
@@ -297,27 +308,71 @@ html {
             grid-template-columns: 1fr 1fr;
             gap: 30px;
             flex-wrap: wrap;
+            padding: 60px 10px 30px;
+            .servicePartial {
+                padding-top: 0;
+            }
+        }
+        .contactInfo {
+            width: 100%;
+            padding: 30px 20px;
+            gap: 20px;
         }
         .registerOnMultipleApps {
             width: 50%;
         }
     }
 }
-@media (max-width: 640px) {
+@media (max-width: 576px) {
     .footer {
         .Information {
             display: block;
             .informationProducts {
                 border-top: 1px solid rgba(255, 255, 255, 0.2);
                 border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                width: 100%;
+                padding: 30px 20px 10px 20px;
+                display: block;
+                .products {
+                    margin: 0px 0px 20px;
+                }
+            }
+            .contactInfo {
+                width: 100%;
+                padding: 30px 20px;
+                gap: 20px;
+            }
+            .signUpFor {
+                width: 100%;
+                padding: 30px 20px;
+                gap: 20px;
+                h2 {
+                    font-size: 23px;
+                }
             }
         }
         .foorterService {
             display: block;
             gap: 30px;
+            .servicePartial {
+                h2 {
+                    font-size: 20px;
+                    line-height: 30px;
+                }
+                h4 {
+                    font-size: 16px;
+                }
+            }
         }
         .registerOnMultipleApps {
             width: 50%;
+        }
+        .fix {
+            left: 80%;
+        }
+        .providers {
+            flex-direction: column;
+            align-items: center;
         }
     }
 }
