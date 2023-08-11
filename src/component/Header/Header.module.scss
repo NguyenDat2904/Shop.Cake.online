@@ -205,6 +205,9 @@
         width: 100%;
         height: 100%;
         position: relative;
+        .menubar {
+            display: none;
+        }
         .search {
             width: 25px;
             height: 25px;
@@ -212,7 +215,6 @@
             left: unset;
             overflow: visible;
             margin: 0px 20px 0px 0px;
-            display: block;
             position: relative;
             cursor: pointer;
             :hover {
@@ -223,6 +225,7 @@
                 width: 21px;
                 height: 21px;
             }
+
             .count {
                 height: 18px;
                 width: 18px;
@@ -243,6 +246,13 @@
 }
 
 @media (min-width: 575px) and (max-width: 992px) {
+    .cart-icon {
+        .children {
+            .menubar-mobile {
+                display: block;
+            }
+        }
+    }
     .col-left {
         display: none;
     }
@@ -262,6 +272,13 @@
 }
 
 @media (max-width: 576px) {
+    .cart-icon {
+        .children {
+            .menubar-mobile {
+                display: block;
+            }
+        }
+    }
     .col-left {
         display: none;
     }

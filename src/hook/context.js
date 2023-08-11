@@ -62,6 +62,8 @@ const AppProvider = (props) => {
     const [acceptUser, setAcceptUser] = useState(null);
     const [acceptProductAdmin, setAcceptProductAdmin] = useState(null);
     const [classStatus, setClassStatus] = useState(null);
+    const [toggleMobile, setToggleMobile] = useState(false);
+
     const location = useLocation();
     useEffect(() => {
         if (location.pathname === window.location.pathname) {
@@ -233,6 +235,8 @@ const AppProvider = (props) => {
         setLibraryProductvideo,
         perLibraryVideo,
         setPerLibraryVideo,
+        toggleMobile,
+        setToggleMobile,
     };
 
     return (

@@ -4,18 +4,20 @@ import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import classnames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faAngleUp, faBagShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faAngleUp, faBagShopping, faBars, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal/Modal';
 import Menu from '../Menu/Menu';
 import { AppContext } from '~/hook/context';
 import IsLoading from '../IsLoading/IsLoading';
 import NavBarProduct from './NavBarProduct/NavBarProduct';
+import HeaderMobile from '../HeaderMobile/HeaderMobile';
 const cx = classnames.bind(styles);
 
 function Header({ setIsLoggedIn }) {
     // 1. State
     const [icon] = useState(false);
-    const { setToggleCart, productDataCart, isLoading, handleIsLoading } = useContext(AppContext);
+    const { setToggleCart, productDataCart, isLoading, handleIsLoading, toggleMobile, setToggleMobile } =
+        useContext(AppContext);
     const email = localStorage.getItem('email');
     const img = localStorage.getItem('img');
     // 3. Functions
@@ -100,6 +102,7 @@ function Header({ setIsLoggedIn }) {
                 </div>
             </section>
             <section className={cx('header', 'bottom')}>
+                <HeaderMobile />
                 <div className={cx('container')}>
                     <div className={cx('logo')}>
                         <NavLink to={'/'} className={cx('img-logo')} onClick={handleIsLoading}></NavLink>
@@ -256,6 +259,12 @@ function Header({ setIsLoggedIn }) {
                             <div className={cx('search')} onClick={() => setToggleCart(true)}>
                                 <FontAwesomeIcon className={cx('icon')} icon={faBagShopping} />
                                 <div className={cx('count')}>{productDataCart.length}</div>
+                            </div>
+                            <div
+                                className={cx('search', 'menubar', 'menubar-mobile')}
+                                onClick={() => setToggleMobile(!toggleMobile)}
+                            >
+                                <FontAwesomeIcon icon={faBars} className={cx('icon')} />
                             </div>
                         </div>
                     </div>
