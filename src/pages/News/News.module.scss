@@ -437,7 +437,8 @@
         }
     }
 }
-@media (min-width: 575px) and (max-width: 992px) {
+
+@media (min-width: 575px) and (max-width: 1200px) {
     .news-right {
         padding: 60px 10px;
         height: auto;
@@ -445,6 +446,7 @@
         width: 100%;
         order: 1;
     }
+
     .context {
         .cart {
             width: 100%;
@@ -470,4 +472,3 @@
         }
     }
 }
-
