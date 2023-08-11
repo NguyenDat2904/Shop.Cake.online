@@ -12,6 +12,7 @@ const useModal = () => {
     const [isShowingNotionCompare, setIsShowingNotionCompare] = useState(false);
     const [isShowingHeart, setIsShowingHeart] = useState(false);
     const [isShowingNotionHeart, setIsShowingNotionHeart] = useState(false);
+    const [isShowingNotionContact, setIsShowingNotionContact] = useState(false);
 
     function toggle(number) {
         if (number === 1) {
@@ -91,6 +92,13 @@ const useModal = () => {
             } else {
                 document.body.style.overflowY = 'auto';
             }
+        } else if (number === 12) {
+            setIsShowingNotionContact(!isShowingNotionContact);
+            if (!isShowingNotionContact) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflowY = 'auto';
+            }
         }
     }
     return {
@@ -105,6 +113,7 @@ const useModal = () => {
         isShowingNotionCompare,
         isShowingHeart,
         isShowingNotionHeart,
+        isShowingNotionContact,
         toggle,
     };
 };

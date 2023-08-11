@@ -91,10 +91,11 @@
     user-select: none;
 }
 .button-contact {
-    width: 180px;
+    width: 200px;
     height: 47px;
     left: 0;
     top: 0;
+    border: none;
     cursor: pointer;
     background-color: var(--c-1668480339968, #fc7c7c);
     color: #fff;
@@ -106,6 +107,8 @@
     padding: 10px 40px;
     border-radius: 25px;
     display: inline-flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     &:hover {
         background-color: #2b4174;
@@ -182,9 +185,7 @@
         padding-right: 0px;
         padding-bottom: 0px;
     }
-    .contact-body{
+    .contact-body {
         text-align: start;
     }
 }
-
-

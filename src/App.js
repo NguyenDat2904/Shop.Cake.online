@@ -28,6 +28,7 @@ import ModalProductCompare from './component/ModalProductCompare/ModalProductCom
 import ModalNotionCompare from './component/ModalNotionCompare/ModalNotionCompare';
 import ModalProductHeart from './component/ModalProductHeart/ModalProductHeart';
 import ModalNotionHeart from './component/ModalNotionHeart/ModalNotionHeart';
+import ModalContact from './component/ModalContact/ModalContact';
 function App() {
     const {
         isShowing,
@@ -37,6 +38,7 @@ function App() {
         isShowingNotionCompare,
         isShowingHeart,
         isShowingNotionHeart,
+        isShowingNotionContact,
         toggle,
     } = useModal();
     const [isAdmin, setIsAdmin] = useState(true);
@@ -61,6 +63,7 @@ function App() {
                 <ModalNotionCompare isShowing={isShowingNotionCompare} hide={toggle} />
                 <ModalProductHeart isShowing={isShowingHeart} hide={toggle} />
                 <ModalNotionHeart isShowing={isShowingNotionHeart} hide={toggle} />
+                <ModalContact isShowing={isShowingNotionContact} hide={toggle} />
                 <ModalPayment isShowing={isShowingPayment} hide={toggle} />
                 <div className="App">
                     <Routes>
@@ -73,7 +76,7 @@ function App() {
                         <Route path="/news/" element={<News />} />
                         <Route path="/product" element={<Product toggle={toggle} />} />
                         <Route path="/support/*" element={<Support />} />
-                        <Route path="/contact" element={<Contact />} />
+                        <Route path="/contact" element={<Contact toggle={toggle} />} />
                         <Route path="/register" element={isLogin ? <Navigate to="/" /> : <Register />} />
                         <Route
                             path="/login"
