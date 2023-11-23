@@ -13,7 +13,7 @@ export const SupportCurtomer = () => {
     useEffect(() => {
         const fetchAPI = async () => {
             const result = await products.getProduct();
-            const trendProducts = await result.filter((product) => product.hasOwnProperty('trend'));
+            const trendProducts = await result.data?.filter((product) => product.hasOwnProperty('trend'));
             const trendProductIds = await trendProducts.map((product) => product);
             setProductDataTrends(trendProductIds);
         };

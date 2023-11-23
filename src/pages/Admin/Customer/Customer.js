@@ -157,7 +157,7 @@ function Customer({ toggle }) {
                     const reader = new FileReader();
                     reader.onload = async () => {
                         const base64Data = reader.result;
-                        await register.postUser(name, phone, address, email, user, password, base64Data);
+                        // await register.postUser(name, phone, address, email, user, password, base64Data);
                     };
                     reader.readAsDataURL(code);
                     handleResetValue(e);

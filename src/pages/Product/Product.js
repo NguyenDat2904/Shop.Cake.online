@@ -40,18 +40,16 @@ function Product({ toggle }) {
         setPerPage,
         limit,
         setLimit,
-        sortedProductData,
-        setSortedProductData,
-        dataSortSave,
+        filterProduct,
+        setFilterProduct,
     } = useContext(AppContext);
-
     // 2. useEffects
     // Call API productTrends
     useEffect(() => {
         const fetchAPI = async () => {
             setLoading(true);
             const result = await products.getProduct();
-            const trendProducts = await result.filter((product) => product.hasOwnProperty('trend'));
+            const trendProducts = await result.data?.filter((product) => product.hasOwnProperty('trend'));
             const trendProductIds = await trendProducts.map((product) => product);
             setProductDataTrends(trendProductIds);
             setLoading(false);
@@ -63,29 +61,28 @@ function Product({ toggle }) {
         const fetchAPI = async () => {
             setLoading(true);
             const resultPerPage = await products.getProductPerPage(perPage, limit);
-            setProductData(resultPerPage);
+            setProductData(resultPerPage.data);
+            setFilterProduct(resultPerPage.data);
             setLoading(false);
         };
         fetchAPI();
     }, [perPage, limit]);
     useEffect(() => {
-        let sortedData = [...productData];
-        if (sortOrder === 'nameAtoZ') {
-            sortedData = sortedData.sort((a, b) => a.name.localeCompare(b.name));
-        } else if (sortOrder === 'nameZtoA') {
-            sortedData = sortedData.sort((a, b) => b.name.localeCompare(a.name));
+        if (sortOrder === 'nameZtoA') {
+            setFilterProduct(filterProduct.sort((a, b) => a.name.localeCompare(b.name)));
+        } else if (sortOrder === 'nameAtoZ') {
+            setFilterProduct(filterProduct.sort((a, b) => b.name.localeCompare(a.name)));
         } else if (sortOrder === 'priceSmalltoBig') {
-            sortedData = sortedData.sort((a, b) => a.price - b.price);
+            setFilterProduct(filterProduct.sort((a, b) => a.price - b.price));
         } else if (sortOrder === 'priceBigtoSmall') {
-            sortedData = sortedData.sort((a, b) => b.price - a.price);
+            setFilterProduct(filterProduct.sort((a, b) => b.price - a.price));
         } else if (sortOrder === 'promotion') {
-            sortedData = sortedData.sort((a, b) => (a.cost ? -1 : 1));
+            setFilterProduct(filterProduct.sort((a, b) => (a.cost ? -1 : 1)));
         } else if (sortOrder === 'noPromotion') {
-            sortedData = sortedData.sort((a, b) => (a.cost ? 1 : -1));
+            setFilterProduct(filterProduct.sort((a, b) => (a.cost ? 1 : -1)));
         } else if (sortOrder === 'default') {
-            sortedData = [...productData];
+            setFilterProduct(productData);
         }
-        setSortedProductData(sortedData);
     }, [productData, sortOrder]);
 
     // 3. Function
@@ -176,8 +173,8 @@ function Product({ toggle }) {
     };
     // 4. Render sản phẩm trend và list sản phẩm
     const trendProduct = productDataTrends?.map((data) => <ProductItem data={data} key={data.id} />);
-    const productList = sortedProductData?.map((data) => <ItemCart toggle={toggle} data={data} key={data.id} />);
-    const productSort = dataSortSave?.map((data) => <ItemCart toggle={toggle} data={data} key={data.id} />);
+
+    const renderProduct = filterProduct?.map((product) => <ItemCart toggle={toggle} data={product} key={product.id} />);
     return (
         <>
             <Banner page="Sản phẩm" title="Sản phẩm" />
@@ -223,9 +220,7 @@ function Product({ toggle }) {
                             </div>
                         ) : (
                             <>
-                                <div className={cx('repeat-box')}>
-                                    {dataSortSave.length > 0 ? productSort : productList}
-                                </div>
+                                <div className={cx('repeat-box')}>{renderProduct}</div>
                                 <ul className={cx('paggin', 'flex-item')}>
                                     <li
                                         className={cx('paggin-item', active === 1 && 'disable', 'flex-center')}
@@ -351,7 +346,7 @@ function Product({ toggle }) {
                                 </SideBar>
                                 <SideBar title={'LOẠI BÁNH'} className={cx('check-wrapper')}>
                                     <FilterProduct
-                                        type="cake"
+                                        type="type"
                                         data={[{ color: 'bánh kem' }, { color: 'bánh tráng miệng' }]}
                                     />
                                 </SideBar>

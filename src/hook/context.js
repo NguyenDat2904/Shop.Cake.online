@@ -8,18 +8,18 @@ import { useLocation } from 'react-router-dom';
 const AppContext = createContext();
 const AppProvider = (props) => {
     const [selectIcon, setSelectIcon] = useState(true);
-    const [checkedItems, setCheckedItems] = useState([]);
     const [productDataTrends, setProductDataTrends] = useState([]);
     const [productData, setProductData] = useState([]);
+    const [filterProduct, setFilterProduct] = useState([]);
+
     const [productDataDetail, setProductDataDetail] = useState([]);
     const [addressData, setAddressData] = useState([]);
     const [toggleCart, setToggleCart] = useState(false);
-    const [productDataCart, setProductDataCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+    const [productDataCart, setProductDataCart] = useState([]);
     const [arrayCompare, setArrayCompare] = useState(JSON.parse(localStorage.getItem('compare')) || []);
     const [arrayHeart, setArrayHeart] = useState(JSON.parse(localStorage.getItem('heart')) || []);
     const [perPage, setPerPage] = useState(1);
     const [limit, setLimit] = useState(15);
-    const [sortedProductData, setSortedProductData] = useState(null);
 
     const [acceptProduct, setAcceptProduct] = useState(null);
     const [acceptCompare, setAcceptCompare] = useState(null);
@@ -64,7 +64,44 @@ const AppProvider = (props) => {
     const [classStatus, setClassStatus] = useState(null);
     const [toggleMobile, setToggleMobile] = useState(false);
 
+    // test
+    const [checkedOptions, setCheckedOptions] = useState({
+        color: [],
+        type: [],
+        size: [],
+    });
+    const [userInfos, setUserInfos] = useState(localStorage.getItem('user'));
+    const [userDetail, setUserDetail] = useState(null);
+    const [cartData, setCartData] = useState([]);
+    const [orderUser, setOrderUser] = useState([])
+
     const location = useLocation();
+    const userInfo = JSON.parse(userInfos);
+    useEffect(() => {
+        if (userInfo) {
+            const detailUser = async () => {
+                const userDetail = await getUser.detail(userInfo._id, userInfo.refreshToken, userInfo.accessToken);
+                if (userDetail.status === 200) {
+                    setUserDetail(userDetail.data);
+                }
+            };
+            detailUser();
+        }
+    }, [userInfos]);
+    useEffect(() => {
+        const cart = async () => {
+            if (userInfo) {
+                const dataCart = await getProduct.getCart(userInfo._id, userInfo.refreshToken, userInfo.accessToken);
+                if (dataCart.status === 200) {
+                    setCartData(dataCart.data.carts);
+                }
+                if (dataCart.status === 400) {
+                    setCartData([]);
+                }
+            }
+        };
+        cart();
+    }, []);
     useEffect(() => {
         if (location.pathname === window.location.pathname) {
             setIsLoading(true);
@@ -86,10 +123,14 @@ const AppProvider = (props) => {
             document.body.style.overflow = 'auto';
         }, 1500);
     }, [location]);
-    const handleConfirmRemove = () => {
-        const updatedItems = productDataCart.filter((item) => item.id !== acceptProduct.id);
-        setProductDataCart(updatedItems);
-        localStorage.setItem('cart', JSON.stringify(updatedItems));
+    const handleConfirmRemove = async () => {
+        const deleteCart = getProduct.deleteCart(
+            userInfo._id,
+            acceptProduct._id,
+            userInfo.refreshToken,
+            userInfo.accessToken,
+        );
+        console.log(deleteCart);
     };
 
     const handleConfirmRemoveCompare = () => {
@@ -135,9 +176,9 @@ const AppProvider = (props) => {
     useEffect(() => {
         const fetchAPI = async () => {
             const result = await getProduct.getProduct();
-            setDataProduct(result);
-            setOriginalDataUser(result);
-            setDataSort(result);
+            setDataProduct(result.data);
+            setOriginalDataUser(result.data);
+            setDataSort(result.data);
         };
         fetchAPI();
     }, []);
@@ -145,8 +186,6 @@ const AppProvider = (props) => {
     const value = {
         selectIcon,
         setSelectIcon,
-        checkedItems,
-        setCheckedItems,
         productDataTrends,
         setProductDataTrends,
         productData,
@@ -208,8 +247,6 @@ const AppProvider = (props) => {
         getLikes,
         setGetlookAcc,
         setGetLinksAcc,
-        sortedProductData,
-        setSortedProductData,
         dataSort,
         setDataSort,
         dataSortSave,
@@ -237,6 +274,18 @@ const AppProvider = (props) => {
         setPerLibraryVideo,
         toggleMobile,
         setToggleMobile,
+        checkedOptions,
+        setCheckedOptions,
+        filterProduct,
+        setFilterProduct,
+        userDetail,
+        setUserDetail,
+        userInfos,
+        setUserInfos,
+        cartData,
+        setCartData,
+        orderUser,
+        setOrderUser,
     };
 
     return (

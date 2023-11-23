@@ -5,7 +5,10 @@ import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 import Modal from '../Header/Modal/Modal';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import * as logOut from '../../services/loginService';
+import { useContext } from 'react';
+import { AppContext } from '~/hook/context';
 
 const cx = classnames.bind(styles);
 function Menu({
@@ -22,8 +25,9 @@ function Menu({
     link_5,
     link_6,
     handleLoading,
-    setIsLoggedIn,
 }) {
+    const navigate = useNavigate();
+    const { userDetail, setUserDetail } = useContext(AppContext);
     const [hoveredMenu, setHoveredMenu] = useState(null);
     const visibleValue = toggle ? false : undefined;
     const tippyProps = {
@@ -35,10 +39,14 @@ function Menu({
     const handleMenuMouseOut = () => {
         setHoveredMenu(null);
     };
-    const handleLogout = () => {
+    const handleLogout = async () => {
         if (text_4 === 'Đăng xuất') {
-            localStorage.clear();
-            setIsLoggedIn(false);
+            const logout = await logOut.logout(userDetail._id);
+            if (logout.status === 200) {
+                localStorage.clear();
+                setUserDetail(null);
+                navigate('/login');
+            }
         }
     };
     return (

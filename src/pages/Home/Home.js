@@ -22,7 +22,7 @@ function Home({ toggle }) {
     const [color, SetColor] = useState(true);
     const [color1, SetColor1] = useState(true);
     const [color2, SetColor2] = useState(true);
-    const [productList, setproductList] = useState([]);
+    const [productList, setProductList] = useState([]);
 
     const { slider, setSlider } = useContext(AppContext);
 
@@ -30,27 +30,27 @@ function Home({ toggle }) {
         AOS.init();
     }, []);
 
-    const hendless = (item) => {
-        const bulen = item;
-        setSelect(bulen);
+    const handless = (item) => {
+        const boolean = item;
+        setSelect(boolean);
     };
     const classNameColor = color ? 'span' : 'noSpan';
     const classNameColor1 = color1 ? 'span' : 'noSpan1';
     const classNameColor2 = color2 ? 'span' : 'noSpan2';
-    const hendleList = () => {
-        setproductList(array);
+    const handleList = () => {
+        setProductList(array);
         SetColor(false);
         SetColor1(true);
         SetColor2(true);
     };
-    const hendleList1 = () => {
-        setproductList(array1);
+    const handleList1 = () => {
+        setProductList(array1);
         SetColor1(false);
         SetColor(true);
         SetColor2(true);
     };
-    const hendleList2 = () => {
-        setproductList(array2);
+    const handleList2 = () => {
+        setProductList(array2);
         SetColor2(false);
         SetColor1(true);
         SetColor(true);
@@ -59,17 +59,19 @@ function Home({ toggle }) {
     useEffect(() => {
         const callAPI = async () => {
             const result = await products.getProduct();
-            const list = await result.slice(0, 7);
-            const toList = await result.filter((item) => item.id === 21);
-            const toList1 = await result.slice(0, 5);
-            const toList11 = await result.slice(30, 33);
-            const toList2 = await result.slice(21, 29);
-            const slick = await result.slice(0, 6);
-            setArray([...list, ...toList]);
-            setArray1([...toList1, ...toList11]);
-            setArray2(toList2);
-            setproductList([...list, ...toList]);
-            setSlider([...slick]);
+            if (result.status === 200) {
+                const list = await result.data?.slice(0, 7);
+                const toList = await result.data?.filter((item) => item.id === 21);
+                const toList1 = await result.data?.slice(0, 5);
+                const toList11 = await result.data?.slice(30, 33);
+                const toList2 = await result.data?.slice(21, 29);
+                const slick = await result.data?.slice(0, 6);
+                setArray([...list, ...toList]);
+                setArray1([...toList1, ...toList11]);
+                setArray2(toList2);
+                setProductList([...list, ...toList]);
+                setSlider([...slick]);
+            }
         };
         callAPI();
     }, []);
@@ -77,7 +79,7 @@ function Home({ toggle }) {
     return (
         <div className={cx('wrapper')}>
             <div>
-                <NewCake hendless={hendless} select={select} />
+                <NewCake handless={handless} select={select} />
             </div>
             <div
                 className={cx('select')}
@@ -188,13 +190,13 @@ function Home({ toggle }) {
                     SẢN PHẨM CHÍNH
                 </h3>
                 <div className={cx('cakes')}>
-                    <span onClick={hendleList} className={cx(classNameColor)}>
+                    <span onClick={handleList} className={cx(classNameColor)}>
                         Bánh theo chủ đề
                     </span>
-                    <span onClick={hendleList1} className={cx(classNameColor1)}>
+                    <span onClick={handleList1} className={cx(classNameColor1)}>
                         Bánh sinh nhật tạo hình
                     </span>
-                    <span onClick={hendleList2} className={cx('span3', classNameColor2)}>
+                    <span onClick={handleList2} className={cx('span3', classNameColor2)}>
                         Bánh kem theo sự kiện
                     </span>
                 </div>

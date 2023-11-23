@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styles from './CartRight.module.scss';
 import classnames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,29 +9,33 @@ import { formatCurrencyVND } from '../NumberToPrice/currency';
 const cx = classnames.bind(styles);
 function CartRight({ toggle }) {
     // 1. useState
-    const { toggleCart, setToggleCart, productDataCart, setAcceptProduct, handleIsLoading } = useContext(AppContext);
+    const { toggleCart, setToggleCart, setAcceptProduct, handleIsLoading, cartData } = useContext(AppContext);
 
     // 3. Function
-    const total = productDataCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    const formattedTotal = formatCurrencyVND(total);
-
+    const total = cartData[0]?.product.reduce((accumulator, item) => {
+        const price = parseInt(item.id.price);
+        const quantity = item.quantity;
+        const subtotal = price * quantity;
+        return accumulator + subtotal;
+    }, 0);
+    const formattedTotal = formatCurrencyVND(total || 0);
     // 4. Render
-    const renderCartItem = productDataCart?.map((product) => {
-        const formattedPrice = formatCurrencyVND(product.price);
+    const renderCartItem = cartData[0]?.product.map((product) => {
+        const formattedPrice = formatCurrencyVND(product.id.price);
         const handleRemove = (product) => {
             setAcceptProduct(product);
             toggle(1);
         };
         return (
-            <article className={cx('repeat-item')} key={product.id}>
+            <article className={cx('repeat-item')} key={product.id._id}>
                 <div className="childrens flex-start">
                     <div className={cx('img')}>
-                        <img className={cx('img-full')} src={product.img} alt="" />
+                        <img className={cx('img-full')} src={product.id.img} alt="" />
                     </div>
                     <div className={cx('infor')}>
-                        <h3 className={cx('name')}>{product.name}</h3>
+                        <h3 className={cx('name')}>{product.id.name}</h3>
                         <p className={cx('props')}>
-                            {product.color} - {product.type} - {product.size}"
+                            {product.id.color} - {product.id.type} - {product.id.size}"
                         </p>
                         <div className={cx('price')}>
                             <div className={cx('count')}>{product.quantity}</div>
@@ -39,7 +43,7 @@ function CartRight({ toggle }) {
                             <div className={cx('sold')}>{formattedPrice}</div>
                         </div>
                     </div>
-                    <div className={cx('btn-delete')} onClick={() => handleRemove(product)}>
+                    <div className={cx('btn-delete')} onClick={() => handleRemove(product.id)}>
                         <FontAwesomeIcon icon={faTrash} />
                     </div>
                 </div>
@@ -60,7 +64,7 @@ function CartRight({ toggle }) {
                         <FontAwesomeIcon icon={faXmark} />
                     </div>
                 </header>
-                {productDataCart.length === 0 ? (
+                {cartData?.length === 0 ? (
                     <div className={cx('content')}>Bạn chưa thêm sản phẩm vào giỏ hàng</div>
                 ) : (
                     <div className={cx('repeat-box')}>{renderCartItem}</div>
@@ -74,7 +78,7 @@ function CartRight({ toggle }) {
                 <div className={cx('btn-group')}>
                     <NavLink
                         to="/cart"
-                        className={cx(productDataCart.length === 0 && 'disabled')}
+                        className={cx(cartData?.length === 0 && 'disabled')}
                         onClick={() => {
                             setToggleCart(false);
                             handleIsLoading();
@@ -84,7 +88,7 @@ function CartRight({ toggle }) {
                     </NavLink>
                     <NavLink
                         to="/pay"
-                        className={cx(productDataCart.length === 0 && 'disabled')}
+                        className={cx(cartData?.length === 0 && 'disabled')}
                         onClick={() => {
                             setToggleCart(false);
                             handleIsLoading();

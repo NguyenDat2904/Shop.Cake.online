@@ -10,15 +10,19 @@ import { NavLink } from 'react-router-dom';
 const cx = classnames.bind(styles);
 function Cart({ toggle }) {
     // 1. State
-    const { productDataCart, handleIsLoading } = useContext(AppContext);
+    const { handleIsLoading, cartData } = useContext(AppContext);
 
     // 3. Functions
-    const total = productDataCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    const formattedTotal = formatCurrencyVND(total);
-
+    const total = cartData[0]?.product.reduce((accumulator, item) => {
+        const price = parseInt(item.id.price);
+        const quantity = item.quantity;
+        const subtotal = price * quantity;
+        return accumulator + subtotal;
+    }, 0);
+    const formattedTotal = formatCurrencyVND(total || 0);
     // 4. Render
 
-    const renderListItem = productDataCart?.map((product) => (
+    const renderListItem = cartData[0]?.product.map((product) => (
         <CartItem toggle={toggle} product={product} key={product.id} />
     ));
     return (
@@ -26,13 +30,13 @@ function Cart({ toggle }) {
             <Banner page="Giỏ hàng" />
             <section className={cx('wrapper')}>
                 <div className={cx('container ', 'flex-column', 'cart-mobile')}>
-                    <div className={cx('container ', 'header-mobile')}>
+                    <div className={cx('container ', 'header-pc')}>
                         <div className={cx('table')}>Sản phẩm</div>
                         <div className={cx('table', 'table-small')}>Đơn giá</div>
                         <div className={cx('table', 'table-small')}>Số lượng</div>
                         <div className={cx('table', 'table-end')}>Thành tiền</div>
                     </div>
-                    {productDataCart.length === 0 ? (
+                    {cartData[0]?.product.length === 0 ? (
                         <div className={cx('context')}>Bạn chưa có sản phẩm nào trong giỏ hàng</div>
                     ) : (
                         <div className={cx('repeat-box')}>{renderListItem}</div>
@@ -50,7 +54,7 @@ function Cart({ toggle }) {
                             </NavLink>
                             <NavLink
                                 to="/pay"
-                                className={cx(productDataCart.length === 0 && 'disabled')}
+                                className={cx(cartData[0]?.product.length === 0 && 'disabled')}
                                 onClick={handleIsLoading}
                             >
                                 <span className={cx('btn')}>Thanh toán</span>

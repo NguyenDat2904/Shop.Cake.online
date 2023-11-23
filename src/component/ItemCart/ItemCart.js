@@ -8,18 +8,16 @@ import { NavLink } from 'react-router-dom';
 import { AppContext } from '~/hook/context';
 import * as favour from '~/services/registerService';
 import * as seList from '~/services/loginService';
+import * as postCart from '../../services/productService';
 import { useNavigate } from 'react-router-dom';
 const cx = classnames.bind(styles);
 function ItemCart({ data, toggle }) {
     const navigate = useNavigate();
     // 1. State
-    const { productDataCart, setProductDataCart, arrayCompare, setArrayCompare, arrayHeart, setArrayHeart, userName } =
+    const { arrayCompare, setArrayCompare, arrayHeart, setArrayHeart, userName, userDetail, userInfos, setCartData } =
         useContext(AppContext);
+    const userInfo = JSON.parse(userInfos);
 
-    // 2. UseEffect
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(productDataCart));
-    }, [productDataCart]);
     useEffect(() => {
         localStorage.setItem('compare', JSON.stringify(arrayCompare));
     }, [arrayCompare]);
@@ -30,30 +28,18 @@ function ItemCart({ data, toggle }) {
     const formattedPrice = formatCurrencyVND(data.price);
     const formattedCost = formatCurrencyVND(data.cost);
 
-    const handleClickCart = (e) => {
+    const handleClickCart = async (e) => {
         e.preventDefault();
         toggle(2);
-        const existingItemIndex = productDataCart.findIndex((item) => item.id === data.id);
-        if (existingItemIndex >= 0) {
-            const updatedItems = [...productDataCart];
-            updatedItems[existingItemIndex].quantity += 1;
-            setProductDataCart(updatedItems);
-        } else {
-            const product = {
-                id: data.id,
-                name: data.name,
-                price: data.price,
-                img: data.img,
-                color: data.color,
-                type: data.type,
-                size: data.size,
-                quantity: 1,
-            };
-            setProductDataCart([...productDataCart, product]);
+        const product = { userID: userDetail._id, id: data._id };
+        const cart = await postCart.addCart(userDetail._id, product, userInfo.refreshToken, userInfo.accessToken);
+        if (cart.status === 200) {
+            const getCart = await postCart.getCart(userDetail._id, userInfo.refreshToken, userInfo.accessToken);
+            setCartData(getCart.data.carts);
         }
     };
     // só sánh
-    const hendleCompare = (e) => {
+    const handleCompare = (e) => {
         e.preventDefault();
         toggle(9);
         const existingItemIndex = arrayCompare?.findIndex((item) => item.id === data.id);
@@ -73,7 +59,7 @@ function ItemCart({ data, toggle }) {
         }
     };
     // Yeu thich
-    const hendleFavourite = async (e) => {
+    const handleFavourite = async (e) => {
         e.preventDefault();
         toggle(11);
         const existingItemIndex = arrayHeart?.findIndex((item) => item.id === data.id);
@@ -92,7 +78,7 @@ function ItemCart({ data, toggle }) {
             setArrayHeart([...arrayHeart, product]);
         }
     };
-    const hendleSee = async (e) => {
+    const handleSee = async (e) => {
         e.preventDefault();
         const toGetSees = await seList.getSee();
         const listtoget = toGetSees?.findIndex((item) => item.id === data.id);
@@ -103,7 +89,7 @@ function ItemCart({ data, toggle }) {
     };
 
     return (
-        <NavLink to={`/product/${data.id}`}>
+        <NavLink to={`/product/${data._id}`}>
             <article>
                 <div className="childrens flex-column">
                     <div className={cx('img', 'flex-center')}>
@@ -111,16 +97,16 @@ function ItemCart({ data, toggle }) {
                         <div className={cx('group')}>
                             <div className="childrens flex-center">
                                 <div className={cx('btn', 'flex-center')}>
-                                    <FontAwesomeIcon icon={faEye} onClick={hendleSee} />
+                                    <FontAwesomeIcon icon={faEye} onClick={handleSee} />
                                 </div>
                                 <div className={cx('btn', 'flex-center')} onClick={handleClickCart}>
                                     <FontAwesomeIcon icon={faBagShopping} />
                                 </div>
-                                <div className={cx('btn', 'flex-center')} onClick={hendleFavourite}>
+                                <div className={cx('btn', 'flex-center')} onClick={handleFavourite}>
                                     <FontAwesomeIcon icon={faHeart} />
                                 </div>
 
-                                <div className={cx('btn', 'flex-center')} onClick={hendleCompare}>
+                                <div className={cx('btn', 'flex-center')} onClick={handleCompare}>
                                     <FontAwesomeIcon icon={faRotate} />
                                 </div>
                             </div>

@@ -2,148 +2,165 @@ import React, { useContext, useState } from 'react';
 import styles from './Login.module.scss';
 import classnames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faZ } from '@fortawesome/free-solid-svg-icons';
+import { faCircleNotch, faZ } from '@fortawesome/free-solid-svg-icons';
 import Banner from '~/component/Banner/Banner';
 import * as login from '~/services/loginService';
-import * as getOrder from '~/services/ordersService';
-
 import { Link, useNavigate } from 'react-router-dom';
-import { AppContext } from '~/hook/context';
 import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { toast } from 'react-toastify';
+import { AppContext } from '~/hook/context';
 
 const cx = classnames.bind(styles);
 
-const Login = ({ setIsLoggedIn, setIsAdmin }) => {
+const Login = () => {
     const navigate = useNavigate();
-    const [user, setUser] = useState('');
-    const [userE, setUserE] = useState('');
+    const { userInfos } = useContext(AppContext);
+    const [loadingLogin, setLoadingLogin] = useState(false);
+    const [value, setValue] = useState({
+        username: '',
+        password: '',
+    });
 
-    const [password, setPassword] = useState('');
-    const [passwordE, setPasswordE] = useState('');
-    const { handleIsLoading, setUserData, setUserName, setUserOder, setGetLook, setGetLikes } = useContext(AppContext);
+    const [errors, setErrors] = useState({
+        username: '',
+        password: '',
+    });
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        const result = await login.getUser(user, password);
-        if (result.data.length === 0) {
-            setUserE('Tên truy cập không tồn tại');
-        } else {
-            handleIsLoading();
-            result.data.forEach((user) => {
-                localStorage.setItem('user', user.user);
-                localStorage.setItem('email', user.email);
-                localStorage.setItem('img', user.img);
-                localStorage.setItem('role', user.role);
-            });
-            const valueUser = localStorage.getItem('user');
-            const valueRole = localStorage.getItem('role');
-            localStorage.setItem('isLogin', true);
-            setIsLoggedIn(true);
-            if (valueUser === user && valueRole === 'regular') {
-                navigate('/');
-                localStorage.setItem('isAdmin', true);
-                setIsAdmin(true);
-            } else if (valueUser === user && valueRole === 'admin') {
-                navigate('/admin/dashboard');
-                localStorage.setItem('isAdmin', false);
-                setIsAdmin(false);
+    if (userInfos !== null) {
+        navigate('/');
+    } else {
+        const handleChange = (e) => {
+            const { name, value } = e.target;
+            setValue((prevValues) => ({
+                ...prevValues,
+                [name]: value,
+            }));
+        };
+        const handleLogin = async (e) => {
+            e.preventDefault();
+            const regexUser = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+            const newErrors = {};
+            let hasError = false;
+            if (!regexUser.test(value.username)) {
+                newErrors.username = 'Tên truy cập tối thiểu 6 kí tự và có ít nhất 1 chữ số';
+                hasError = true;
             }
-        }
-        const tomasterList = result.data.filter((item) => item.user === user);
-        setUserData([...tomasterList]);
-        const tomasterProduct = result.data.map((product) => product.user);
-        const usermalist = tomasterProduct.toString();
-        setUserName(tomasterProduct.toString());
-        const order = await getOrder.getOrder();
-        const OrderUse = order.data.filter((item) => item.userName == usermalist);
-        const OrderUseLocal = localStorage.setItem('orders', JSON.stringify(OrderUse));
-        setUserOder(OrderUseLocal);
-        const getLook = await login.getSee();
-        const OrderUseSee = getLook.filter((item) => item.userName == usermalist);
-        setGetLook([...OrderUseSee]);
-        const getLikes = await login.getFavourite();
-        const OrderUseFavourite = getLikes.filter((item) => item.userName == usermalist);
-        setGetLikes([...OrderUseFavourite]);
-    };
-
-    const handleUser = (e) => {
-        setUser(e.target.value);
-    };
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-    };
-
-    return (
-        <>
-            <Banner page="Đăng nhập" title="Đăng nhập" />
-            <form onSubmit={handleLogin}>
-                <div className={cx('wrapper')}>
-                    <section className={cx('container')}>
-                        <div className={cx('signin')}>
-                            <div className={cx('inputblock')}>
-                                <span className={cx('input-group-text')}>*</span>
-                                <input
-                                    className={cx('input')}
-                                    type="text"
-                                    placeholder="Tên truy cập"
-                                    value={user}
-                                    onChange={handleUser}
-                                />
-                                <span className={cx('errorMessage')}>{userE}</span>
-                            </div>
-                            <div className={cx('inputblock')}>
-                                <span className={cx('input-group-text')}>*</span>
-                                <input
-                                    className={cx('input')}
-                                    type="password"
-                                    placeholder="Mật khẩu"
-                                    value={password}
-                                    onChange={handlePassword}
-                                />
-                                <span className={cx('errorMessage')}>{passwordE}</span>
-                            </div>
-                            <div className={cx('button')}>
-                                <button className={cx('button')} type="submit">
-                                    Đăng Nhập
-                                </button>
-                            </div>
-                            <div className={cx('signin-text')}>
-                                <div className={cx('text1')}>
-                                    <h4 className={cx('a')}>-Bạn quên mật khẩu?</h4>
+            if (!regexUser.test(value.password)) {
+                newErrors.password = 'Mật khẩu tối thiểu 6 kí tự và có ít nhất 1 chữ số';
+                hasError = true;
+            }
+            setErrors(newErrors);
+            if (!hasError) {
+                setLoadingLogin(true);
+                const result = await login.login(value.username, value.password);
+                setLoadingLogin(false);
+                if (result.status === 400) {
+                    toast.error('Đăng nhập thất bại', {
+                        position: 'top-center',
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                    });
+                    if (result.data.msg === 'Username not found') {
+                        newErrors.username = 'Tên đăng nhập sai';
+                        setErrors(newErrors);
+                    }
+                    if (result.data.msg === 'Password is not true') {
+                        newErrors.password = 'Mật khẩu của bạn không đúng';
+                        setErrors(newErrors);
+                    }
+                }
+                if (result.status === 200) {
+                    toast.success('Đăng nhập thành công', {
+                        position: 'top-center',
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                    });
+                    localStorage.setItem('user', JSON.stringify(result.data));
+                }
+                navigate('/');
+            }
+        };
+        return (
+            <>
+                <Banner page="Đăng nhập" title="Đăng nhập" />
+                <form onSubmit={handleLogin}>
+                    <div className={cx('wrapper')}>
+                        <section className={cx('container')}>
+                            <div className={cx('signin')}>
+                                <div className={cx('inputblock')}>
+                                    <span className={cx('input-group-text')}>*</span>
+                                    <input
+                                        className={cx('input')}
+                                        type="text"
+                                        name="username"
+                                        placeholder="Tên truy cập"
+                                        value={value.username}
+                                        onChange={handleChange}
+                                    />
+                                    <span className={cx('errorMessage')}>{errors.username}</span>
                                 </div>
-                                <div className={cx('text2')}>
-                                    <h4 className={cx('b')}>-Bạn chưa có tài khoản?</h4>
-                                    <Link to="/register">
-                                        <h4 className={cx('a')}>Đăng ký ngay</h4>
-                                    </Link>
+                                <div className={cx('inputblock')}>
+                                    <span className={cx('input-group-text')}>*</span>
+                                    <input
+                                        className={cx('input')}
+                                        type="password"
+                                        placeholder="Mật khẩu"
+                                        value={value.password}
+                                        onChange={handleChange}
+                                        name="password"
+                                    />
+                                    <span className={cx('errorMessage')}>{errors.password}</span>
+                                </div>
+                                <div>
+                                    <button className={cx('button', loadingLogin && 'disable')} type="submit">
+                                        {!loadingLogin ? 'Đăng Nhập' : <FontAwesomeIcon icon={faCircleNotch} spin />}
+                                    </button>
+                                </div>
+                                <div className={cx('signin-text')}>
+                                    <div className={cx('text1')}>
+                                        <h4 className={cx('a')}>-Bạn quên mật khẩu?</h4>
+                                    </div>
+                                    <div className={cx('text2')}>
+                                        <h4 className={cx('b')}>-Bạn chưa có tài khoản?</h4>
+                                        <Link to="/register">
+                                            <h4 className={cx('a')}>Đăng ký ngay</h4>
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div className={cx('link')}>
+                                    <div className={cx('connective1')}>
+                                        <Link href="#" className={cx('FB')}>
+                                            <FontAwesomeIcon icon={faFacebookF} /> Đăng nhập bằng Facebook
+                                        </Link>
+                                    </div>
+                                    <div className={cx('connective')}>
+                                        <Link href="#" className={cx('GG')}>
+                                            <FontAwesomeIcon icon={faGoogle} /> Đăng nhập bằng Google
+                                        </Link>
+                                    </div>
+                                    <div className={cx('connective2')}>
+                                        <Link href="#" className={cx('ZL')}>
+                                            <FontAwesomeIcon icon={faZ} /> Đăng nhập bằng Zalo
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
-                            <div className={cx('link')}>
-                                <div className={cx('connective1')}>
-                                    <a href="https://www.facebook.com/" title="Facebook"></a>
-                                    <a href="#" className={cx('FB')}>
-                                        <FontAwesomeIcon icon={faFacebookF} /> Đăng nhập bằng Facebook
-                                    </a>
-                                </div>
-                                <div className={cx('connective')}>
-                                    <a href="https://www.facebook.com/" title="Google"></a>
-                                    <a href="#" className={cx('GG')}>
-                                        <FontAwesomeIcon icon={faGoogle} /> Đăng nhập bằng Google
-                                    </a>
-                                </div>
-                                <div className={cx('connective2')}>
-                                    <a href="https://www.facebook.com/" title="Zalo"></a>
-                                    <a href="#" className={cx('ZL')}>
-                                        <FontAwesomeIcon icon={faZ} /> Đăng nhập bằng Zalo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </form>
-        </>
-    );
+                        </section>
+                    </div>
+                </form>
+            </>
+        );
+    }
 };
 
 export default Login;

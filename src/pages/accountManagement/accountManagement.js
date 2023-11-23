@@ -4,42 +4,35 @@ import styles from './accountManagement.module.scss';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '~/hook/context';
 import Banner from '~/component/Banner/Banner';
+import { useNavigate } from 'react-router-dom';
+import * as order from '../../services/ordersService';
 
 const cx = classNames.bind(styles);
 const AccountManagement = ({ toggle }) => {
-    const { filterData, setUserData } = useContext(AppContext);
+    const { userInfos, userDetail, orderUser, setOrderUser } = useContext(AppContext);
+    const userInfo = JSON.parse(userInfos);
     useEffect(() => {
-        localStorage.setItem('profile', JSON.stringify(filterData));
-    }, [filterData]);
-    useEffect(() => {
-        // Lấy dữ liệu từ localStorage khi component được tải
-        const storedData = JSON.parse(localStorage.getItem('profile'));
-        if (storedData) {
-            setUserData(storedData);
-        }
+        const fetchOrder = async () => {
+            const getOrderUser = await order.getOrderUser(userInfo._id, userInfo.refreshToken, userInfo.accessToken);
+            setOrderUser(getOrderUser.data);
+        };
+        fetchOrder();
     }, []);
-    return (
-        <>
-            <Banner page="Thông tin cá nhân" title="Thông tin cá nhân" />
-            {filterData.map((product) => {
-                return (
-                    <div key={product.id} className={cx('wrapper')}>
-                        <Profile
-                            img={product.img}
-                            user={product.user}
-                            password={product.password}
-                            role={product.role}
-                            id={product.id}
-                            name={product.name}
-                            email={product.email}
-                            phone={product.phone}
-                            address={product.address}
-                            toggle={toggle}
-                        />
-                    </div>
-                );
-            })}
-        </>
-    );
+    useEffect(() => {
+        setOrderUser(orderUser);
+    }, [orderUser]);
+    const navigate = useNavigate();
+    if (userInfos === null) {
+        navigate('/login');
+    } else {
+        return (
+            <>
+                <Banner page="Thông tin cá nhân" title="Thông tin cá nhân" />
+                <div className={cx('wrapper')}>
+                    <Profile info={userDetail} toggle={toggle} order={orderUser} />
+                </div>
+            </>
+        );
+    }
 };
 export default AccountManagement;

@@ -4,6 +4,9 @@
     border-color: #eee;
     border-width: 0px 0px 1px 0px;
     padding: 20px 0px;
+    .header-pc {
+        flex-wrap: nowrap;
+    }
 }
 .product {
     width: 50%;

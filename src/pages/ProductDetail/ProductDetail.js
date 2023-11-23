@@ -33,7 +33,7 @@ function ProductDetail({ toggle }) {
             const targetElement = targetElementRef.current;
             const result = await products.getProductDetails(id);
             const resultProduct = await products.getProduct();
-            const filteredProducts = resultProduct.filter((product) => product.type === result.type);
+            const filteredProducts = resultProduct.data.filter((product) => product.type === result.type);
             setRelatedProducts(filteredProducts);
             setProductDataDetail(result);
             targetElement.scrollIntoView({ behavior: 'smooth' });

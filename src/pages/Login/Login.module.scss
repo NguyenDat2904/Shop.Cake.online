@@ -54,13 +54,20 @@
         font-size: 16px;
         color: white;
         background-color: var(--c-1668480369240, #2b4174);
-        border: 1px solid var(--c-1668480369240, #2b4174);
+        border: none;
         border-radius: 4px;
         cursor: pointer;
         transition: all 0.3s ease;
         &:hover {
             background-color: var(--c-1668480339968, #fc7c7c);
-            border-color: var(--c-1668480339968, #fc7c7c);
+        }
+    }
+    .button.disable {
+        user-select: none;
+        cursor: not-allowed;
+        opacity: 0.5;
+        &:hover {
+            background-color: var(--c-1668480339968, #2b4174);
         }
     }
 }
@@ -209,7 +216,7 @@
     }
 }
 @media (max-width: 576px) {
-    .wrapper{
+    .wrapper {
         padding: 30px 10px;
     }
     .signin {

@@ -6,7 +6,7 @@
         width: 100%;
         display: grid;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         height: auto;
         p {
             padding: 4px;
@@ -24,7 +24,7 @@
     .yourMilk {
         width: 100%;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
         height: auto;
         .img {
             padding: 10px;
@@ -58,7 +58,7 @@
             align-items: center;
             justify-content: center;
         }
-        .total{
+        .total {
             font-weight: 500;
             color: coral;
         }

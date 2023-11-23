@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import styles from './Header.module.scss';
 import classnames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,15 +11,26 @@ import { AppContext } from '~/hook/context';
 import IsLoading from '../IsLoading/IsLoading';
 import NavBarProduct from './NavBarProduct/NavBarProduct';
 import HeaderMobile from '../HeaderMobile/HeaderMobile';
+import { useEffect } from 'react';
 const cx = classnames.bind(styles);
 
 function Header({ setIsLoggedIn }) {
     // 1. State
     const [icon] = useState(false);
-    const { setToggleCart, productDataCart, isLoading, handleIsLoading, toggleMobile, setToggleMobile } =
-        useContext(AppContext);
-    const email = localStorage.getItem('email');
-    const img = localStorage.getItem('img');
+    const {
+        setToggleCart,
+        isLoading,
+        handleIsLoading,
+        toggleMobile,
+        setToggleMobile,
+        userDetail,
+        setUserInfos,
+        cartData,
+    } = useContext(AppContext);
+    const location = useLocation();
+    useEffect(() => {
+        setUserInfos(localStorage.getItem('user'));
+    }, [location]);
     // 3. Functions
     const activeClass = (params) => {
         return params.isActive ? cx('active') : '';
@@ -37,7 +48,7 @@ function Header({ setIsLoggedIn }) {
                         <div className={cx('children')}>
                             <span className={cx('desc', 'desc-mobile')}>1900 9477</span>
                             <span className={cx('user-email', 'desc')}>
-                                {email ? email : 'Shopcake.online@gmail.com'}
+                                {userDetail ? userDetail.email : 'Shopcake.online@gmail.com'}
                             </span>
                             <Tippy
                                 trigger="click"
@@ -46,7 +57,7 @@ function Header({ setIsLoggedIn }) {
                                 render={(attrs) => (
                                     <div className="box" tabIndex="-1" {...attrs}>
                                         <Modal>
-                                            {!email ? (
+                                            {!userDetail ? (
                                                 <Menu
                                                     handleLoading={handleIsLoading}
                                                     text_1="Đăng nhập"
@@ -77,15 +88,15 @@ function Header({ setIsLoggedIn }) {
                                     </div>
                                 )}
                             >
-                                {!email ? (
+                                {!userDetail ? (
                                     <span className={cx('account', 'desc')}>Đăng nhập</span>
                                 ) : (
                                     <div className={cx('account', 'desc')}>
                                         <img
                                             className={cx('img')}
                                             src={
-                                                img !== 'undefined'
-                                                    ? img
+                                                userDetail.img
+                                                    ? userDetail.img
                                                     : 'https://inkythuatso.com/uploads/thumbnails/800/2023/03/9-anh-dai-dien-trang-inkythuatso-03-15-27-03.jpg'
                                             }
                                             alt=""
@@ -258,7 +269,7 @@ function Header({ setIsLoggedIn }) {
                             </div>
                             <div className={cx('search')} onClick={() => setToggleCart(true)}>
                                 <FontAwesomeIcon className={cx('icon')} icon={faBagShopping} />
-                                <div className={cx('count')}>{productDataCart.length}</div>
+                                <div className={cx('count')}>{cartData[0]?.product.length || 0}</div>
                             </div>
                             <div
                                 className={cx('search', 'menubar', 'menubar-mobile')}

@@ -29,6 +29,9 @@ import ModalNotionCompare from './component/ModalNotionCompare/ModalNotionCompar
 import ModalProductHeart from './component/ModalProductHeart/ModalProductHeart';
 import ModalNotionHeart from './component/ModalNotionHeart/ModalNotionHeart';
 import ModalContact from './component/ModalContact/ModalContact';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
     const {
         isShowing,
@@ -54,8 +57,21 @@ function App() {
     }, []);
     return (
         <Router>
+            <ToastContainer
+                limit={1}
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <AppProvider>
-                {isAdmin && <Header setIsLoggedIn={setIsLoggedIn} />}
+                {isAdmin && <Header />}
                 <CartRight toggle={toggle} />
                 <Modal isShowing={isShowing} hide={toggle} />
                 <ModalNotion isShowing={isShowingNotion} hide={toggle} />
@@ -77,17 +93,8 @@ function App() {
                         <Route path="/product" element={<Product toggle={toggle} />} />
                         <Route path="/support/*" element={<Support />} />
                         <Route path="/contact" element={<Contact toggle={toggle} />} />
-                        <Route path="/register" element={isLogin ? <Navigate to="/" /> : <Register />} />
-                        <Route
-                            path="/login"
-                            element={
-                                isLogin ? (
-                                    <Navigate to="/" />
-                                ) : (
-                                    <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
-                                )
-                            }
-                        />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<Login />} />
                         <Route path="/product/:id" element={<ProductDetail toggle={toggle} />} />
                         <Route path="/cart" element={<Cart toggle={toggle} />} />
                         <Route path="/pay" element={<PayMent toggle={toggle} />} />

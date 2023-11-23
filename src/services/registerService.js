@@ -1,15 +1,27 @@
 import * as httpRequest from '~/ultils/httpRequest';
-export const postUser = async (name, phone, address, email, user, password, img, role) => {
+export const verify = async (username, email, name) => {
     try {
-        const results = await httpRequest.post(`users`, {
-            name: name,
-            phone: phone,
-            address: address,
-            email: email,
-            user: user,
-            img: img,
-            password: password,
-            role: 'regular',
+        const result = await httpRequest.post('auth/verify', {
+            username,
+            email,
+            name,
+        });
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const register = async (name, username, phone, email, password, address, code) => {
+    try {
+        const results = await httpRequest.post(`auth/register`, {
+            name,
+            username,
+            phone,
+            email,
+            password,
+            address,
+            code,
         });
         return results;
     } catch (error) {

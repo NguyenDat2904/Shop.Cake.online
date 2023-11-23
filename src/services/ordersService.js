@@ -7,3 +7,14 @@ export const getOrder = async () => {
         console.log(error);
     }
 };
+
+export const getOrderUser = async (_id, refresh_token, accessToken) => {
+    try {
+        const result = await httpRequest.get(`order/user/${_id}`, {
+            headers: { refresh_token: `${refresh_token}`, authorization: `${accessToken}` },
+        });
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};

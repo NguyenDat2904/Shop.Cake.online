@@ -11,14 +11,25 @@ export const patchService = async (name, phone, address, id) => {
         console.log(error);
     }
 };
-export const patchServicePassword = async (password, id) => {
+export const changePassword = async (_id, password, newPassword) => {
     try {
-        const results = await httpRequest.patch(`users/${id}`, {
-            password: password,
+        const results = await httpRequest.patch(`auth/${_id}/change-password`, {
+            password,
+            newPassword,
         });
         return results;
     } catch (error) {
         console.log(error);
     }
 };
-export const hendleDelete = async () => {};
+
+export const changeUser = async (_id, data, refresh_token, accessToken) => {
+    try {
+        const result = await httpRequest.put(`user/put/${_id}`, data, {
+            headers: { refresh_token: `${refresh_token}`, authorization: `${accessToken}` },
+        });
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};

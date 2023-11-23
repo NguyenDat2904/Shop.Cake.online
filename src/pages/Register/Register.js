@@ -2,271 +2,327 @@ import React, { useContext, useState } from 'react';
 import styles from './Register.module.scss';
 import classnames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsRotate, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import Banner from '~/component/Banner/Banner';
 import * as register from '~/services/registerService';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '~/hook/context';
+import { toast } from 'react-toastify';
 
 const cx = classnames.bind(styles);
 
 const Register = () => {
     const navigate = useNavigate();
-    const { capCha, reFeshCapCha, handleIsLoading } = useContext(AppContext);
+    const { userInfos } = useContext(AppContext);
+    const [loadingVerify, setLoadingVerify] = useState(false);
+    const [loadingRegister, setLoadingRegister] = useState(false);
 
-    const [name, setName] = useState('');
-    const [nameE, setNameE] = useState('');
+    const [value, setValue] = useState({
+        name: '',
+        phone: '',
+        email: '',
+        address: '', 
+        username: '',
+        password: '',
+        cfmPassword: '',
+        code: '',
+    });
 
-    const [phone, setPhone] = useState('');
-    const [phoneE, setPhoneE] = useState('');
+    const [errors, setErrors] = useState({
+        name: '',
+        phone: '',
+        email: '',
+        address: '',
+        username: '',
+        password: '',
+        cfmPassword: '',
+        code: '',
+    });
+    if (userInfos !== null) {
+        navigate('/');
+    } else {
+        const handleChange = (e) => {
+            const { name, value } = e.target;
+            setValue((prevValues) => ({
+                ...prevValues,
+                [name]: value,
+            }));
+        };
+        const handleResetValue = (e) => {
+            e.preventDefault();
+            setValue({
+                name: '',
+                phone: '',
+                email: '',
+                address: '',
+                username: '',
+                password: '',
+                cfmPassword: '',
+                code: '',
+            });
+            setErrors({
+                name: '',
+                phone: '',
+                email: '',
+                address: '',
+                username: '',
+                password: '',
+                cfmPassword: '',
+                code: '',
+            });
+        };
 
-    const [address, setAddress] = useState('');
+        const handleVerify = async (e) => {
+            e.preventDefault();
+            const regexName = /^[a-zA-ZÀ-ỹ]+([ ]?[a-zA-ZÀ-ỹ]+)*$/;
+            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const regexUser = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+            const newErrors = {};
+            let hasError = false;
+            if (!regexName.test(value.name)) {
+                newErrors.name = 'Bạn vui lòng nhập đúng họ và tên';
+                hasError = true;
+            }
+            if (!regexEmail.test(value.email)) {
+                newErrors.email = 'Bạn vui lòng nhập đúng Email';
+                hasError = true;
+            }
+            if (!regexUser.test(value.username)) {
+                newErrors.username = 'Tên truy cập tối thiểu 6 kí tự và có ít nhất 1 chữ số';
+                hasError = true;
+            }
+            setErrors(newErrors);
+            if (!hasError) {
+                setLoadingVerify(true);
+                const verify = await register.verify(value.username, value.email, value.name);
+                setLoadingVerify(false);
 
-    const [email, setEmail] = useState('');
-    const [emailE, setEmailE] = useState('');
+                if (verify.status === 200) {
+                    toast('Vui lòng vào Email của bạn để lấy mã', {
+                        position: 'top-center',
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                    });
+                    newErrors.code = 'Vui lòng vào Email của bạn để lấy mã và điền tại đây';
+                    setErrors(newErrors);
+                }
+                if (verify.status === 400) {
+                    newErrors.code = 'Lấy mã xác thực thất bại';
+                    setErrors(newErrors);
+                    if (verify.data.msg === 'User exists') {
+                        newErrors.username = 'Tài khoản đã được đăng ký trước đó';
+                        setErrors(newErrors);
+                    }
+                }
+            }
+        };
 
-    const [user, setUser] = useState('');
-    const [userE, setUserE] = useState('');
+        const handleRegister = async (e) => {
+            e.preventDefault();
+            const regexName = /^[a-zA-ZÀ-ỹ]+([ ]?[a-zA-ZÀ-ỹ]+)*$/;
+            const regexPhone = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const regexUser = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 
-    const [password, setPassword] = useState('');
-    const [passwordE, setPasswordE] = useState('');
-
-    const [confirmPassword, setComfirmPassword] = useState('');
-    const [confirmPasswordE, setComfirmPasswordE] = useState('');
-
-    const [code, setCode] = useState('');
-    const [codeE, setCodeE] = useState('');
-
-    const handleName = (e) => {
-        setName(e.target.value);
-    };
-    const handlePhone = (e) => {
-        setPhone(e.target.value);
-    };
-    const handleAdress = (e) => {
-        setAddress(e.target.value);
-    };
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-    };
-    const handleUser = (e) => {
-        setUser(e.target.value);
-    };
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-    };
-    const handleConfirmPassword = (e) => {
-        setComfirmPassword(e.target.value);
-    };
-    const handleCode = (e) => {
-        setCode(e.target.value);
-    };
-    const handleResetValue = (e) => {
-        e.preventDefault();
-        setName('');
-        setNameE('');
-        setPhone('');
-        setPhoneE('');
-        setAddress('');
-        setEmail('');
-        setEmailE('');
-        setUser('');
-        setUserE('');
-        setPassword('');
-        setPasswordE('');
-        setComfirmPassword('');
-        setComfirmPasswordE('');
-        setCode('');
-        setCodeE('');
-    };
-    const handleRegister = async (e) => {
-        e.preventDefault();
-        const regexName = /^[a-zA-Z ]+$/;
-        const regexPhone = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
-        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const regexUser = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
-        if (!regexName.test(name)) {
-            setNameE('Bạn vui lòng nhập đúng họ và tên');
-        } else {
-            setNameE('');
-        }
-        if (!regexPhone.test(phone)) {
-            setPhoneE('Bạn vui lòng nhập số điện thoại');
-        } else {
-            setPhoneE('');
-        }
-        if (!regexEmail.test(email)) {
-            setEmailE('Bạn vui lòng nhập đúng Email');
-        } else {
-            setEmailE('');
-        }
-        if (!regexUser.test(user)) {
-            setUserE('Tên truy cập tối thiểu 6 kí tự và có ít nhất 1 chữ số');
-        } else {
-            setUserE('');
-        }
-        if (!regexUser.test(password)) {
-            setPasswordE('Mật khẩu tối thiểu 6 kí tự và có ít nhất 1 chữ số');
-        } else {
-            setPasswordE('');
-        }
-        if (password !== confirmPassword || confirmPassword === '') {
-            setComfirmPasswordE('Mật khẩu không khớp. Vui lòng nhập lại!');
-        } else {
-            setComfirmPasswordE('');
-        }
-        if (code !== capCha) {
-            setCodeE('Bạn vui lòng nhập đúng mã bảo vệ');
-        } else {
-            setCodeE('');
-        }
-        if (
-            regexName.test(name) &&
-            regexPhone.test(phone) &&
-            regexEmail.test(email) &&
-            regexUser.test(user) &&
-            regexUser.test(password) &&
-            password === confirmPassword &&
-            confirmPassword !== '' &&
-            code === capCha
-        ) {
-            const resultAllUser = await register.getUser(user);
-            const checkRegister = resultAllUser.data?.some((username) => username.user === user);
-            if (checkRegister) {
-                setUserE('Tên truy cập đã tồn tại');
-            } else {
-                const result = await register.postUser(name, phone, address, email, user, password);
-                if (result.status === 201) {
+            const newErrors = {};
+            let hasError = false;
+            if (!regexName.test(value.name)) {
+                newErrors.name = 'Bạn vui lòng nhập đúng họ và tên';
+                hasError = true;
+            }
+            if (!regexPhone.test(value.phone)) {
+                newErrors.phone = 'Bạn vui lòng nhập số điện thoại';
+                hasError = true;
+            }
+            if (!regexEmail.test(value.email)) {
+                newErrors.email = 'Bạn vui lòng nhập đúng Email';
+                hasError = true;
+            }
+            if (!regexUser.test(value.username)) {
+                newErrors.username = 'Tên truy cập tối thiểu 6 kí tự và có ít nhất 1 chữ số';
+                hasError = true;
+            }
+            if (!regexUser.test(value.password)) {
+                newErrors.password = 'Mật khẩu tối thiểu 6 kí tự và có ít nhất 1 chữ số';
+                hasError = true;
+            }
+            if (value.password !== value.cfmPassword || value.cfmPassword === '') {
+                newErrors.cfmPassword = 'Mật khẩu không khớp. Vui lòng nhập lại!';
+                hasError = true;
+            }
+            if (value.code === '') {
+                newErrors.code = 'Bạn vui lòng nhập đúng mã xác nhận';
+                hasError = true;
+            }
+            setErrors(newErrors);
+            if (!hasError) {
+                setLoadingRegister(true);
+                const signup = await register.register(
+                    value.name,
+                    value.username,
+                    value.phone,
+                    value.email,
+                    value.password,
+                    value.address,
+                    value.code,
+                );
+                setLoadingRegister(false);
+                if (signup.status === 200) {
+                    toast('Đăng ký thành công', {
+                        position: 'top-center',
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                    });
                     navigate('/login');
                 }
-                handleIsLoading();
             }
-        } else {
-            console.log('erro');
-        }
-    };
-    return (
-        <>
-            <Banner page="Đăng ký" title="Đăng ký" />
-            <div className={cx('wrapper')}>
-                <section className="container">
-                    <form className={cx('form')} onSubmit={handleRegister}>
-                        <div className={cx('block')}>
-                            <div className={cx('block1')}>
-                                <div className={cx('inputblock')}>
-                                    <span className={cx('input-group-text')}>*</span>
-                                    <input
-                                        className={cx('input')}
-                                        value={name}
-                                        onChange={handleName}
-                                        type="text"
-                                        placeholder="Họ và tên"
-                                    />
-                                    <span className={cx('errorMessage')}>{nameE}</span>
+        };
+        return (
+            <>
+                <Banner page="Đăng ký" title="Đăng ký" />
+                <div className={cx('wrapper')}>
+                    <section className="container">
+                        <form className={cx('form')} onSubmit={handleRegister}>
+                            <div className={cx('block')}>
+                                <div className={cx('block1')}>
+                                    <div className={cx('inputblock')}>
+                                        <span className={cx('input-group-text')}>*</span>
+                                        <input
+                                            name="name"
+                                            className={cx('input')}
+                                            value={value.name}
+                                            onChange={handleChange}
+                                            type="text"
+                                            placeholder="Họ và tên"
+                                        />
+                                        <span className={cx('errorMessage')}>{errors.name}</span>
+                                    </div>
+                                    <div className={cx('inputblock')}>
+                                        <span className={cx('input-group-text')}>*</span>
+                                        <input
+                                            className={cx('input')}
+                                            value={value.phone}
+                                            name="phone"
+                                            onChange={handleChange}
+                                            type="text"
+                                            placeholder="Điện thoại"
+                                        />
+                                        <span className={cx('errorMessage')}>{errors.phone}</span>
+                                    </div>
+                                    <div className={cx('inputblock')}>
+                                        <input
+                                            className={cx('input')}
+                                            value={value.address}
+                                            name="address"
+                                            onChange={handleChange}
+                                            type="text"
+                                            placeholder="Địa chỉ"
+                                        />
+                                    </div>
+                                    <div className={cx('inputblock')}>
+                                        <span className={cx('input-group-text')}>*</span>
+                                        <input
+                                            className={cx('input')}
+                                            value={value.email}
+                                            name="email"
+                                            onChange={handleChange}
+                                            type="text"
+                                            placeholder="Email"
+                                        />
+                                        <span className={cx('errorMessage')}>{errors.email}</span>
+                                    </div>
                                 </div>
-                                <div className={cx('inputblock')}>
-                                    <span className={cx('input-group-text')}>*</span>
-                                    <input
-                                        className={cx('input')}
-                                        value={phone}
-                                        onChange={handlePhone}
-                                        type="text"
-                                        placeholder="Điện thoại"
-                                    />
-                                    <span className={cx('errorMessage')}>{phoneE}</span>
-                                </div>
-                                <div className={cx('inputblock')}>
-                                    <input
-                                        className={cx('input')}
-                                        value={address}
-                                        onChange={handleAdress}
-                                        type="text"
-                                        placeholder="Địa chỉ"
-                                    />
-                                </div>
-                                <div className={cx('inputblock')}>
-                                    <span className={cx('input-group-text')}>*</span>
-                                    <input
-                                        className={cx('input')}
-                                        value={email}
-                                        onChange={handleEmail}
-                                        type="text"
-                                        placeholder="Email"
-                                    />
-                                    <span className={cx('errorMessage')}>{emailE}</span>
+                                <div className={cx('block2')}>
+                                    <div className={cx('inputblock')}>
+                                        <span className={cx('input-group-text')}>*</span>
+                                        <input
+                                            className={cx('input')}
+                                            value={value.username}
+                                            name="username"
+                                            onChange={handleChange}
+                                            type="text"
+                                            placeholder="Tên truy cập"
+                                        />
+                                        <span className={cx('errorMessage')}>{errors.username}</span>
+                                    </div>
+                                    <div className={cx('inputblock')}>
+                                        <span className={cx('input-group-text')}>*</span>
+                                        <input
+                                            className={cx('input')}
+                                            type="password"
+                                            name="password"
+                                            value={value.password}
+                                            onChange={handleChange}
+                                            placeholder="Mật khẩu"
+                                        />
+                                        <span className={cx('errorMessage')}>{errors.password}</span>
+                                    </div>
+                                    <div className={cx('inputblock')}>
+                                        <span className={cx('input-group-text')}>*</span>
+                                        <input
+                                            className={cx('input')}
+                                            type="password"
+                                            name="cfmPassword"
+                                            value={value.cfmPassword}
+                                            onChange={handleChange}
+                                            placeholder="Xác nhận mật khẩu"
+                                        />
+                                        <span className={cx('errorMessage')}>{errors.cfmPassword}</span>
+                                    </div>
+                                    <div className={cx('inputblock')}>
+                                        <span className={cx('input-group-text')}>*</span>
+                                        <input
+                                            className={cx('input')}
+                                            value={value.code}
+                                            name="code"
+                                            onChange={handleChange}
+                                            type="text"
+                                            placeholder="Mã xác nhận"
+                                        />
+                                        <span className={cx('errorMessage')}>{errors.code}</span>
+                                        <button
+                                            className={cx('sync', (loadingVerify || value.code !== '') && 'disable')}
+                                            onClick={handleVerify}
+                                        >
+                                            {!loadingVerify ? (
+                                                <span>Lấy mã</span>
+                                            ) : (
+                                                <FontAwesomeIcon icon={faCircleNotch} spin />
+                                            )}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                            <div className={cx('block2')}>
-                                <div className={cx('inputblock')}>
-                                    <span className={cx('input-group-text')}>*</span>
-                                    <input
-                                        className={cx('input')}
-                                        value={user}
-                                        onChange={handleUser}
-                                        type="text"
-                                        placeholder="Tên truy cập"
-                                    />
-                                    <span className={cx('errorMessage')}>{userE}</span>
-                                </div>
-                                <div className={cx('inputblock')}>
-                                    <span className={cx('input-group-text')}>*</span>
-                                    <input
-                                        className={cx('input')}
-                                        type="password"
-                                        value={password}
-                                        onChange={handlePassword}
-                                        placeholder="Mật khẩu"
-                                    />
-                                    <span className={cx('errorMessage')}>{passwordE}</span>
-                                </div>
-                                <div className={cx('inputblock')}>
-                                    <span className={cx('input-group-text')}>*</span>
-                                    <input
-                                        className={cx('input')}
-                                        type="password"
-                                        value={confirmPassword}
-                                        onChange={handleConfirmPassword}
-                                        placeholder="Xác nhận mật khẩu"
-                                    />
-                                    <span className={cx('errorMessage')}>{confirmPasswordE}</span>
-                                </div>
-                                <div className={cx('inputblock')}>
-                                    <span className={cx('input-group-text')}>*</span>
-                                    <input
-                                        className={cx('input')}
-                                        value={code}
-                                        onChange={handleCode}
-                                        type="text"
-                                        placeholder="Mã bảo mật"
-                                    />
-                                    <span className={cx('errorMessage')}>{codeE}</span>
-
-                                    <div className={cx('capcha')}>{capCha}</div>
-                                    <button className={cx('sync')} onClick={reFeshCapCha}>
-                                        <FontAwesomeIcon icon={faArrowsRotate} />
-                                    </button>
-                                </div>
+                            <div className={cx('block3')}>
+                                <h4 className={cx('text')}>Bạn đã có tài khoản?</h4>
+                                <Link to="/login">
+                                    <h4 className={cx('text', 'login')}>Đăng nhập</h4>
+                                </Link>
                             </div>
-                        </div>
-                        <div className={cx('block3')}>
-                            <h4 className={cx('text')}>Bạn đã có tài khoản?</h4>
-                            <Link to="/login">
-                                <h4 className={cx('text', 'login')}>Đăng nhập</h4>
-                            </Link>
-                        </div>
-                        <div className={cx('block4')}>
-                            <button className={cx('button')} type="submit">
-                                Đăng Ký
-                            </button>
-                            <button className={cx('button')} onClick={handleResetValue}>
-                                Làm lại
-                            </button>
-                        </div>
-                    </form>
-                </section>
-            </div>
-        </>
-    );
+                            <div className={cx('block4')}>
+                                <button className={cx('button', loadingRegister && 'disabled')} type="submit">
+                                    {!loadingRegister ? 'Đăng Ký' : <FontAwesomeIcon icon={faCircleNotch} spin />}
+                                </button>
+                                <button className={cx('button')} onClick={handleResetValue}>
+                                    Làm lại
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </>
+        );
+    }
 };
 
 export default Register;

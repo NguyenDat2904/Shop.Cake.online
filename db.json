@@ -50,16 +50,6 @@
       "id": 6
     },
     {
-      "name": "Vu Van Dong",
-      "phone": "0312312312",
-      "address": "Hai Xuan Hai Hau Nam Dinh",
-      "email": "dong123@gmail.com",
-      "user": "dongdong123",
-      "password": "3qcuhanh",
-      "role": "regular",
-      "id": 7
-    },
-    {
       "name": "Nguyễn Thị Tuyết",
       "phone": "0982896741",
       "address": "Bãi Sậy, Hưng Yên",
@@ -145,6 +135,16 @@
       "password": "3qcuhanh",
       "role": "regular",
       "id": 15
+    },
+    {
+      "name": "Nguyen Dat",
+      "phone": "0357626978",
+      "address": "Hai Xuan Hai Hau Nam Dinh",
+      "email": "dathhcc2@gmail.com",
+      "user": "dathhcc2",
+      "password": "3qcuhanh",
+      "role": "regular",
+      "id": 16
     }
   ],
   "comments": [],
@@ -531,6 +531,35 @@
       "status": "Chưa nhận hàng",
       "userName": "thaothao2601",
       "id": 24
+    },
+    {
+      "nameBuy": "Nguyen Dat",
+      "email": "dathcc2@gmail.com",
+      "phoneBuy": "0357626978",
+      "nameReceive": "Nguyen Dat",
+      "phoneReceive": "0357626978",
+      "province": "Thành phố Hà Nội",
+      "district": "Quận Tây Hồ",
+      "ward": "Phường Tứ Liên",
+      "address": "Xom 1",
+      "product": [
+        {
+          "id": 3,
+          "name": "TINY PRINCE",
+          "price": "340000",
+          "img": "https://demo037126.web30s.vn/datafiles/38469/upload/images/san-pham/banh-kem-hoang-tu-be-removebg-preview.png?t=1668479885",
+          "color": "Xanh Dương",
+          "type": "bánh kem",
+          "size": "17",
+          "quantity": 1
+        }
+      ],
+      "formattedTotal": 390000,
+      "payIn": "Nhận hàng thanh toán",
+      "deliveryMethod": "Đang đóng hàng",
+      "status": "Chưa nhận hàng",
+      "userName": "dathhcc2",
+      "id": 27
     }
   ],
   "products": [
@@ -1188,6 +1217,13 @@
       "phoneContact": "0357626978",
       "contenContact": "Xin chào, tôi liên hệ từ Nam Định FC",
       "id": 8
+    },
+    {
+      "nameContact": "Nguyen Dat",
+      "emailContact": "dathhc2@gmail.com",
+      "phoneContact": "0357626978",
+      "contenContact": "Tôi muôn đặt hàng",
+      "id": 9
     }
   ]
 }

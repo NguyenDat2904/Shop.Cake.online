@@ -13,35 +13,12 @@ import { AppContext } from '~/hook/context';
 
 const cx = classNames.bind(styles);
 const Profile = (prop) => {
-    const { name, email, phone, address, id, password, img, toggle } = prop;
-    const [fullName, setFullName] = useState(name);
-    const [fileProfile, setFileProfile] = useState(true);
-    const { userOrder, getLook, getLikes, setIsLoading } = useContext(AppContext);
-    const compare = fileProfile ? 'Không có thông tin cho loại dữ liệu này ' : '';
-    const hendleAccountInformation = () => {
-        setFileProfile(false);
-    };
-    const hendleUserOrder = () => {
-        if (userOrder === []) {
-            setFileProfile(true);
-        } else {
-            setFileProfile(false);
-        }
-    };
-    const hendleUserSeeLook = () => {
-        if (getLook === []) {
-            setFileProfile(true);
-        } else {
-            setFileProfile(false);
-        }
-    };
-    const hendleUserFavouriteLinks = () => {
-        if (getLikes === []) {
-            setFileProfile(true);
-        } else {
-            setFileProfile(false);
-        }
-    };
+    const { info, toggle, order } = prop;
+    const { setIsLoading } = useContext(AppContext);
+
+    const hendleUserOrder = () => {};
+    const hendleUserSeeLook = () => {};
+    const hendleUserFavouriteLinks = () => {};
     const activeClass = (params) => {
         return params.isActive ? cx('profile-active') : '';
     };
@@ -52,32 +29,32 @@ const Profile = (prop) => {
                     <div className={cx('img')}>
                         <img
                             src={
-                                img === undefined
+                                info?.img === undefined
                                     ? 'https://inkythuatso.com/uploads/thumbnails/800/2023/03/9-anh-dai-dien-trang-inkythuatso-03-15-27-03.jpg'
-                                    : img
+                                    : info?.img
                             }
                             alt=""
                         />
                     </div>
                     <div className={cx('nameProfile')}>
-                        <h4>{fullName}</h4>
+                        <h4>{info?.name}</h4>
                         <p>Chỉnh sửa tài khoản</p>
                     </div>
                 </div>
                 <h3>QUẢN LÝ GIAO DỊCH</h3>
-                <NavLink to={'yourorder'} className={activeClass} onClick={() => setIsLoading(true)}>
+                <NavLink to={'/profile'} className={activeClass} onClick={() => setIsLoading(true)}>
                     <div className={cx('profileIcon')} onClick={hendleUserOrder}>
                         <FontAwesomeIcon icon={faFile} />
                         Đơn hàng của bạn
                     </div>
                 </NavLink>
-                <NavLink to={'yoursees'} className={activeClass} onClick={() => setIsLoading(true)}>
+                <NavLink to={'/profile/yoursees'} className={activeClass} onClick={() => setIsLoading(true)}>
                     <div className={cx('profileIcon')} onClick={hendleUserSeeLook}>
                         <FontAwesomeIcon icon={faEye} />
                         Sản phẩm đã xem
                     </div>
                 </NavLink>
-                <NavLink to={'yourfavourite'} className={activeClass} onClick={() => setIsLoading(true)}>
+                <NavLink to={'/profile/yourfavourite'} className={activeClass} onClick={() => setIsLoading(true)}>
                     <div className={cx('profileIcon')} onClick={hendleUserFavouriteLinks}>
                         <FontAwesomeIcon icon={faHeart} />
                         Danh sách yêu thích
@@ -85,14 +62,14 @@ const Profile = (prop) => {
                 </NavLink>
 
                 <h3>QUẢN LÝ TÀI KHOẢN</h3>
-                <NavLink to={'accountInformation'} className={activeClass} onClick={() => setIsLoading(true)}>
-                    <div className={cx('profileIcon')} onClick={hendleAccountInformation}>
+                <NavLink to={'/profile/accountInformation'} className={activeClass} onClick={() => setIsLoading(true)}>
+                    <div className={cx('profileIcon')}>
                         <FontAwesomeIcon icon={faPenToSquare} />
                         Thông tin tài khoản
                     </div>
                 </NavLink>
-                <NavLink to={'hangePassword'} className={activeClass} onClick={() => setIsLoading(true)}>
-                    <div className={cx('profileIcon')} onClick={hendleAccountInformation}>
+                <NavLink to={'/profile/hangePassword'} className={activeClass} onClick={() => setIsLoading(true)}>
+                    <div className={cx('profileIcon')}>
                         <FontAwesomeIcon icon={faKey} />
                         Đổi mật khẩu
                     </div>
@@ -100,24 +77,10 @@ const Profile = (prop) => {
             </div>
             <div className={cx('rightProfile')}>
                 <h5>Quản lý giao dịch</h5>
-                {/* <h6>{compare}</h6> */}
                 <Routes>
-                    <Route
-                        path="/accountInformation"
-                        element={
-                            <AccountInformation
-                                name={name}
-                                email={email}
-                                phone={phone}
-                                address={address}
-                                id={id}
-                                fullName={fullName}
-                                setFullName={setFullName}
-                            />
-                        }
-                    />
-                    <Route path="/hangePassword" element={<ChangePassword password={password} id={id} />} />
-                    <Route path="/yourorder" element={<YourOrder id={id} />} />
+                    <Route path="/accountInformation" element={<AccountInformation info={info} />} />
+                    <Route path="/hangePassword" element={<ChangePassword info={info} />} />
+                    <Route path="/" element={<YourOrder order={order} />} />
                     <Route path="/yoursees" element={<YourSee />} />
                     <Route path="/yourfavourite" element={<YourFavourite toggle={toggle} />} />
                 </Routes>
