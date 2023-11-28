@@ -86,8 +86,10 @@ const Login = () => {
                         theme: 'light',
                     });
                     localStorage.setItem('user', JSON.stringify(result.data));
+                    localStorage.setItem('role', JSON.stringify(result.data.role));
+                    if (result.data.role === 'regular') navigate('/');
+                    if (result.data.role === 'admin') navigate('/admin/dashboard');
                 }
-                navigate('/');
             }
         };
         return (

@@ -8,7 +8,7 @@ import { AppContext } from '~/hook/context';
 
 const cx = classnames.bind(styles);
 function Table({ header, orders }) {
-    const { dataOrders } = useContext(AppContext);
+    const { orderAll } = useContext(AppContext);
     const renderHeader = header?.map((item, index) => {
         return (
             <Fragment key={index}>
@@ -23,7 +23,7 @@ function Table({ header, orders }) {
             </Fragment>
         );
     });
-    const renderListOrder = dataOrders?.map((order, index) => {
+    const renderListOrder = orderAll.orders?.map((order, index) => {
         const formatPrice = formatCurrencyVND(order.formattedTotal);
         let classStatus;
         if (order.deliveryMethod === 'Đã nhận hàng') {
@@ -43,7 +43,7 @@ function Table({ header, orders }) {
                     <td width="60px">
                         {order.product?.map((product, index) => (
                             <div key={index} className={cx('imgBx')}>
-                                <img src={product.img} />
+                                <img src={product.id.img} alt="" />
                             </div>
                         ))}
                     </td>
@@ -52,7 +52,7 @@ function Table({ header, orders }) {
                     <td className={cx('text-center')}>
                         {order.product?.map((product, index) => (
                             <div key={index} className={cx('name-product')}>
-                                {product.name}
+                                {product.id.name}
                             </div>
                         ))}
                     </td>

@@ -32,7 +32,6 @@ const AppProvider = (props) => {
     const [capChaContact, setCapChaContact] = useState(generateRandomCode(5));
     const [dataSort, setDataSort] = useState([]);
     const [toggleNavigation, setToggleNavigation] = useState(false);
-    const [dataUser, setDataUser] = useState([]);
     const [dataProduct, setDataProduct] = useState([]);
     const [dataOrders, setDataOrders] = useState([]);
     const [originalDataUser, setOriginalDataUser] = useState([]);
@@ -71,9 +70,12 @@ const AppProvider = (props) => {
         size: [],
     });
     const [userInfos, setUserInfos] = useState(localStorage.getItem('user'));
+    const [role, setRole] = useState(localStorage.getItem('role'));
     const [userDetail, setUserDetail] = useState(null);
     const [cartData, setCartData] = useState([]);
-    const [orderUser, setOrderUser] = useState([])
+    const [orderUser, setOrderUser] = useState([]);
+    const [dataUser, setDataUser] = useState([]);
+    const [orderAll, setOrderAll] = useState([]);
 
     const location = useLocation();
     const userInfo = JSON.parse(userInfos);
@@ -286,6 +288,10 @@ const AppProvider = (props) => {
         setCartData,
         orderUser,
         setOrderUser,
+        role,
+        setRole,
+        orderAll,
+        setOrderAll,
     };
 
     return (

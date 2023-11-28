@@ -10,11 +10,11 @@ import { formatCurrencyVND } from '~/component/NumberToPrice/currency';
 import * as address from '~/services/addressSerce';
 import { useNavigate } from 'react-router-dom';
 import * as pay from '~/services/registerService';
+import * as order from '~/services/ordersService';
 const cx = classnames.bind(styles);
 function PayMent({ toggle }) {
     const navigate = useNavigate();
-    const { productDataCart, addressData, setAddressData, handleIsLoading, setUserOder, userInfos } =
-        useContext(AppContext);
+    const { cartData, addressData, setAddressData, handleIsLoading, userInfos } = useContext(AppContext);
     // 1. useState
     const [toggleTransport, setToggleTransport] = useState(false);
     const [toggleShip, setToggleShip] = useState(true);
@@ -28,6 +28,7 @@ function PayMent({ toggle }) {
         valueWard: '',
         valueDistrict: '',
         valueProvince: '',
+        payIn: '',
     });
 
     const [errors, setErrors] = useState({
@@ -40,6 +41,7 @@ function PayMent({ toggle }) {
         valueWard: '',
         valueDistrict: '',
         valueProvince: '',
+        payIn: '',
     });
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -50,35 +52,13 @@ function PayMent({ toggle }) {
     };
     const [priceShip, setPriceShip] = useState(false);
     const [currentShip, setCurrentShip] = useState(50000);
-
-    //value pay
-    const [paymentOnDelivery, setPaymentOnDelivery] = useState('');
-    const [paymentAtTheCompany, setPaymentAtTheCompany] = useState(false);
-    const [transferPayments, setTransferPayments] = useState(false);
-    const [cashPayment, setCashPayment] = useState(false);
-    const [payPayPal, setPayPayPal] = useState(false);
-    const [vnpay, setVnpay] = useState(false);
-    const [payNaPas, setPayNaPas] = useState(false);
-    const [payZaloPay, setPayZaloPay] = useState(false);
-    const [payMoMo, setPayMoMo] = useState(false);
-
-    const [payIn, setPayIn] = useState('');
-    const [user, setUser] = useState(() => {
-        const userLogin = localStorage.getItem('user');
-        return userLogin || '';
-    });
-    // Value Select
-
-    //delivery method
-    const [deliveryMethod, setDeliveryMethod] = useState('');
-    const [status, setStatus] = useState('');
-
     // 2. useEffects
-    // const totalNotShip = productDataCart?.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    const formattedTotalNotShip = formatCurrencyVND(0);
     const formattedShip = formatCurrencyVND(currentShip);
-    const formattedTotal = formatCurrencyVND(0 + currentShip);
-    const formatted = 0 + currentShip;
+    const total = cartData[0]?.product.reduce((acc, product) => acc + +product.id.price, 0);
+    const formattedTotalNotShip = formatCurrencyVND(total);
+    const formattedTotal = formatCurrencyVND(total + currentShip);
+    const totalShip = +total + currentShip;
+
     useEffect(() => {
         if (
             value.valueProvince !== '--Chọn tỉnh thành--' &&
@@ -102,7 +82,6 @@ function PayMent({ toggle }) {
 
     // Call address
     useEffect(() => {
-        setUser(localStorage.getItem('user'));
         const fetchAPI = async () => {
             const result = await address.getAddress();
             setAddressData(result);
@@ -112,46 +91,23 @@ function PayMent({ toggle }) {
     if (userInfos === null) {
         return navigate('/login');
     } else {
-        const hendlePaymentOnDelivery = (e) => {
-            setPaymentOnDelivery(e.target.checked);
-        };
-        const hendlePaymentAtTheCompany = (e) => {
-            setPaymentAtTheCompany(e.target.checked);
-        };
-        const hendlePaytransferPayments = (e) => {
-            setTransferPayments(e.target.checked);
-        };
-        const hendlecashPayment = (e) => {
-            setCashPayment(e.target.checked);
-        };
-        const hendlepayPayPal = (e) => {
-            setPayPayPal(e.target.checked);
-        };
-        const hendlepayvnpay = (e) => {
-            setVnpay(e.target.checked);
-        };
-        const hendlepayNaPas = (e) => {
-            setPayNaPas(e.target.checked);
-        };
-        const hendlepayZaloPay = (e) => {
-            setPayZaloPay(e.target.checked);
-        };
-        const hendlepayMoMo = (e) => {
-            setPayMoMo(e.target.checked);
-        };
-
+        const userInfo = JSON.parse(userInfos);
         // 3. function
         const handleTransport = () => {
             if (!toggleTransport) {
                 setCurrentShip(0);
+                setValue((prevValues) => ({
+                    ...prevValues,
+                    valueAddress: 'Nhận hàng trực tiếp tại công ty',
+                }));
             } else {
                 setCurrentShip(50000);
+                setValue((prevValues) => ({
+                    ...prevValues,
+                    valueAddress: '',
+                }));
             }
             setToggleTransport(!toggleTransport);
-            setValue((prevValues) => ({
-                ...prevValues,
-                valueAddress: 'Nhận hàng trực tiếp tại công ty',
-            }));
         };
         // Handle Input
         const onSubmitPayMent = async (e) => {
@@ -204,7 +160,48 @@ function PayMent({ toggle }) {
             setErrors(newErrors);
 
             if (!hasError) {
-                toggle(7);
+                if (value.valueAddress === 'Nhận hàng trực tiếp tại công ty') {
+                    const data = {
+                        userID: userInfo._id,
+                        nameBuy: value.valueNameBuy,
+                        email: value.valueEmail,
+                        phoneBuy: value.valuePhoneBuy,
+                        nameReceive: value.valueNameReceive,
+                        phoneReceive: value.valuePhoneReceive,
+                        province: value.valueProvince,
+                        district: value.valueDistrict,
+                        ward: value.valueWard,
+                        address: value.valueAddress,
+                        product: cartData[0]?.product,
+                        formattedTotal: total,
+                        payIn: value.payIn,
+                        deliveryMethod: 'Chờ xác nhận',
+                    };
+                    const newOrder = await order.createOrder(data, userInfo.accessToken, userInfo.refreshToken);
+                    if (newOrder.status === 200) {
+                        toggle(7);
+                    }
+                } else if (value.payIn === 'Paypal') {
+                    const data = {
+                        userID: userInfo._id,
+                        nameBuy: value.valueNameBuy,
+                        email: value.valueEmail,
+                        phoneBuy: value.valuePhoneBuy,
+                        nameReceive: value.valueNameReceive,
+                        phoneReceive: value.valuePhoneReceive,
+                        province: value.valueProvince,
+                        district: value.valueDistrict,
+                        ward: value.valueWard,
+                        address: value.valueAddress,
+                        product: cartData[0]?.product,
+                        formattedTotal: totalShip.toString(),
+                        deliveryMethod: 'Chờ xác nhận',
+                    };
+                    const newOrder = await order.orderPaypal(data, userInfo.accessToken, userInfo.refreshToken);
+                    if (newOrder.status === 200) {
+                        window.location.href = newOrder.data.href;
+                    }
+                }
             } else {
                 console.log('error1');
             }
@@ -249,18 +246,18 @@ function PayMent({ toggle }) {
             return addressWard;
         });
         // list Product
-        const renderListItem = productDataCart?.map((product) => {
-            const formattedPrice = formatCurrencyVND(product.price);
+        const renderListItem = cartData[0]?.product.map((product) => {
+            const formattedPrice = formatCurrencyVND(product.id.price);
             return (
-                <div key={product.id} className={cx('payment-list-item')}>
+                <div key={product.id._id} className={cx('payment-list-item')}>
                     <div className={cx('payment-list-img')}>
-                        <img className="img-full" src={product.img} alt="" />
+                        <img className="img-full" src={product.id.img} alt="" />
                     </div>
                     <div className={cx('payment-list-info')}>
                         <div className={cx('list-info-name')}>
-                            <p className={cx('info-name')}>{product.name}</p>
+                            <p className={cx('info-name')}>{product.id.name}</p>
                             <span className={cx('info-desc')}>
-                                {product.color}-{product.type}-{product.size} "
+                                {product.id.color}-{product.id.type}-{product.id.size} "
                             </span>
                         </div>
                         <div className={cx('list-info-quantity')}>{product.quantity} x</div>
@@ -507,12 +504,13 @@ function PayMent({ toggle }) {
                                                         <div className={cx('check-blue')}>
                                                             <input
                                                                 type="radio"
-                                                                name="payment-method"
-                                                                id=""
-                                                                checked={paymentOnDelivery}
-                                                                onChange={hendlePaymentOnDelivery}
+                                                                name="payIn"
+                                                                value="COD"
+                                                                id="COD"
+                                                                checked={value.payIn === 'COD'}
+                                                                onChange={handleChange}
                                                             />
-                                                            <label htmlFor="">
+                                                            <label htmlFor="COD">
                                                                 <h4 className={cx('payment-method', 'cod')}>
                                                                     Thanh toán khi nhận hàng
                                                                 </h4>
@@ -523,12 +521,13 @@ function PayMent({ toggle }) {
                                                         <div className={cx('check-blue')}>
                                                             <input
                                                                 type="radio"
-                                                                name="payment-method"
-                                                                id=""
-                                                                checked={paymentAtTheCompany}
-                                                                onChange={hendlePaymentAtTheCompany}
+                                                                name="payIn"
+                                                                value="PAC"
+                                                                id="PAC"
+                                                                checked={value.payIn === 'PAC'}
+                                                                onChange={handleChange}
                                                             />
-                                                            <label htmlFor="">
+                                                            <label htmlFor="PAC">
                                                                 <h4 className={cx('payment-method', 'home')}>
                                                                     Thanh toán tại công ty
                                                                 </h4>
@@ -550,11 +549,13 @@ function PayMent({ toggle }) {
                                                             <div className={cx('check-blue', 'check-radio')}>
                                                                 <input
                                                                     type="radio"
-                                                                    name="payment-method"
-                                                                    checked={transferPayments}
-                                                                    onChange={hendlePaytransferPayments}
+                                                                    name="payIn"
+                                                                    value="Banking"
+                                                                    id="Banking"
+                                                                    checked={value.payIn === 'Banking'}
+                                                                    onChange={handleChange}
                                                                 />
-                                                                <label htmlFor="">
+                                                                <label htmlFor="Banking">
                                                                     <div className={cx('img-paayment')}>
                                                                         <img
                                                                             src="https://demo037126.web30s.vn/assets/images/payment/2022/thanh-toan-chuyen-kh.png"
@@ -569,11 +570,13 @@ function PayMent({ toggle }) {
                                                             <div className={cx('check-blue', 'check-radio')}>
                                                                 <input
                                                                     type="radio"
-                                                                    name="payment-method"
-                                                                    checked={cashPayment}
-                                                                    onChange={hendlecashPayment}
+                                                                    name="payIn"
+                                                                    value="NganLuong"
+                                                                    id="NganLuong"
+                                                                    checked={value.payIn === 'NganLuong'}
+                                                                    onChange={handleChange}
                                                                 />
-                                                                <label htmlFor="">
+                                                                <label htmlFor="NganLuong">
                                                                     <div className={cx('img-paayment')}>
                                                                         <img
                                                                             src="https://demo037126.web30s.vn/assets/images/payment/2022/ngan-luong-p.png"
@@ -588,11 +591,13 @@ function PayMent({ toggle }) {
                                                             <div className={cx('check-blue', 'check-radio')}>
                                                                 <input
                                                                     type="radio"
-                                                                    name="payment-method"
-                                                                    checked={payPayPal}
-                                                                    onChange={hendlepayPayPal}
+                                                                    name="payIn"
+                                                                    value="Paypal"
+                                                                    id="Paypal"
+                                                                    checked={value.payIn === 'Paypal'}
+                                                                    onChange={handleChange}
                                                                 />
-                                                                <label htmlFor="">
+                                                                <label htmlFor="Paypal">
                                                                     <div className={cx('img-paayment')}>
                                                                         <img
                                                                             src="https://demo037126.web30s.vn/assets/images/payment/2022/paypal-payment.png"
@@ -607,11 +612,13 @@ function PayMent({ toggle }) {
                                                             <div className={cx('check-blue', 'check-radio')}>
                                                                 <input
                                                                     type="radio"
-                                                                    name="payment-method"
-                                                                    checked={vnpay}
-                                                                    onChange={hendlepayvnpay}
+                                                                    name="payIn"
+                                                                    value="VnPay"
+                                                                    id="VnPay"
+                                                                    checked={value.payIn === 'VnPay'}
+                                                                    onChange={handleChange}
                                                                 />
-                                                                <label htmlFor="">
+                                                                <label htmlFor="VnPay">
                                                                     <div className={cx('img-paayment')}>
                                                                         <img
                                                                             src="https://demo037126.web30s.vn/assets/images/payment/2022/vnpay_qr.png"
@@ -626,11 +633,13 @@ function PayMent({ toggle }) {
                                                             <div className={cx('check-blue', 'check-radio')}>
                                                                 <input
                                                                     type="radio"
-                                                                    name="payment-method"
-                                                                    checked={payNaPas}
-                                                                    onChange={hendlepayNaPas}
+                                                                    name="payIn"
+                                                                    value="NaPas"
+                                                                    id="NaPas"
+                                                                    checked={value.payIn === 'NaPas'}
+                                                                    onChange={handleChange}
                                                                 />
-                                                                <label htmlFor="">
+                                                                <label htmlFor="NaPas">
                                                                     <div className={cx('img-paayment')}>
                                                                         <img
                                                                             src="https://demo037126.web30s.vn/assets/images/payment/2022/napas-payment.png"
@@ -645,11 +654,13 @@ function PayMent({ toggle }) {
                                                             <div className={cx('check-blue', 'check-radio')}>
                                                                 <input
                                                                     type="radio"
-                                                                    name="payment-method"
-                                                                    checked={payZaloPay}
-                                                                    onChange={hendlepayZaloPay}
+                                                                    name="payIn"
+                                                                    value="ZaloPay"
+                                                                    id="ZaloPay"
+                                                                    checked={value.payIn === 'ZaloPay'}
+                                                                    onChange={handleChange}
                                                                 />
-                                                                <label htmlFor="">
+                                                                <label htmlFor="ZaloPay">
                                                                     <div className={cx('img-paayment')}>
                                                                         <img
                                                                             src="https://demo037126.web30s.vn/assets/images/payment/2022/ZaloPay_Logo.png"
@@ -664,11 +675,13 @@ function PayMent({ toggle }) {
                                                             <div className={cx('check-blue', 'check-radio')}>
                                                                 <input
                                                                     type="radio"
-                                                                    name="payment-method"
-                                                                    checked={payMoMo}
-                                                                    onChange={hendlepayMoMo}
+                                                                    name="payIn"
+                                                                    value="Momo"
+                                                                    id="Momo"
+                                                                    checked={value.payIn === 'Momo'}
+                                                                    onChange={handleChange}
                                                                 />
-                                                                <label htmlFor="">
+                                                                <label htmlFor="Momo">
                                                                     <div className={cx('img-paayment')}>
                                                                         <img
                                                                             src="https://demo037126.web30s.vn/assets/images/payment/2022/momo-payment.png"

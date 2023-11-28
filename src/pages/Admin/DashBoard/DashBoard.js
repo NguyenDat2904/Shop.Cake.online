@@ -6,6 +6,7 @@ import TableCustomer from '../Component/TableCustomer/TableCustomer';
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '~/hook/context';
 import * as getUser from '~/services/userService';
+import * as getOrder from '~/services/ordersService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBoxOpen, faCartShopping, faMoneyBills, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 import { formatCurrencyVND } from '~/component/NumberToPrice/currency';
@@ -14,16 +15,23 @@ import { convertNumberToShortText } from '~/component/NumberToText/NumberToText'
 const cx = classnames.bind(styles);
 
 function DashBoard() {
-    const { toggleNavigation, dataOrders, dataProduct, setIsLoading } = useContext(AppContext);
-    const [dataUser, setDataUser] = useState([]);
+    const { toggleNavigation, dataProduct, setIsLoading, dataUser, setDataUser, userInfos, orderAll, setOrderAll } =
+        useContext(AppContext);
+
     const [isSorted, setIsSorted] = useState(false);
     const [originalDataUser, setOriginalDataUser] = useState([]);
+    const userInfo = JSON.parse(userInfos);
     useEffect(() => {
         const fetchAPI = async () => {
-            const result = await getUser.getUserAll();
-            const filteredUsers = result.data?.filter((user) => user.hasOwnProperty('role') && user.role !== 'admin');
-            setDataUser(filteredUsers);
-            setOriginalDataUser(filteredUsers);
+            const result = await getUser.getUserAll(userInfo.refreshToken, userInfo.accessToken, 1000);
+            const order = await getOrder.getOrder(userInfo.refreshToken, userInfo.accessToken, 1000);
+            if (result.status === 200) {
+                setDataUser(result.data);
+                setOriginalDataUser(result.data);
+            }
+            if (order.status === 200) {
+                setOrderAll(order.data);
+            }
         };
         fetchAPI();
     }, []);
@@ -37,12 +45,10 @@ function DashBoard() {
             setIsSorted(true);
         }
     };
-    var totalAmount = dataOrders?.reduce(function (total, order) {
-        if (order.payIn === 'Đã thanh toán') {
-            return +total + +order.formattedTotal;
-        }
-        return total;
-    }, 0);
+
+    const totalPrice = orderAll.orders?.reduce((acc, total) => acc + +total.formattedTotal, 0);
+    console.log(totalPrice);
+
     return (
         <div className={cx('main', toggleNavigation ? 'active' : '')}>
             {/* {/* ======================= Cards ================== */}
@@ -72,7 +78,7 @@ function DashBoard() {
                 <NavLink to={'/admin/order'} onClick={() => setIsLoading(true)}>
                     <div className={cx('card')}>
                         <div>
-                            <div className={cx('numbers')}>{dataOrders.length}</div>
+                            <div className={cx('numbers')}>{orderAll?.totalOrder}</div>
                             <div className={cx('cardName')}>Đơn hàng</div>
                         </div>
                         <div className={cx('iconBx')}>
@@ -82,7 +88,7 @@ function DashBoard() {
                 </NavLink>
                 <div className={cx('card', 'cart-total')}>
                     <div>
-                        <div className={cx('numbers')}>{convertNumberToShortText(totalAmount)}</div>
+                        <div className={cx('numbers')}>{convertNumberToShortText(totalPrice)}</div>
                         <div className={cx('cardName')}>Doanh thu</div>
                     </div>
                     <div className={cx('iconBx')}>
@@ -107,7 +113,6 @@ function DashBoard() {
                             { title: 'Số lượng' },
                             { title: 'Thanh toán' },
                         ]}
-                        dataOrders={dataOrders}
                     />
                 </div>
                 {/* ================= New Customers ================ */}
