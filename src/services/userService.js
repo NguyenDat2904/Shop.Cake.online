@@ -11,7 +11,7 @@ export const detail = async (_id, refresh_token, accessToken) => {
     }
 };
 
-export const getUserAll = async (refresh_token, accessToken, limit) => {
+export const getUserAll = async (refresh_token, accessToken, limit = '100') => {
     try {
         const results = await httpRequest.get(`user?limit=${limit}`, {
             headers: { refresh_token: `${refresh_token}`, authorization: `${accessToken}` },

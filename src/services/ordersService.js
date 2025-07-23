@@ -1,6 +1,8 @@
 import * as httpRequest from '~/ultils/httpRequest';
-export const getOrder = async (refresh_token, accessToken, limit) => {
+export const getOrder = async (refresh_token, accessToken, limit = 100) => {
     try {
+        if (!refresh_token) return;
+
         const results = await httpRequest.get(`order?limit=${limit}`, {
             headers: { refresh_token: `${refresh_token}`, authorization: `${accessToken}` },
         });

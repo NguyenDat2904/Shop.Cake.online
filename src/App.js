@@ -44,13 +44,12 @@ function App() {
         isShowingNotionContact,
         toggle,
     } = useModal();
-    const [isAdmin, setIsAdmin] = useState(true);
     const [isLogin, setIsLoggedIn] = useState(false);
+    const isAdmin = Boolean(localStorage.getItem('isAdmin')) || false;
+
     const checkAdmin = () => {
-        const admin = localStorage.getItem('isAdmin') === 'false' ? false : true;
         const login = localStorage.getItem('isLogin') === 'true' ? true : false;
         setIsLoggedIn(login);
-        setIsAdmin(admin);
     };
     useEffect(() => {
         checkAdmin();
@@ -71,7 +70,7 @@ function App() {
                 theme="light"
             />
             <AppProvider>
-                {isAdmin && <Header />}
+                <Header />
                 <CartRight toggle={toggle} />
                 <Modal isShowing={isShowing} hide={toggle} />
                 <ModalNotion isShowing={isShowingNotion} hide={toggle} />
@@ -85,7 +84,7 @@ function App() {
                     <Routes>
                         <Route
                             path="/"
-                            element={!isAdmin ? <Navigate to={'/admin/dashboard'} /> : <Home toggle={toggle} />}
+                            element={isAdmin ? <Navigate to={'/admin/dashboard'} /> : <Home toggle={toggle} />}
                         />
                         <Route path="/introduce" element={<Introduce />} />
                         <Route path="/library/*" element={<Library />} />
@@ -99,15 +98,12 @@ function App() {
                         <Route path="/cart" element={<Cart toggle={toggle} />} />
                         <Route path="/pay" element={<PayMent toggle={toggle} />} />
                         <Route path="/compare" element={<Compare toggle={toggle} />} />
-                        <Route
-                            path="/admin/*"
-                            element={<Admin setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} isLogin={isLogin} />}
-                        ></Route>
+                        <Route path="/admin/*" element={<Admin setIsLoggedIn={setIsLoggedIn} />}></Route>
                         <Route path="/profile/*" element={<AccountManagement toggle={toggle} />} />
                         <Route path="/*" element={<h2>404</h2>} />
                     </Routes>
                 </div>
-                {isAdmin && <Footer />}
+                <Footer />
             </AppProvider>
         </Router>
     );

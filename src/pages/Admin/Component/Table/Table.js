@@ -40,26 +40,62 @@ function Table({ header, orders }) {
                 {orders && <td className={cx('text-center', 'text-start')}>{index + 1}</td>}
                 <td className={cx('name-receive', 'text-start')}>{order.nameReceive}</td>
                 {
-                    <td width="60px">
+                    <td
+                        width="60px"
+                        style={{
+                            padding: '0',
+                        }}
+                    >
                         {order.product?.map((product, index) => (
-                            <div key={index} className={cx('imgBx')}>
+                            <div
+                                key={index}
+                                className={cx('imgBx')}
+                                style={{
+                                    borderBottom:
+                                        index === order.product.length - 1 ? 'none' : '1px solid rgba(0, 0, 0, 0.1)',
+                                }}
+                            >
                                 <img src={product.id.img} alt="" />
                             </div>
                         ))}
                     </td>
                 }
                 {
-                    <td className={cx('text-center')}>
+                    <td
+                        className={cx('text-center')}
+                        style={{
+                            padding: '0',
+                        }}
+                    >
                         {order.product?.map((product, index) => (
-                            <div key={index} className={cx('name-product')}>
+                            <div
+                                key={index}
+                                className={cx('name-product')}
+                                style={{
+                                    borderBottom:
+                                        index === order.product.length - 1 ? 'none' : '1px solid rgba(0, 0, 0, 0.1)',
+                                }}
+                            >
                                 {product.id.name}
                             </div>
                         ))}
                     </td>
                 }
-                <td className={cx('quantity-product')}>
+                <td
+                    className={cx('quantity-product')}
+                    style={{
+                        padding: '0',
+                    }}
+                >
                     {order.product?.map((product, index) => (
-                        <div key={index} className={cx('name-product')}>
+                        <div
+                            key={index}
+                            className={cx('name-product')}
+                            style={{
+                                borderBottom:
+                                    index === order.product.length - 1 ? 'none' : '1px solid rgba(0, 0, 0, 0.1)',
+                            }}
+                        >
                             {product.quantity}
                         </div>
                     ))}

@@ -13,6 +13,7 @@ function ContactAdmin({ toggle }) {
     useEffect(() => {
         const fetchAPI = async () => {
             const result = await postContact.getContact();
+
             getContact(result);
         };
         fetchAPI();

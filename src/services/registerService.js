@@ -111,7 +111,8 @@ export const postContact = async (nameContact, emailContact, phoneContact, conte
 export const getContact = async () => {
     try {
         const results = await httpRequest.get(`dataContact`, {});
-        return results.data;
+        if (results.status !== 200) return [];
+        return results?.data;
     } catch (error) {
         console.log(error);
     }

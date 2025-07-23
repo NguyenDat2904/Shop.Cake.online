@@ -18,13 +18,13 @@ import IsLoading from '~/component/IsLoading/IsLoading';
 import { AppContext } from '~/hook/context';
 import ContactAdmin from './ContactAdmin/ContactAdmin';
 const cx = classnames.bind(styles);
-function Admin({ setIsLoggedIn, setIsAdmin, isLogin }) {
+function Admin({ setIsLoggedIn }) {
     const { isShowingUser, isShowingProduct, isShowingAddCustomer, isShowingAddProduct, toggle } = useModal();
     const { isLoading } = useContext(AppContext);
     return (
         <div className={cx('wrapper')}>
             <IsLoading isLoading={isLoading} />
-            <Navigation setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
+            <Navigation setIsLoggedIn={setIsLoggedIn} />
             <HeaderOnly />
             <ModalUser isShowing={isShowingUser} hide={toggle} />
             <ModalAddCustomer isShowing={isShowingAddCustomer} hide={toggle} />

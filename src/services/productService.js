@@ -7,7 +7,7 @@ export const getProduct = async () => {
         console.log(error);
     }
 };
-export const getProductPerPage = async (currentPage, perPage) => {
+export const getProductPerPage = async (currentPage, perPage = '100') => {
     const results = await httpRequest.get(`product?page=${currentPage}&limit=${perPage}`, {});
     return results;
 };

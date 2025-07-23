@@ -15,12 +15,11 @@ import { useContext } from 'react';
 import { AppContext } from '~/hook/context';
 
 const cx = classnames.bind(styles);
-function Navigation({ setIsLoggedIn, setIsAdmin }) {
+function Navigation({ setIsLoggedIn }) {
     const { toggleNavigation, setIsLoading } = useContext(AppContext);
     const handleLogout = () => {
         setIsLoading(true);
         setIsLoggedIn(false);
-        setIsAdmin(true);
         localStorage.clear();
     };
     const activeClass = (params) => {

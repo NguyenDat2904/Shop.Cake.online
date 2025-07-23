@@ -7,7 +7,7 @@ import { formatCurrencyVND } from '~/component/NumberToPrice/currency';
 
 const cx = classnames.bind(styles);
 
-function TableContact({ contact, header }) {
+function TableContact({ contact = [], header }) {
     const renderUser = contact?.map((user, index) => {
         return (
             <tr key={user.id}>
@@ -29,7 +29,7 @@ function TableContact({ contact, header }) {
             </tr>
         );
     });
-    const renderHeader = header.map((item, index) => {
+    const renderHeader = header?.map((item, index) => {
         return (
             <Fragment key={index}>
                 <td>

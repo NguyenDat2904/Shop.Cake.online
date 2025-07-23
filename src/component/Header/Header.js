@@ -40,7 +40,7 @@ function Header({ setIsLoggedIn }) {
     if (roleUser === 'admin') {
         return null;
     }
-    if (roleUser === 'regular') {
+    if (roleUser !== 'admin') {
         // 4. Render
         return (
             <header>

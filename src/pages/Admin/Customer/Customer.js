@@ -169,11 +169,13 @@ function Customer({ toggle }) {
         }
     };
     useEffect(() => {
+        const { accessToken, refreshToken } = JSON.parse(localStorage.getItem('user')) || {};
+
         const fetchAPI = async () => {
-            const result = await getUser.getUserAll();
-            const filteredUsers = result.data.filter((user) => user.hasOwnProperty('role') && user.role !== 'admin');
-            setDataUser(filteredUsers);
-            setOriginalDataUser(filteredUsers);
+            const result = await getUser.getUserAll(refreshToken, accessToken);
+
+            setDataUser(result?.data);
+            setOriginalDataUser(result?.data);
         };
         fetchAPI();
     }, []);

@@ -14,7 +14,7 @@ function Footer() {
     if (roleUser === 'admin') {
         return null;
     }
-    if (roleUser === 'regular') {
+    if (roleUser !== 'admin') {
         return (
             <div className={cx('footer')}>
                 <div className={cx('foorterService')}>
